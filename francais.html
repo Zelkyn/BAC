@@ -130,6 +130,7 @@ body.night #night-toggle::after { content: "☀️"; transform: translateX(30px)
 .search-wrap .search-ico { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); opacity: 0.55; font-size: 16px; pointer-events: none; }
 .search-wrap .search-clear { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); border: none; background: none; color: var(--card-sub); font-size: 20px; cursor: pointer; padding: 4px 10px; display: none; }
 .search-wrap.has-q .search-clear { display: block; }
+.search-wrap input::-webkit-search-cancel-button { -webkit-appearance: none; appearance: none; }
 #contentList, .list { width: 100%; max-width: 560px; display: flex; flex-direction: column; align-items: stretch; gap: 14px; }
 .list { margin: 0 auto; }
 .card {
@@ -158,9 +159,6 @@ a.btn { text-decoration: none; }
 .group-title::after { content: ""; flex: 1; height: 1px; background: var(--accent-mid); }
 .group-title:first-child { margin-top: 0; }
 .group-desc { font-size: 13.5px; color: var(--card-sub); margin: -4px 4px 2px; font-style: italic; }
-.credits { margin-top: 46px; text-align: center; color: var(--card-sub); font-size: 13px; line-height: 1.9; }
-.credits .credits-title { font-size: 15px; font-weight: bold; color: var(--title); letter-spacing: 1px; margin-bottom: 4px; }
-.credits .vote { font-size: 19px; font-weight: bold; margin-top: 10px; color: var(--text); }
 #viewer { display: none; padding: 84px 20px 120px; min-height: 100vh; animation: fadeIn 0.25s ease; }
 @keyframes fadeIn { from { opacity:0; transform: translateY(8px); } to { opacity:1; transform: translateY(0); } }
 #content { max-width: 800px; margin: 0 auto; font-size: 17px; line-height: 1.75; color: var(--text); }
@@ -398,14 +396,6 @@ body.night .tbl th { background: var(--accent-2); }
     <button class="search-clear" onclick="clearSearch()" aria-label="Effacer">×</button>
   </div>
   <div id="contentList"></div>
-  <div class="credits">
-    <div class="credits-title">Crédits</div>
-    Créé par Aurélien<br>
-    Avec l'aide précieuse de Aline<br>
-    Avec la participation de Mathilde et Léa<br>
-    Avec l'aide de ClaudeAI et ChatGPT
-    <div class="vote">Votez pour nous l'année prochaine !</div>
-  </div>
 </div>
 <div id="viewer"><div id="content"></div></div>
 <div id="notion-pop" role="dialog" aria-live="polite"></div>
