@@ -762,6 +762,21 @@ body.night .cmp-table th { background: var(--accent-2); }
 .cmp-table.cmp-large { min-width: 540px; }
 @media (max-width: 600px) { .cmp-table th, .cmp-table td { padding: 7px 8px; font-size: 13px; } }
 .citation-comm { display: block; margin-top: 4px; font-style: normal; font-size: 13px; }
+.search-wrap { width: 100%; max-width: 560px; position: relative; margin: 14px 0 22px; }
+.search-wrap input {
+  width: 100%; font-size: 16px; padding: 13px 44px 13px 44px; border-radius: 14px; font-family: inherit;
+  border: 1px solid var(--border); background: var(--card-bg); color: var(--text); box-shadow: var(--shadow);
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.4s;
+}
+.search-wrap input:focus { outline: none; border-color: var(--accent-mid); box-shadow: var(--shadow-lg); }
+.search-wrap .search-ico { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); opacity: 0.55; font-size: 16px; pointer-events: none; }
+.search-wrap .search-clear { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); border: none; background: none; color: var(--card-sub); font-size: 20px; cursor: pointer; padding: 4px 10px; display: none; }
+.search-wrap.has-q .search-clear { display: block; }
+.search-wrap input::-webkit-search-cancel-button { -webkit-appearance: none; appearance: none; }
+.search-type { display: inline-block; font-size: 11px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+.search-extrait { font-size: 13px; color: var(--card-sub); margin-top: 6px; line-height: 1.5; }
+.search-extrait b { color: var(--text); }
+.search-vide { color: var(--card-sub); font-style: italic; text-align: center; margin-top: 20px; }
 </style>
 </head>
 <body>
@@ -772,6 +787,11 @@ body.night .cmp-table th { background: var(--accent-2); }
 <button id="night-toggle" onclick="toggleNight()"></button>
 <div id="home">
   <h1>Objectif 2027 !</h1>
+  <div class="search-wrap" id="searchWrap">
+    <span class="search-ico">🔍</span>
+    <input id="search" type="search" placeholder="Rechercher une matière, une fiche, une notion…" autocomplete="off" oninput="renderHome()">
+    <button class="search-clear" onclick="clearSearch()" aria-label="Effacer">×</button>
+  </div>
   <div id="contentList"></div>
 </div>
 <div id="viewer">
@@ -7248,7 +7268,70 @@ function toggleAccord(el){
   if (chevron) chevron.classList.toggle('open', isOpen);
   el.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
 }
+const normTxt = t => (t||"").replace(/[\s\S]/g, c => (c.normalize("NFD")[0] || c).toLowerCase()[0]);
+const escTxt = t => (t||"").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"})[c]);
+let searchIndex = null;
+function buildSearchIndex(){
+  const parser = new DOMParser();
+  const idx = [];
+  matieres.forEach(m => {
+    idx.push({ type: "Matière", label: m.title, texte: m.sub || "", ouvrir: `ouvrirMatiere('${m.id}')` });
+    (m.fiches || []).forEach(f => {
+      let texte = "";
+      if (f.content) {
+        const corps = parser.parseFromString(f.content, "text/html").body;
+        corps.querySelectorAll('[onclick^="fcOpen"], .accord-chevron, script, style').forEach(el => el.remove());
+        corps.querySelectorAll("div, p, li, td, th, h1, h2, h3, h4, h5, h6, br, button, dt, dd, summary").forEach(el => el.after(" "));
+        texte = corps.textContent.replace(/\s+/g, " ").trim();
+      }
+      idx.push({ type: m.title, label: f.title, texte, ouvrir: `ouvrirFiche('${m.id}','${f.id}')` });
+    });
+  });
+  idx.forEach(e => { e.nLabel = normTxt(e.label); e.nTexte = normTxt(e.texte); e.nType = normTxt(e.type); });
+  return idx;
+}
+function extrait(e, mots){
+  const pos = mots.map(w => e.nTexte.indexOf(w)).filter(i => i >= 0);
+  if (!pos.length) return e.type === "Matière" ? escTxt(e.texte) : "";
+  const p = Math.min(...pos);
+  const debut = Math.max(0, p - 70), fin = Math.min(e.texte.length, p + 130);
+  let html = "", i = debut;
+  const nPart = e.nTexte.slice(debut, fin);
+  const marques = [];
+  mots.forEach(w => { let j = nPart.indexOf(w); while (j >= 0) { marques.push([debut + j, debut + j + w.length]); j = nPart.indexOf(w, j + w.length); } });
+  marques.sort((a, b) => a[0] - b[0]).forEach(([a, b]) => {
+    if (a < i) return;
+    html += escTxt(e.texte.slice(i, a)) + "<b>" + escTxt(e.texte.slice(a, b)) + "</b>";
+    i = b;
+  });
+  html += escTxt(e.texte.slice(i, fin));
+  return (debut > 0 ? "… " : "") + html + (fin < e.texte.length ? " …" : "");
+}
+function resultatsRecherche(q){
+  if (!searchIndex) searchIndex = buildSearchIndex();
+  const mots = normTxt(q).split(/\s+/).filter(Boolean);
+  const res = searchIndex
+    .filter(e => mots.every(w => e.nLabel.includes(w) || e.nType.includes(w) || e.nTexte.includes(w)))
+    .map(e => ({ e, s: (e.nLabel.startsWith(mots[0]) ? 4 : 0) + (mots.every(w => e.nLabel.includes(w)) ? 3 : 0) + (e.type === "Matière" ? 1 : 0) }))
+    .sort((a, b) => b.s - a.s).slice(0, 40).map(x => x.e);
+  if (!res.length) return `<p class="search-vide">Aucun résultat pour « ${escTxt(q)} ».</p>`;
+  return res.map(e => `
+      <div class="card" onclick="${e.ouvrir}">
+        <div class="search-type">${escTxt(e.type)}</div>
+        <div class="card-title">${e.label}</div>
+        ${e.type === "Matière" ? "" : `<div class="search-extrait">${extrait(e, mots)}</div>`}
+      </div>
+    `).join("");
+}
+function clearSearch(){
+  document.getElementById("search").value = "";
+  renderHome();
+  document.getElementById("search").focus();
+}
 function renderHome(){
+  const q = document.getElementById("search").value.trim();
+  document.getElementById("searchWrap").classList.toggle("has-q", !!q);
+  if (q) { document.getElementById("contentList").innerHTML = resultatsRecherche(q); return; }
   document.getElementById("contentList").innerHTML =
     matieres.map(m => `
       <div class="card" onclick="ouvrirMatiere('${m.id}')">
