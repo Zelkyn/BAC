@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BAC 2027</title>
+<style>
+:root{
+  --bg:#f6f3ee;
+  --text:#1e1d22;
+  --card-sub:#6d6a72;
+  --accent-soft:rgba(184,50,39,0.07);
+  --font-serif:"Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+}
+body.night{
+  --bg:#111217;
+  --text:#e7e2d8;
+  --card-sub:#9c99a3;
+  --accent-soft:rgba(224,104,90,0.09);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; overflow: hidden; }
+body { font-family: var(--font-serif); background: radial-gradient(900px 480px at 50% -160px, var(--accent-soft), transparent 70%), var(--bg); color: var(--text); transition: background 0.4s, color 0.4s; -webkit-font-smoothing: antialiased; }
+.site-frame { position: fixed; inset: 0; width: 100%; height: 100%; border: 0; display: none; background: var(--bg); }
+.site-frame.active { display: block; }
+#maths { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; flex-direction: column; padding: 20px; text-align: center; }
+#maths.active { display: flex; animation: siteFade 0.3s ease; }
+#maths h1 { font-size: 36px; margin: 0 0 14px 0; }
+#maths p { font-size: 20px; color: var(--card-sub); font-style: italic; margin: 0; }
+@keyframes siteFade { from { opacity: 0; } to { opacity: 1; } }
+#site-switch { position: fixed; left: 28px; bottom: 28px; z-index: 100000; font-family: Georgia, serif; }
+#site-btn {
+  display: flex; align-items: center; gap: 10px;
+  background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+  color: #f0e6c8;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  cursor: pointer;
+  font-size: 15px;
+  padding: 11px 20px;
+  font-family: Georgia, serif;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.07);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+#site-btn:hover { background: linear-gradient(135deg, #2a2a2a, #3d3d3d); transform: translateY(-1px); }
+#site-btn:active { transform: translateY(1px); }
+#site-btn .chev { font-size: 11px; transition: transform 0.3s cubic-bezier(.2,.8,.2,1); }
+#site-switch.open #site-btn .chev { transform: rotate(180deg); }
+#site-menu {
+  position: absolute; left: 0; bottom: calc(100% + 10px);
+  min-width: 100%;
+  display: flex; flex-direction: column; gap: 4px;
+  padding: 6px;
+  background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.07);
+  transform-origin: bottom left;
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transform: translateY(12px) scale(0.92);
+  transition: opacity 0.28s ease, transform 0.35s cubic-bezier(.2,.8,.2,1), visibility 0s linear 0.35s;
+}
+#site-switch.open #site-menu {
+  opacity: 1; visibility: visible; pointer-events: auto;
+  transform: translateY(0) scale(1);
+  transition: opacity 0.28s ease, transform 0.35s cubic-bezier(.2,.8,.2,1), visibility 0s;
+}
+.site-opt {
+  background: transparent; color: #f0e6c8; border: 0; border-radius: 10px;
+  padding: 10px 16px; text-align: left; white-space: nowrap; cursor: pointer;
+  font-family: Georgia, serif; font-size: 15px; letter-spacing: 0.5px;
+  opacity: 0; transform: translateY(8px);
+  transition: background 0.2s, opacity 0.25s ease, transform 0.3s cubic-bezier(.2,.8,.2,1);
+}
+#site-switch.open .site-opt { opacity: 1; transform: translateY(0); }
+#site-switch.open .site-opt:nth-child(1) { transition-delay: 0s, 0.05s, 0.05s; }
+#site-switch.open .site-opt:nth-child(2) { transition-delay: 0s, 0.1s, 0.1s; }
+.site-opt:hover, .site-opt:focus-visible { background: rgba(255,255,255,0.08); outline: none; }
+@media (max-width: 600px) {
+  #site-switch { left: 16px; bottom: 20px; }
+  #site-btn, .site-opt { font-size: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
+</style>
+</head>
+<body>
+<iframe class="site-frame" id="frame-terminale" title="BAC Terminale"></iframe>
+<iframe class="site-frame" id="frame-francais" title="BAC Français"></iframe>
+<div id="maths">
+  <h1>BAC Maths</h1>
+  <p>Aucun contenu pour le moment</p>
+</div>
+<div id="site-switch">
+  <div id="site-menu" role="menu"></div>
+  <button id="site-btn" aria-haspopup="true" aria-expanded="false" onclick="toggleSiteMenu()"><span id="site-label"></span><span class="chev">▲</span></button>
+</div>
+<script>
+const SITES = {
+  terminale: { label: "BAC Terminale", src: "terminale.html", frame: "frame-terminale" },
+  francais:  { label: "BAC Français",  src: "francais.html",  frame: "frame-francais" },
+  maths:     { label: "BAC Maths" }
+};
+const ORDER = ["terminale", "francais", "maths"];
+let current = null;
+function isNightHour(){ const h = new Date().getHours(); return h >= 21 || h < 6; }
+function frameNight(key){
+  try {
+    const f = document.getElementById(SITES[key].frame);
+    const b = f && f.contentDocument && f.contentDocument.body;
+    if (b) return b.classList.contains("night");
+  } catch (e) {}
+  return null;
+}
+function showSite(key){
+  const prev = current;
+  current = key;
+  const s = SITES[key];
+  document.querySelectorAll(".site-frame").forEach(f => f.classList.remove("active"));
+  document.getElementById("maths").classList.remove("active");
+  if (s.frame) {
+    const f = document.getElementById(s.frame);
+    if (!f.getAttribute("src")) f.setAttribute("src", s.src);
+    f.classList.add("active");
+    try { if (f.contentDocument && f.contentDocument.title) document.title = f.contentDocument.title; } catch (e) {}
+  } else {
+    const n = prev && SITES[prev].frame ? frameNight(prev) : null;
+    document.body.classList.toggle("night", n === null ? isNightHour() : n);
+    document.getElementById("maths").classList.add("active");
+    document.title = s.label;
+  }
+  document.getElementById("site-label").textContent = s.label;
+  document.getElementById("site-menu").innerHTML = ORDER.filter(k => k !== key)
+    .map(k => `<button class="site-opt" role="menuitem" onclick="pickSite('${k}')">${SITES[k].label}</button>`).join("");
+}
+function toggleSiteMenu(force){
+  const sw = document.getElementById("site-switch");
+  const open = force === undefined ? !sw.classList.contains("open") : force;
+  sw.classList.toggle("open", open);
+  document.getElementById("site-btn").setAttribute("aria-expanded", open);
+}
+function pickSite(key){
+  toggleSiteMenu(false);
+  showSite(key);
+}
+ORDER.forEach(k => {
+  const s = SITES[k];
+  if (!s.frame) return;
+  document.getElementById(s.frame).addEventListener("load", e => {
+    const f = e.target;
+    try {
+      if (current === k && f.contentDocument) document.title = f.contentDocument.title;
+      f.contentWindow.addEventListener("pointerdown", () => toggleSiteMenu(false));
+    } catch (err) {}
+  });
+});
+document.addEventListener("pointerdown", e => { if (!e.target.closest("#site-switch")) toggleSiteMenu(false); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") toggleSiteMenu(false); });
+window.addEventListener("blur", () => setTimeout(() => toggleSiteMenu(false), 0));
+showSite("terminale");
+</script>
+</body>
+</html>
