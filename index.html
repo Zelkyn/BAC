@@ -24,11 +24,6 @@ body { font-family: var(--font-serif); background: radial-gradient(900px 480px a
 .site-frame { position: fixed; inset: 0; width: 100%; height: 100%; border: 0; display: none; background: var(--bg); }
 .site-frame.active { display: block; }
 .site-frame.loading { visibility: hidden; }
-#maths { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; flex-direction: column; padding: 20px; text-align: center; }
-#maths.active { display: flex; animation: siteFade 0.3s ease; }
-#maths h1 { font-size: 36px; margin: 0 0 14px 0; }
-#maths p { font-size: 20px; color: var(--card-sub); font-style: italic; margin: 0; }
-@keyframes siteFade { from { opacity: 0; } to { opacity: 1; } }
 #site-switch { position: fixed; left: 28px; bottom: 28px; z-index: 100000; font-family: Georgia, serif; }
 #site-btn {
   display: flex; align-items: center; gap: 10px;
@@ -90,10 +85,7 @@ body { font-family: var(--font-serif); background: radial-gradient(900px 480px a
 <body>
 <iframe class="site-frame" id="frame-terminale" title="BAC Terminale"></iframe>
 <iframe class="site-frame" id="frame-francais" title="BAC Français"></iframe>
-<div id="maths">
-  <h1>BAC Maths</h1>
-  <p>Aucun contenu pour le moment</p>
-</div>
+<iframe class="site-frame" id="frame-maths" title="BAC Maths"></iframe>
 <div id="site-switch">
   <div id="site-menu" role="menu"></div>
   <button id="site-btn" aria-haspopup="true" aria-expanded="false" onclick="toggleSiteMenu()"><span id="site-label"></span><span class="chev">▲</span></button>
@@ -102,7 +94,7 @@ body { font-family: var(--font-serif); background: radial-gradient(900px 480px a
 const SITES = {
   terminale: { label: "BAC Terminale", src: "terminale.html", frame: "frame-terminale" },
   francais:  { label: "BAC Français",  src: "francais.html",  frame: "frame-francais" },
-  maths:     { label: "BAC Maths" }
+  maths:     { label: "BAC Maths",     src: "maths.html",     frame: "frame-maths" }
 };
 const ORDER = ["terminale", "francais", "maths"];
 let current = null;
@@ -132,11 +124,8 @@ function showSite(key){
     if (!f.getAttribute("src")) { f.classList.add("loading"); f.setAttribute("src", s.src); }
     else syncFrame(f);
     try { if (f.contentDocument && f.contentDocument.title) document.title = f.contentDocument.title; } catch (e) {}
-  } else {
-    document.title = s.label;
   }
   document.querySelectorAll(".site-frame").forEach(f => f.classList.toggle("active", f.id === s.frame));
-  document.getElementById("maths").classList.toggle("active", !s.frame);
   document.getElementById("site-label").textContent = s.label;
   document.getElementById("site-menu").innerHTML = ORDER.filter(k => k !== key)
     .map(k => `<button class="site-opt" role="menuitem" onclick="pickSite('${k}')">${SITES[k].label}</button>`).join("");
