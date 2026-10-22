@@ -95,7 +95,7 @@
   transform: rotateY(180deg);
 }
 body.night #fc-front { background: linear-gradient(135deg, #0d0d1a, #1a1a2e); }
-body.night #fc-back  { background: linear-gradient(135deg, #051009, #0d2818); }
+body.night #fc-back { background: linear-gradient(135deg, #051009, #0d2818); }
 .fc-label {
   font-size: 11px;
   letter-spacing: 2px;
@@ -170,7 +170,7 @@ body.night #fc-back  { background: linear-gradient(135deg, #051009, #0d2818); }
   text-align: center;
   opacity: 0.8;
 }
-:root{
+:root {
   --bg:         #f4f4f4;
   --text:       #111;
   --card-bg:    white;
@@ -178,7 +178,7 @@ body.night #fc-back  { background: linear-gradient(135deg, #051009, #0d2818); }
   --title:      #333;
   --shadow:     0 2px 10px rgba(0,0,0,0.1);
 }
-body.night{
+body.night {
   --bg:         #121212;
   --text:       #e0d7c6;
   --card-bg:    #1e1e1e;
@@ -186,7 +186,6 @@ body.night{
   --title:      #ccc;
   --shadow:     0 2px 10px rgba(0,0,0,0.4);
 }
-body.night .bandeau-origine + div [style*="background:#f9f9f9"],
 body.night [style*="background:#f9f9f9"] {
   background: var(--card-bg) !important;
   color: var(--text) !important;
@@ -195,82 +194,6 @@ body.night [style*="background:#f9f9f9"] {
   background: #2a2a2a !important;
   color: var(--text) !important;
 }
-.card.vide {
-  box-shadow: 0 0 0 2px #555, 0 0 12px 3px rgba(100,100,100,0.35);
-}
-.card.web,
-.card.ia,
-.card.eleve,
-.card.enseignant,
-.card.web-ia,
-.card.web-eleve,
-.card.web-enseignant,
-.card.ia-eleve,
-.card.ia-enseignant,
-.card.eleve-enseignant {
-  border: 2px solid transparent;
-  background-clip: padding-box;
-  position: relative;
-}
-.card.web:hover,
-.card.ia:hover,
-.card.eleve:hover,
-.card.enseignant:hover,
-.card.web-ia:hover,
-.card.web-eleve:hover,
-.card.web-enseignant:hover,
-.card.ia-eleve:hover,
-.card.ia-enseignant:hover,
-.card.eleve-enseignant:hover { border-color: transparent; }
-.card.web::after,
-.card.ia::after,
-.card.eleve::after,
-.card.enseignant::after,
-.card.web-ia::after,
-.card.web-eleve::after,
-.card.web-enseignant::after,
-.card.ia-eleve::after,
-.card.ia-enseignant::after,
-.card.eleve-enseignant::after {
-  content: "";
-  position: absolute;
-  inset: -3px;
-  border-radius: 19px;
-  background-size: 300% 300%;
-  animation: borderFlow 3s ease infinite;
-  filter: saturate(1.25) brightness(1.08);
-  z-index: -1;
-}
-.card.web::after { background: linear-gradient(270deg, #0ea5e9, #67e8f9, #0ea5e9); }
-.card.web       { box-shadow: 0 0 14px 1px rgba(56,189,248,0.50), var(--shadow); }
-.card.web:hover { box-shadow: 0 0 22px 3px rgba(56,189,248,0.65), var(--shadow-lg); }
-.card.ia::after { background: linear-gradient(270deg, #a855f7, #e879f9, #a855f7); }
-.card.ia       { box-shadow: 0 0 14px 1px rgba(192,132,252,0.50), var(--shadow); }
-.card.ia:hover { box-shadow: 0 0 22px 3px rgba(192,132,252,0.65), var(--shadow-lg); }
-.card.eleve::after { background: linear-gradient(270deg, #22c55e, #86efac, #22c55e); }
-.card.eleve       { box-shadow: 0 0 14px 1px rgba(74,222,128,0.50), var(--shadow); }
-.card.eleve:hover { box-shadow: 0 0 22px 3px rgba(74,222,128,0.65), var(--shadow-lg); }
-.card.enseignant::after { background: linear-gradient(270deg, #facc15, #fde68a, #facc15); }
-.card.enseignant       { box-shadow: 0 0 14px 1px rgba(250,204,21,0.50), var(--shadow); }
-.card.enseignant:hover { box-shadow: 0 0 22px 3px rgba(250,204,21,0.65), var(--shadow-lg); }
-.card.web-ia::after { background: linear-gradient(270deg, #0ea5e9, #a855f7, #0ea5e9, #a855f7); background-size: 400% 400%; animation-duration: 4s; }
-.card.web-ia       { box-shadow: -6px 0 14px 0 rgba(56,189,248,0.45), 6px 0 14px 0 rgba(192,132,252,0.45), var(--shadow); }
-.card.web-ia:hover { box-shadow: -8px 0 22px 2px rgba(56,189,248,0.6), 8px 0 22px 2px rgba(192,132,252,0.6), var(--shadow-lg); }
-.card.web-eleve::after { background: linear-gradient(270deg, #0ea5e9, #22c55e, #0ea5e9, #22c55e); background-size: 400% 400%; animation-duration: 4s; }
-.card.web-eleve       { box-shadow: -6px 0 14px 0 rgba(56,189,248,0.45), 6px 0 14px 0 rgba(74,222,128,0.45), var(--shadow); }
-.card.web-eleve:hover { box-shadow: -8px 0 22px 2px rgba(56,189,248,0.6), 8px 0 22px 2px rgba(74,222,128,0.6), var(--shadow-lg); }
-.card.web-enseignant::after { background: linear-gradient(270deg, #0ea5e9, #facc15, #0ea5e9, #facc15); background-size: 400% 400%; animation-duration: 4s; }
-.card.web-enseignant       { box-shadow: -6px 0 14px 0 rgba(56,189,248,0.45), 6px 0 14px 0 rgba(250,204,21,0.45), var(--shadow); }
-.card.web-enseignant:hover { box-shadow: -8px 0 22px 2px rgba(56,189,248,0.6), 8px 0 22px 2px rgba(250,204,21,0.6), var(--shadow-lg); }
-.card.ia-eleve::after { background: linear-gradient(270deg, #a855f7, #22c55e, #a855f7, #22c55e); background-size: 400% 400%; animation-duration: 4s; }
-.card.ia-eleve       { box-shadow: -6px 0 14px 0 rgba(192,132,252,0.45), 6px 0 14px 0 rgba(74,222,128,0.45), var(--shadow); }
-.card.ia-eleve:hover { box-shadow: -8px 0 22px 2px rgba(192,132,252,0.6), 8px 0 22px 2px rgba(74,222,128,0.6), var(--shadow-lg); }
-.card.ia-enseignant::after { background: linear-gradient(270deg, #a855f7, #facc15, #a855f7, #facc15); background-size: 400% 400%; animation-duration: 4s; }
-.card.ia-enseignant       { box-shadow: -6px 0 14px 0 rgba(192,132,252,0.45), 6px 0 14px 0 rgba(250,204,21,0.45), var(--shadow); }
-.card.ia-enseignant:hover { box-shadow: -8px 0 22px 2px rgba(192,132,252,0.6), 8px 0 22px 2px rgba(250,204,21,0.6), var(--shadow-lg); }
-.card.eleve-enseignant::after { background: linear-gradient(270deg, #22c55e, #facc15, #22c55e, #facc15); background-size: 400% 400%; animation-duration: 4s; }
-.card.eleve-enseignant       { box-shadow: -6px 0 14px 0 rgba(74,222,128,0.45), 6px 0 14px 0 rgba(250,204,21,0.45), var(--shadow); }
-.card.eleve-enseignant:hover { box-shadow: -8px 0 22px 2px rgba(74,222,128,0.6), 8px 0 22px 2px rgba(250,204,21,0.6), var(--shadow-lg); }
 @keyframes borderFlow {
   0%   { background-position: 0% 50%; }
   50%  { background-position: 100% 50%; }
@@ -286,7 +209,8 @@ body.night [style*="background:#f9f9f9"] {
 .accord-chevron.open { transform: rotate(180deg); }
 .accord-content { display: none; }
 .accord-content.open { display: block; }
-.accord-h1 > span:first-child, .accord-h2 > span:first-child { flex: 1; padding-right: 12px; }
+.accord-h1 > span:first-child,
+.accord-h2 > span:first-child { flex: 1; padding-right: 12px; }
 .accord-sub + .accord-sub { border-top: 1px solid rgba(0,0,0,0.06); }
 .accord-fc-row { padding: 6px 0 0 0; }
 .accord-fc-row-top { padding: 0 0 4px 0; }
@@ -322,52 +246,6 @@ body.night .formule { background: #0d0d1a; }
 .piege { background: rgba(231,76,60,0.08); border-left: 3px solid #e74c3c; border-radius: 6px; padding: 10px 14px; font-size: 14px; margin: 10px 0; }
 .aretenir { background: rgba(39,174,96,0.08); border-left: 3px solid #27ae60; border-radius: 6px; padding: 10px 14px; font-size: 14px; margin: 10px 0; }
 .vide-msg { color: var(--card-sub); font-style: italic; text-align: center; padding: 20px 0; font-size: 15px; }
-.bandeau-origine    { width:100%; text-align:center; font-family:Georgia,serif; font-size:15px; font-weight:bold; letter-spacing:1px; padding:8px 0 10px; margin-bottom:24px; border-radius:8px; }
-.bandeau-vide       { color:#888;    background:rgba(100,100,100,0.08); }
-.bandeau-web            { color:#0b7fc4; background:rgba(56,189,248,0.12); }
-.bandeau-ia             { color:#8b3fe0; background:rgba(192,132,252,0.12); }
-.bandeau-eleve          { color:#16a34a; background:rgba(74,222,128,0.12); }
-.bandeau-enseignant     { color:#a16207; background:rgba(250,204,21,0.12); }
-.bandeau-web-ia { color:#0b7fc4; background:linear-gradient(90deg, rgba(56,189,248,0.14), rgba(192,132,252,0.16)); }
-.bandeau-web-eleve { color:#0b7fc4; background:linear-gradient(90deg, rgba(56,189,248,0.14), rgba(74,222,128,0.16)); }
-.bandeau-web-enseignant { color:#0b7fc4; background:linear-gradient(90deg, rgba(56,189,248,0.14), rgba(250,204,21,0.16)); }
-.bandeau-ia-eleve { color:#8b3fe0; background:linear-gradient(90deg, rgba(192,132,252,0.14), rgba(74,222,128,0.16)); }
-.bandeau-ia-enseignant { color:#8b3fe0; background:linear-gradient(90deg, rgba(192,132,252,0.14), rgba(250,204,21,0.16)); }
-.bandeau-eleve-enseignant { color:#16a34a; background:linear-gradient(90deg, rgba(74,222,128,0.14), rgba(250,204,21,0.16)); }
-body.night .bandeau-enseignant { color:#facc15; }
-.card.hors-programme {
-  position: relative;
-}
-.card.hors-programme::before {
-  content: "⚠ Hors programme";
-  position: absolute;
-  top: 7px;
-  right: 12px;
-  background: #e67e22;
-  color: white;
-  font-size: 8px;
-  font-family: Georgia, serif;
-  font-style: italic;
-  font-weight: bold;
-  padding: 2px 7px;
-  border-radius: 20px;
-  letter-spacing: 0.3px;
-  white-space: nowrap;
-  z-index: 10;
-}
-.badge-hors-programme {
-  display: inline-block;
-  background: #e67e22;
-  color: white;
-  font-size: 11px;
-  font-family: Georgia, serif;
-  font-style: italic;
-  font-weight: bold;
-  padding: 4px 12px;
-  border-radius: 20px;
-  letter-spacing: 0.3px;
-  margin-bottom: 18px;
-}
 * { box-sizing: border-box; }
 body {
   margin: 0;
@@ -430,7 +308,7 @@ body {
   text-align: center;
   transition: transform 0.15s, box-shadow 0.15s, background 0.4s;
 }
-.card:hover  { transform: scale(1.03); }
+.card:hover { transform: scale(1.03); }
 .card:active { transform: scale(0.98); }
 .card-title {
   font-size: 19px;
@@ -497,7 +375,7 @@ body {
   box-shadow: 0 4px 16px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.07);
   transition: all 0.2s ease;
 }
-.back-btn:hover  { background: linear-gradient(135deg,#2a2a2a,#3d3d3d); transform: translateY(-1px); }
+.back-btn:hover { background: linear-gradient(135deg,#2a2a2a,#3d3d3d); transform: translateY(-1px); }
 .back-btn:active { transform: translateY(1px); }
 body.night .back-btn { background: linear-gradient(135deg,#111,#222); }
 #night-toggle {
@@ -541,9 +419,9 @@ body.night #night-toggle::after {
   transform: translateX(30px);
   background: linear-gradient(135deg, #fff8e1, #ffe082);
 }
-#night-toggle:hover  { transform: scale(1.06); }
+#night-toggle:hover { transform: scale(1.06); }
 #night-toggle:active { transform: scale(0.96); }
-:root{
+:root {
   --bg:          #f6f3ee;
   --text:        #1e1d22;
   --card-bg:     #ffffff;
@@ -558,7 +436,7 @@ body.night #night-toggle::after {
   --accent-mid:  rgba(184,50,39,0.14);
   --font-serif:  "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
 }
-body.night{
+body.night {
   --bg:          #111217;
   --text:        #e7e2d8;
   --card-bg:     #1b1c23;
@@ -607,11 +485,10 @@ button { font-family: var(--font-serif); -webkit-tap-highlight-color: transparen
   padding: 20px 26px;
   transition: transform 0.2s cubic-bezier(.2,.8,.2,1), box-shadow 0.2s, background 0.4s, border-color 0.2s;
 }
-.card:hover  { transform: translateY(-3px); box-shadow: var(--shadow-lg); border-color: var(--accent-mid); }
+.card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); border-color: var(--accent-mid); }
 .card:active { transform: translateY(0) scale(0.99); }
 .card-title { font-size: 18.5px; line-height: 1.4; letter-spacing: 0.1px; }
-.card-sub   { font-size: 13.5px; margin-top: 6px; }
-.card.vide  { box-shadow: 0 0 0 2px #8a8a8a, var(--shadow); }
+.card-sub { font-size: 13.5px; margin-top: 6px; }
 .back-btn { border-radius: 12px; padding: 10px 20px; }
 #page-title:not(:empty) {
   background: color-mix(in srgb, var(--card-bg) 82%, transparent);
@@ -626,15 +503,8 @@ button { font-family: var(--font-serif); -webkit-tap-highlight-color: transparen
 }
 #page-title:empty { display: none; }
 #content { font-size: 17px; }
-.bandeau-origine {
-  font-size: 14px;
-  letter-spacing: 0.6px;
-  border-radius: 12px;
-  padding: 9px 0;
-  box-shadow: inset 0 0 0 1px currentColor;
-  opacity: 0.92;
-}
-.empty-msg, .vide-msg { opacity: 0.85; }
+.empty-msg,
+.vide-msg { opacity: 0.85; }
 .accord-section {
   border-radius: 16px;
   margin-bottom: 16px;
@@ -691,18 +561,20 @@ body.night .accord-h1:hover { background: linear-gradient(135deg, #b83a2f, #8c28
   overflow: hidden;
   line-height: 1.65;
 }
-.ses-table tr:nth-child(odd)  { background: var(--accent-soft); }
+.ses-table tr:nth-child(odd) { background: var(--accent-soft); }
 .ses-table tr:nth-child(even) { background: var(--card-bg); }
 body.night .ses-table tr:nth-child(odd) { background: rgba(255,255,255,0.035); }
 .ses-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); }
 .ses-table tr:last-child td { border-bottom: none; }
 .ses-table td:first-child { color: var(--title); }
-.exemple, .piege, .aretenir { border-radius: 10px; padding: 12px 16px; line-height: 1.65; border-left-width: 4px; }
-.exemple  { background: rgba(26,111,202,0.07); }
-.piege    { background: rgba(214,69,53,0.07); }
+.exemple,
+.piege,
+.aretenir { border-radius: 10px; padding: 12px 16px; line-height: 1.65; border-left-width: 4px; }
+.exemple { background: rgba(26,111,202,0.07); }
+.piege { background: rgba(214,69,53,0.07); }
 .aretenir { background: rgba(39,174,96,0.08); }
-body.night .exemple  { background: rgba(56,140,230,0.10); }
-body.night .piege    { background: rgba(231,90,75,0.10); }
+body.night .exemple { background: rgba(56,140,230,0.10); }
+body.night .piege { background: rgba(231,90,75,0.10); }
 body.night .aretenir { background: rgba(60,190,110,0.10); }
 .formule {
   background: linear-gradient(135deg, #1c1b2e, #2a2742);
@@ -718,7 +590,8 @@ body.night .aretenir { background: rgba(60,190,110,0.10); }
 #fc-overlay { background: rgba(12,12,20,0.72); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
 .fc-face { font-family: var(--font-serif); border-radius: 20px; }
 #fc-inner { border-radius: 20px; }
-#fc-title, #fc-counter { font-family: var(--font-serif); }
+#fc-title,
+#fc-counter { font-family: var(--font-serif); }
 #fc-title { opacity: 0.85; }
 #fc-hint { color: rgba(255,255,255,0.55); }
 @media (max-width: 600px) {
@@ -729,12 +602,16 @@ body.night .aretenir { background: rgba(60,190,110,0.10); }
   .accord-body-inner { padding: 10px 10px 12px 14px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  *,
+*::before,
+*::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
 }
 .fiche-hggsp { --accent:#1f4e8c; --accent-2:#2f6fb8; --accent-soft:rgba(31,78,140,0.07); --accent-mid:rgba(31,78,140,0.15); }
 body.night .fiche-hggsp { --accent:#7db0ff; --accent-2:#2a5da0; --accent-soft:rgba(125,176,255,0.09); --accent-mid:rgba(125,176,255,0.18); }
-.fiche-hggsp .accord-h1, body.night .fiche-hggsp .accord-h1 { background: linear-gradient(135deg, #2f6fb8, #1b3f73); }
-.fiche-hggsp .accord-h1:hover, body.night .fiche-hggsp .accord-h1:hover { background: linear-gradient(135deg, #285f9f, #15325c); }
+.fiche-hggsp .accord-h1,
+body.night .fiche-hggsp .accord-h1 { background: linear-gradient(135deg, #2f6fb8, #1b3f73); }
+.fiche-hggsp .accord-h1:hover,
+body.night .fiche-hggsp .accord-h1:hover { background: linear-gradient(135deg, #285f9f, #15325c); }
 .fiche-hggsp .fc-btn-chapter { background: linear-gradient(135deg, #2f6fb8, #1b3f73); border-color: rgba(47,111,184,0.4); box-shadow: 0 2px 8px rgba(31,78,140,0.25); }
 .fiche-hggsp .accord-sub.niv3 > .accord-h2 { padding-left: 46px; font-size: 14.8px; }
 .fiche-hggsp .accord-sub.niv3 > .accord-content > .accord-body-inner { padding-left: 40px; }
@@ -760,7 +637,8 @@ body.night .cmp-table th { background: var(--accent-2); }
 .cmp-table tr:nth-child(even) td { background: var(--accent-soft); }
 .cmp-table tr:last-child td { border-bottom: none; }
 .cmp-table.cmp-large { min-width: 540px; }
-@media (max-width: 600px) { .cmp-table th, .cmp-table td { padding: 7px 8px; font-size: 13px; } }
+@media (max-width: 600px) { .cmp-table th,
+.cmp-table td { padding: 7px 8px; font-size: 13px; } }
 .citation-comm { display: block; margin-top: 4px; font-style: normal; font-size: 13px; }
 .search-wrap { width: 100%; max-width: 560px; position: relative; margin: 14px 0 22px; }
 .search-wrap input {
@@ -807,7 +685,6 @@ const matieres = [
             {
         id:"espaces-conquete",
         title:"De nouveaux espaces de conquête",
-        classe:"ia-enseignant",
         content:`
 <div class="fiche-ses fiche-hggsp" style="font-family:Georgia,serif;font-size:16px;line-height:1.8;color:var(--text);max-width:760px;">
 <div class="accord-section">
@@ -1818,7 +1695,6 @@ const matieres = [
       {
         id:"guerre-paix",
         title:"Faire la guerre, faire la paix : formes de conflits et modes de résolution",
-        classe:"ia-enseignant",
         content:`
 <div class="fiche-ses fiche-hggsp" style="font-family:Georgia,serif;font-size:16px;line-height:1.8;color:var(--text);max-width:760px;">
 <div class="accord-section">
@@ -3708,7 +3584,6 @@ const matieres = [
       {
         id:"histoires-memoires",
         title:"Histoire et mémoires",
-        classe:"ia-enseignant",
         content:`
 <div class="fiche-ses fiche-hggsp" style="font-family:Georgia,serif;font-size:16px;line-height:1.8;color:var(--text);max-width:760px;">
 <div class="accord-section">
@@ -4776,7 +4651,6 @@ const matieres = [
             {
         id:"patrimoine",
         title:"Identifier, protéger et valoriser le patrimoine : enjeux géopolitiques",
-        classe:"ia-enseignant",
         content:`
 <div class="fiche-ses fiche-hggsp" style="font-family:Georgia,serif;font-size:16px;line-height:1.8;color:var(--text);max-width:760px;">
 <div class="accord-section">
@@ -5820,7 +5694,6 @@ const matieres = [
       {
         id:"environnement",
         title:"L'environnement, entre exploitation et protection : un enjeu planétaire",
-        classe:"ia-enseignant",
         content:`
 <div class="fiche-ses fiche-hggsp" style="font-family:Georgia,serif;font-size:16px;line-height:1.8;color:var(--text);max-width:760px;">
 <div class="accord-section">
@@ -6740,7 +6613,6 @@ const matieres = [
       {
         id:"connaissance",
         title:"L'enjeu de la connaissance",
-        classe:"ia-enseignant",
         content:`
 <div class="fiche-ses fiche-hggsp" style="font-family:Georgia,serif;font-size:16px;line-height:1.8;color:var(--text);max-width:760px;">
 <div class="accord-section">
@@ -7681,7 +7553,6 @@ const matieres = [
       {
         id:      "croissance",
         title:   "Quels sont les sources et les défis de la croissance économique ?",
-        classe:  "web-enseignant",
         content: `
 <div class="fiche-ses" style="font-family:Georgia,serif;font-size:16px;line-height:1.8;color:var(--text);max-width:760px;">
 <div class="accord-section">
@@ -8940,7 +8811,6 @@ const matieres = [
       {
         id:      "commerce-international",
         title:   "Quels sont les fondements du commerce international et de l'internationalisation de la production ?",
-        classe:  "ia-enseignant",
         content: `
 <div class="fiche-ses" style="font-family:Georgia,serif;font-size:16px;line-height:1.8;color:var(--text);max-width:760px;">
 <div class="accord-section">
@@ -10853,7 +10723,6 @@ const matieres = [
       {
         id:      "chomage",
         title:   "Comment lutter contre le chômage ?",
-        classe:  "ia-enseignant",
         content: `
 <div class="fiche-ses" style="font-family:Georgia,serif;font-size:16px;line-height:1.8;color:var(--text);max-width:760px;">
 <div class="accord-section">
@@ -12238,7 +12107,6 @@ const matieres = [
       {
         id:      "crises-financieres",
         title:   "Comment expliquer les crises financières et réguler le système financier ?",
-        classe:  "ia-enseignant",
         content: `
 <div class="fiche-ses" style="font-family:Georgia,serif;font-size:16px;line-height:1.8;color:var(--text);max-width:760px;">
 <div class="accord-section">
@@ -13494,7 +13362,6 @@ const matieres = [
       {
         id:      "politiques-europeennes",
         title:   "Quelles politiques économiques dans le cadre européen ?",
-        classe:  "ia-enseignant",
         content: `
 <div class="fiche-ses" style="font-family:Georgia,serif;font-size:16px;line-height:1.8;color:var(--text);max-width:760px;">
 <div class="accord-section">
@@ -14560,49 +14427,41 @@ const matieres = [
       {
         id:      "societe-francaise",
         title:   "Comment est structurée la société française actuelle ?",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "ecole",
         title:   "Quelle est l'action de l'École sur les destins individuels et sur l'évolution de la société ?",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "mobilite-sociale",
         title:   "Quelles sont les caractéristiques contemporaines et les facteurs de la mobilité sociale ?",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "travail-emploi",
         title:   "Quelles mutations du travail et de l'emploi ?",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "engagement-politique",
         title:   "Comment expliquer l'engagement politique dans les sociétés démocratiques ?",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "justice-sociale",
         title:   "Quelles inégalités sont compatibles avec les différentes conceptions de la justice sociale ?",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "environnement-ses",
         title:   "Quelle action publique pour l'environnement ?",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "methodologie-ses",
         title:   "Méthodologie",
-        classe:  "vide",
         content: `
 <div class="fiche-ses" style="font-family:Georgia,serif;font-size:16px;line-height:1.8;color:var(--text);max-width:760px;">
 <div class="accord-section">
@@ -14661,37 +14520,31 @@ const matieres = [
       {
         id:      "hlp-education-emancipation",
         title:   "La recherche de soi — Éducation, transmission et émancipation",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "hlp-sensibilite",
         title:   "La recherche de soi — Les expressions de la sensibilité",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "hlp-metamorphoses-moi",
         title:   "La recherche de soi — Les métamorphoses du moi",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "hlp-creation",
         title:   "L'Humanité en question — Création, continuités et ruptures",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "hlp-histoire-violence",
         title:   "L'Humanité en question — Histoire et violence",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "hlp-humain-limites",
         title:   "L'Humanité en question — L'humain et ses limites",
-        classe:  "vide",
         content: ""
       }
     ]
@@ -14704,97 +14557,81 @@ const matieres = [
       {
         id:      "maths-denombrement",
         title:   "Combinatoire et dénombrement",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "maths-vecteurs-espace",
         title:   "Vecteurs, droites et plans de l'espace",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "maths-orthogonalite",
         title:   "Orthogonalité et distances dans l'espace",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "maths-representations",
         title:   "Représentations paramétriques et équations cartésiennes",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "maths-suites",
         title:   "Suites : raisonnement par récurrence et limites",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "maths-limites-fonctions",
         title:   "Limites des fonctions",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "maths-derivation",
         title:   "Compléments sur la dérivation et convexité",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "maths-continuite",
         title:   "Continuité des fonctions d'une variable réelle",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "maths-logarithme",
         title:   "Fonction logarithme népérien",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "maths-trigo",
         title:   "Fonctions sinus et cosinus",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "maths-primitives",
         title:   "Primitives et équations différentielles",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "maths-integrale",
         title:   "Calcul intégral",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "maths-bernoulli",
         title:   "Succession d'épreuves indépendantes, schéma de Bernoulli et loi binomiale",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "maths-sommes-va",
         title:   "Sommes de variables aléatoires",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "maths-grands-nombres",
         title:   "Concentration et loi des grands nombres",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "maths-algo",
         title:   "Algorithmique et programmation",
-        classe:  "vide",
         content: ""
       }
     ]
@@ -14807,73 +14644,61 @@ const matieres = [
       {
         id:      "pc-composition",
         title:   "Déterminer la composition d'un système par des méthodes physiques et chimiques",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "pc-evolution-temporelle",
         title:   "Modéliser l'évolution temporelle d'un système, siège d'une transformation",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "pc-etat-final",
         title:   "Prévoir l'état final d'un système, siège d'une transformation chimique",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "pc-synthese-organique",
         title:   "Élaborer des stratégies en synthèse organique",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "pc-decrire-mouvement",
         title:   "Décrire un mouvement",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "pc-actions-mouvement",
         title:   "Relier les actions appliquées à un système à son mouvement",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "pc-fluides",
         title:   "Modéliser l'écoulement d'un fluide",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "pc-gaz-parfait",
         title:   "Décrire un système thermodynamique : exemple du modèle du gaz parfait",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "pc-bilans-energie",
         title:   "Effectuer des bilans d'énergie sur un système : le premier principe de la thermodynamique",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "pc-ondes",
         title:   "Caractériser les phénomènes ondulatoires",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "pc-images-photons",
         title:   "Former des images, décrire la lumière par un flux de photons",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "pc-systeme-electrique",
         title:   "Étudier la dynamique d'un système électrique",
-        classe:  "vide",
         content: ""
       }
     ]
@@ -14886,43 +14711,36 @@ const matieres = [
       {
         id:      "svt-genetique-evolution",
         title:   "Génétique et évolution",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "svt-passe-geologique",
         title:   "À la recherche du passé géologique de notre planète",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "svt-plante-domestiquee",
         title:   "De la plante sauvage à la plante domestiquée",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "svt-climats",
         title:   "Les climats de la Terre : comprendre le passé pour agir aujourd'hui et demain",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "svt-systeme-nerveux",
         title:   "Comportements, mouvement et système nerveux",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "svt-produire-mouvement",
         title:   "Produire le mouvement : contraction musculaire et apport d'énergie",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "svt-stress",
         title:   "Comportements et stress : vers une vision intégrée de l'organisme",
-        classe:  "vide",
         content: ""
       }
     ]
@@ -14935,55 +14753,46 @@ const matieres = [
       {
         id:      "amc-unite-pluralite",
         title:   "Unité et pluralité",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "amc-libertes",
         title:   "Libertés publiques et libertés individuelles",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "amc-egalites-inegalites",
         title:   "Égalités et inégalités",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "amc-frontiere-espace",
         title:   "Frontière et espace",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "amc-nature-ecologie",
         title:   "De la protection de la nature à la transition écologique",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "amc-repenser-ville",
         title:   "Repenser la ville",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "amc-puissance-influence",
         title:   "Puissance et influence",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "amc-rivalites-interdependances",
         title:   "Rivalités et interdépendances",
-        classe:  "vide",
         content: ""
       },
       {
         id:      "amc-heritage-diversite",
         title:   "Héritage commun et diversité",
-        classe:  "vide",
         content: ""
       }
     ]
@@ -14996,7 +14805,6 @@ const matieres = [
       {
   id:"art",
   title:"L'art",
-  classe:"ia",
   content:`
 <div style="font-family:Georgia,serif;font-size:16px;line-height:1.8;color:var(--text);max-width:760px;">
   <div style="background:var(--card-bg);border-left:4px solid #c0392b;border-radius:10px;padding:18px 22px;margin-bottom:20px;box-shadow:var(--shadow);">
@@ -15114,7 +14922,6 @@ const matieres = [
       {
         id:"bonheur",
         title:"Le bonheur",
-        classe:"ia",
         content:`
 <div style="font-family:Georgia,serif;font-size:16px;line-height:1.8;color:var(--text);max-width:760px;">
   <div style="background:var(--card-bg);border-left:4px solid #c0392b;border-radius:10px;padding:18px 22px;margin-bottom:20px;box-shadow:var(--shadow);">
@@ -15232,7 +15039,6 @@ const matieres = [
       {
         id:"conscience",
         title:"La conscience",
-        classe:"ia",
         content:`
 <div style="font-family:Georgia,serif;font-size:16px;line-height:1.8;color:var(--text);max-width:760px;">
   <div style="background:var(--card-bg);border-left:4px solid #c0392b;border-radius:10px;padding:18px 22px;margin-bottom:20px;box-shadow:var(--shadow);">
@@ -15350,7 +15156,6 @@ const matieres = [
       {
         id:"devoir",
         title:"Le devoir",
-        classe:"ia",
         content:`
 <div style="font-family:Georgia,serif;font-size:16px;line-height:1.8;color:var(--text);max-width:760px;">
   <div style="background:var(--card-bg);border-left:4px solid #c0392b;border-radius:10px;padding:18px 22px;margin-bottom:20px;box-shadow:var(--shadow);">
@@ -15468,7 +15273,6 @@ const matieres = [
       {
         id:"etat",
         title:"L'État",
-        classe:"ia",
         content:`
 <div style="font-family:Georgia,serif;font-size:16px;line-height:1.8;color:var(--text);max-width:760px;">
   <div style="background:var(--card-bg);border-left:4px solid #c0392b;border-radius:10px;padding:18px 22px;margin-bottom:20px;box-shadow:var(--shadow);">
@@ -15586,7 +15390,6 @@ const matieres = [
       {
         id:"inconscient",
         title:"L'inconscient",
-        classe:"ia",
         content:`
 <div style="font-family:Georgia,serif;font-size:16px;line-height:1.8;color:var(--text);max-width:760px;">
   <div style="background:var(--card-bg);border-left:4px solid #c0392b;border-radius:10px;padding:18px 22px;margin-bottom:20px;box-shadow:var(--shadow);">
@@ -15704,7 +15507,6 @@ const matieres = [
       {
         id:"justice",
         title:"La justice",
-        classe:"ia",
         content:`
 <div style="font-family:Georgia,serif;font-size:16px;line-height:1.8;color:var(--text);max-width:760px;">
   <div style="background:var(--card-bg);border-left:4px solid #c0392b;border-radius:10px;padding:18px 22px;margin-bottom:20px;box-shadow:var(--shadow);">
@@ -15822,7 +15624,6 @@ const matieres = [
       {
         id:"langage",
         title:"Le langage",
-        classe:"ia",
         content:`
 <div style="font-family:Georgia,serif;font-size:16px;line-height:1.8;color:var(--text);max-width:760px;">
   <div style="background:var(--card-bg);border-left:4px solid #c0392b;border-radius:10px;padding:18px 22px;margin-bottom:20px;box-shadow:var(--shadow);">
@@ -15940,7 +15741,6 @@ const matieres = [
       {
         id:"liberte",
         title:"La liberté",
-        classe:"ia",
         content:`
 <div style="font-family:Georgia,serif;font-size:16px;line-height:1.8;color:var(--text);max-width:760px;">
   <div style="background:var(--card-bg);border-left:4px solid #c0392b;border-radius:10px;padding:18px 22px;margin-bottom:20px;box-shadow:var(--shadow);">
@@ -16058,7 +15858,6 @@ const matieres = [
       {
         id:"nature",
         title:"La nature",
-        classe:"ia",
         content:`
 <div style="font-family:Georgia,serif;font-size:16px;line-height:1.8;color:var(--text);max-width:760px;">
   <div style="background:var(--card-bg);border-left:4px solid #c0392b;border-radius:10px;padding:18px 22px;margin-bottom:20px;box-shadow:var(--shadow);">
@@ -16176,7 +15975,6 @@ const matieres = [
       {
         id:"raison",
         title:"La raison",
-        classe:"ia",
         content:`
 <div style="font-family:Georgia,serif;font-size:16px;line-height:1.8;color:var(--text);max-width:760px;">
   <div style="background:var(--card-bg);border-left:4px solid #c0392b;border-radius:10px;padding:18px 22px;margin-bottom:20px;box-shadow:var(--shadow);">
@@ -16294,7 +16092,6 @@ const matieres = [
       {
         id:"religion",
         title:"La religion",
-        classe:"ia",
         content:`
 <div style="font-family:Georgia,serif;font-size:16px;line-height:1.8;color:var(--text);max-width:760px;">
   <div style="background:var(--card-bg);border-left:4px solid #c0392b;border-radius:10px;padding:18px 22px;margin-bottom:20px;box-shadow:var(--shadow);">
@@ -16412,7 +16209,6 @@ const matieres = [
       {
         id:"science",
         title:"La science",
-        classe:"ia",
         content:`
 <div style="font-family:Georgia,serif;font-size:16px;line-height:1.8;color:var(--text);max-width:760px;">
   <div style="background:var(--card-bg);border-left:4px solid #c0392b;border-radius:10px;padding:18px 22px;margin-bottom:20px;box-shadow:var(--shadow);">
@@ -16525,7 +16321,6 @@ const matieres = [
       {
         id:"technique",
         title:"La technique",
-        classe:"ia",
         content:`
 <div style="font-family:Georgia,serif;font-size:16px;line-height:1.8;color:var(--text);max-width:760px;">
   <div style="background:var(--card-bg);border-left:4px solid #c0392b;border-radius:10px;padding:18px 22px;margin-bottom:20px;box-shadow:var(--shadow);">
@@ -16643,7 +16438,6 @@ const matieres = [
       {
         id:"temps",
         title:"Le temps",
-        classe:"ia",
         content:`
 <div style="font-family:Georgia,serif;font-size:16px;line-height:1.8;color:var(--text);max-width:760px;">
   <div style="background:var(--card-bg);border-left:4px solid #c0392b;border-radius:10px;padding:18px 22px;margin-bottom:20px;box-shadow:var(--shadow);">
@@ -16761,7 +16555,6 @@ const matieres = [
       {
         id:"travail",
         title:"Le travail",
-        classe:"ia",
         content:`
 <div style="font-family:Georgia,serif;font-size:16px;line-height:1.8;color:var(--text);max-width:760px;">
   <div style="background:var(--card-bg);border-left:4px solid #c0392b;border-radius:10px;padding:18px 22px;margin-bottom:20px;box-shadow:var(--shadow);">
@@ -16874,7 +16667,6 @@ const matieres = [
       {
         id:"verite",
         title:"La vérité",
-        classe:"ia",
         content:`
 <div style="font-family:Georgia,serif;font-size:16px;line-height:1.8;color:var(--text);max-width:760px;">
   <div style="background:var(--card-bg);border-left:4px solid #c0392b;border-radius:10px;padding:18px 22px;margin-bottom:20px;box-shadow:var(--shadow);">
@@ -21894,7 +21686,7 @@ function ouvrirMatiere(id){
     document.getElementById("content").innerHTML = `
       <div id="subList">
         ${m.fiches.map(f => `
-          <div class="card ${f.classe}" onclick="ouvrirFiche('${m.id}','${f.id}')">
+          <div class="card" onclick="ouvrirFiche('${m.id}','${f.id}')">
             <div class="card-title">${f.title}</div>
           </div>
         `).join("")}
@@ -21909,29 +21701,9 @@ function ouvrirFiche(matiereId, ficheId){
   if(!m) return;
   const f = m.fiches.find(x => x.id === ficheId);
   if(!f) return;
-  const bandeaux = {
-    vide: { label: "Aucune origine renseignée", css: "bandeau-vide" },
-    "web": { label: "Origine internet", css: "bandeau-web" },
-    "ia": { label: "Origine IA", css: "bandeau-ia" },
-    "eleve": { label: "Origine élève", css: "bandeau-eleve" },
-    "enseignant": { label: "Origine enseignant", css: "bandeau-enseignant" },
-    "web-ia": { label: "Origine internet + IA", css: "bandeau-web-ia" },
-    "web-eleve": { label: "Origine internet + élève", css: "bandeau-web-eleve" },
-    "web-enseignant": { label: "Origine internet + enseignant", css: "bandeau-web-enseignant" },
-    "ia-eleve": { label: "Origine IA + élève", css: "bandeau-ia-eleve" },
-    "ia-enseignant": { label: "Origine IA + enseignant", css: "bandeau-ia-enseignant" },
-    "eleve-enseignant": { label: "Origine élève + enseignant", css: "bandeau-eleve-enseignant" }
-  };
-  const classeBase = f.classe ? f.classe.replace("hors-programme","").trim() : "vide";
-  const b = bandeaux[classeBase] || bandeaux.vide;
-  const horsProgBadge = f.classe && f.classe.includes("hors-programme")
-    ? `<div><span class="badge-hors-programme">⚠ Hors programme</span></div>`
-    : "";
   afficherViewer(f.title);
   document.getElementById("content").innerHTML =
     `<div style="width:100%;max-width:760px;">
-       ${horsProgBadge}
-       <div class="bandeau-origine ${b.css}">● ${b.label}</div>
        ${f.content
          ? f.content
          : `<p class="empty-msg">Aucun contenu pour le moment…</p>`}
