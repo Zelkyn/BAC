@@ -8,6 +8,8 @@
 ## Site
 - `index.html` : page d'entrée. Elle affiche le BAC Terminale au démarrage et contient le bouton en bas à gauche (menu déroulant BAC Terminale / BAC Français / BAC Maths). Chaque site est chargé dans son propre cadre, sans conflit de styles ni de scripts.
 - `terminale.html` : site du BAC Terminale (ancien dépôt BAC-2027) ; ses consignes restent valables (fiches dans `matieres`, flashcards dans `flashcardsData`, origine des fiches, intitulés officiels, flashcards autonomes).
+  - Fiches d'HGGSP : plan du programme (Introduction, Axe 1, Axe 2, Objet de travail conclusif ; un jalon par sous-partie), flashcards rangées sous les clés `INTRO`, `A1`, `A2`, `OTC` puis `J1`, `J2`…
+  - Chaque sous-partie comporte un bloc « 🔀 Ne pas confondre » qui distingue explicitement les notions proches (ex. : guerre absolue / guerre totale).
 - `francais.html` : site du bac de français (ancien dépôt BAC-FR) ; ses consignes restent valables (`TEXTES`, `texteLines`/`analysesData` alignés ligne par ligne, `NOTIONS`, fiches HTML, `FLASHCARDS_MAIN`, citations exactes).
 - `maths.html` : épreuve anticipée de mathématiques de première, deux parcours (`parcours:["spe"]` ou `["nonspe"]`, choix enregistré sur l'appareil). Même esthétique que `francais.html`, navigation par adresse `#…`, formules en KaTeX (chargé depuis jsDelivr ; écrire les formules entre `\(…\)` ou `\[…\]` dans des gabarits `` R`…` `` = `String.raw`).
   - `CHAPITRES` : cours (`essentiel`, `html` en blocs `.section` / `.def` / `.prop` / `.exemple` / `.methode` / `.piege` / `.aretenir` / `.astuce`, `fc` = flashcards du chapitre). Programmes en vigueur pour la session 2027 (BO du 2 avril 2026).
