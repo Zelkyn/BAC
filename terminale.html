@@ -655,6 +655,19 @@ body.night .cmp-table th { background: var(--accent-2); }
 .search-extrait { font-size: 13px; color: var(--card-sub); margin-top: 6px; line-height: 1.5; }
 .search-extrait b { color: var(--text); }
 .search-vide { color: var(--card-sub); font-style: italic; text-align: center; margin-top: 20px; }
+.fiche-ses .accord-section.obj-section > .accord-h1, .accord-section.obj-section > .accord-h1 { background: linear-gradient(135deg, #2e7d4f, #23633e); }
+.fiche-ses .accord-section.obj-section > .accord-h1:hover, .accord-section.obj-section > .accord-h1:hover { background: linear-gradient(135deg, #23633e, #1b4f31); }
+.obj-prog { font-size: 13px; font-weight: normal; opacity: 0.9; margin-left: 8px; padding: 2px 9px; border-radius: 20px; background: rgba(255,255,255,0.18); }
+.obj-aide { font-size: 13.5px; color: var(--card-sub); margin: 4px 0 10px; line-height: 1.5; }
+.obj-barre { height: 7px; border-radius: 4px; background: rgba(127,127,127,0.18); overflow: hidden; margin: 0 0 14px; }
+.obj-barre i { display: block; height: 100%; background: #2e9e5b; transition: width 0.3s; }
+.obj-groupe { margin: 0 0 12px; }
+.obj-titre { font-weight: bold; font-size: 14.5px; margin: 12px 0 6px; color: var(--title); }
+.obj-item { display: flex; gap: 10px; align-items: flex-start; padding: 7px 9px; border-radius: 8px; font-size: 14.5px; line-height: 1.5; cursor: pointer; color: var(--text); }
+.obj-item:hover { background: rgba(127,127,127,0.08); }
+.obj-item input { margin-top: 3px; width: 18px; height: 18px; flex: none; accent-color: #2e9e5b; cursor: pointer; }
+.obj-item.ok span { opacity: 0.55; }
+.obj-raz { margin-top: 8px; font-size: 13px; padding: 6px 14px; border-radius: 20px; border: 1px solid rgba(127,127,127,0.4); background: transparent; color: var(--text); cursor: pointer; font-family: inherit; }
 </style>
 </head>
 <body>
@@ -1994,6 +2007,23 @@ const matieres = [
           </div>
           <div class="accord-block">
             <button type="button" class="accord-h3" onclick="toggleAccord(this)" aria-expanded="false">
+              <span>🔀 Ne pas confondre</span>
+              <span class="accord-chevron">▼</span>
+            </button>
+            <div class="accord-content">
+              <div class="accord-block-inner">
+                <table class="ses-table">
+                  <tr><td>Guerre absolue ≠ guerre réelle</td><td>La <strong>guerre absolue</strong> est le concept théorique d'une guerre sans limite (montée aux extrêmes) ; la <strong>guerre réelle</strong> est toujours freinée par le but politique, les moyens, le temps, les frictions.</td></tr>
+                  <tr><td>Guerre absolue ≠ guerre totale</td><td>La <strong>guerre absolue</strong> est une abstraction de Clausewitz, qui n'existe pas dans la réalité ; la <strong>guerre totale</strong> est une réalité historique du XX<sup>e</sup> siècle : mobilisation de toute l'économie et de toute la société, civils pris pour cibles (1914-1918, 1939-1945).</td></tr>
+                  <tr><td>Stratégie ≠ tactique</td><td>Chez Clausewitz, la <strong>tactique</strong> est l'usage des forces dans l'engagement (la bataille) ; la <strong>stratégie</strong> est l'usage des engagements pour atteindre le but de la guerre.</td></tr>
+                  <tr><td>Friction ≠ brouillard de la guerre</td><td>La <strong>friction</strong> désigne les difficultés concrètes qui font que tout est plus dur que prévu (fatigue, météo, erreurs) ; le <strong>brouillard</strong> désigne l'incertitude sur l'information.</td></tr>
+                  <tr><td>Les trois pôles de la trinité</td><td>Le <strong>peuple</strong> porte la passion et la violence ; l'<strong>armée et son chef</strong> le jeu du hasard et du talent ; le <strong>gouvernement</strong> la raison politique, qui doit primer.</td></tr>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="accord-block">
+            <button type="button" class="accord-h3" onclick="toggleAccord(this)" aria-expanded="false">
               <span>👤 Clausewitz, un officier dans la tourmente</span>
               <span class="accord-chevron">▼</span>
             </button>
@@ -2112,6 +2142,22 @@ const matieres = [
             <div class="accord-body-inner">
               <div class="accord-fc-row accord-fc-row-top">
                 <button type="button" class="fc-btn" onclick="fcOpen('guerre-paix','A1.I.1','Axe 1 · I.1')">🃏 Flashcards Axe 1 · I.1</button>
+              </div>
+              <div class="accord-block">
+                <button type="button" class="accord-h3" onclick="toggleAccord(this)" aria-expanded="false">
+                  <span>🔀 Ne pas confondre</span>
+                  <span class="accord-chevron">▼</span>
+                </button>
+                <div class="accord-content">
+                  <div class="accord-block-inner">
+                    <table class="ses-table">
+                      <tr><td>Traité de Paris ≠ traité de Hubertusbourg (1763)</td><td>Le <strong>traité de Paris</strong> règle le conflit entre la France, la Grande-Bretagne et l'Espagne (la France perd la Nouvelle-France et l'essentiel de l'Inde) ; le <strong>traité de Hubertusbourg</strong> règle le conflit entre la Prusse, l'Autriche et la Saxe (la Prusse garde la Silésie).</td></tr>
+                      <tr><td>« Guerre en dentelles » ≠ guerre sans violence</td><td>L'expression désigne des guerres menées par des armées professionnelles pour des objectifs limités ; elle ne signifie pas que les combats étaient peu meurtriers.</td></tr>
+                      <tr><td>Guerre limitée ≠ guerre totale</td><td>La guerre de Sept Ans reste <strong>limitée</strong> par ses buts et ses moyens (armées de métier, finances royales) ; elle ne mobilise pas toute la société comme une <strong>guerre totale</strong>.</td></tr>
+                      <tr><td>« Première guerre mondiale » (Churchill) ≠ Grande Guerre</td><td>La guerre de Sept Ans est parfois dite « mondiale » parce qu'elle se déroule sur plusieurs continents ; la Grande Guerre (1914-1918) est mondiale et totale.</td></tr>
+                    </table>
+                  </div>
+                </div>
               </div>
               <div class="accord-block">
                 <button type="button" class="accord-h3" onclick="toggleAccord(this)" aria-expanded="false">
@@ -2332,6 +2378,22 @@ const matieres = [
             <div class="accord-body-inner">
               <div class="accord-fc-row accord-fc-row-top">
                 <button type="button" class="fc-btn" onclick="fcOpen('guerre-paix','A1.I.2','Axe 1 · I.2')">🃏 Flashcards Axe 1 · I.2</button>
+              </div>
+              <div class="accord-block">
+                <button type="button" class="accord-h3" onclick="toggleAccord(this)" aria-expanded="false">
+                  <span>🔀 Ne pas confondre</span>
+                  <span class="accord-chevron">▼</span>
+                </button>
+                <div class="accord-content">
+                  <div class="accord-block-inner">
+                    <table class="ses-table">
+                      <tr><td>Levée en masse ≠ conscription</td><td>La <strong>levée en masse</strong> (août 1793) est une réquisition exceptionnelle des hommes face au danger ; la <strong>conscription</strong> (loi Jourdan, 1798) organise un service militaire obligatoire et régulier.</td></tr>
+                      <tr><td>Armée de métier ≠ nation en armes</td><td>L'<strong>armée de métier</strong> d'Ancien Régime est faite de soldats professionnels et de mercenaires ; la <strong>nation en armes</strong> mobilise les citoyens au nom de la patrie.</td></tr>
+                      <tr><td>Guerre régulière ≠ guérilla</td><td>La <strong>guerre régulière</strong> oppose des armées en bataille ; la <strong>guérilla</strong> (Espagne, 1808-1814) harcèle l'occupant par petits groupes, en s'appuyant sur la population.</td></tr>
+                      <tr><td>Congrès de Vienne ≠ Sainte-Alliance</td><td>Le <strong>congrès de Vienne</strong> (1814-1815) redessine la carte de l'Europe et fonde l'équilibre des puissances ; la <strong>Sainte-Alliance</strong> (1815) unit la Russie, l'Autriche et la Prusse pour défendre l'ordre monarchique.</td></tr>
+                    </table>
+                  </div>
+                </div>
               </div>
               <div class="accord-block">
                 <button type="button" class="accord-h3" onclick="toggleAccord(this)" aria-expanded="false">
@@ -2606,6 +2668,21 @@ const matieres = [
           </div>
           <div class="accord-block">
             <button type="button" class="accord-h3" onclick="toggleAccord(this)" aria-expanded="false">
+              <span>🔀 Ne pas confondre</span>
+              <span class="accord-chevron">▼</span>
+            </button>
+            <div class="accord-content">
+              <div class="accord-block-inner">
+                <table class="ses-table">
+                  <tr><td>Guerre asymétrique ≠ guerre dissymétrique</td><td>Une guerre <strong>dissymétrique</strong> oppose des acteurs de même nature mais de forces très inégales (États-Unis contre Irak en 2003) ; une guerre <strong>asymétrique</strong> oppose des acteurs de nature différente, aux stratégies différentes (un État contre un groupe terroriste).</td></tr>
+                  <tr><td>Guerre interétatique ≠ infra-étatique</td><td>La guerre <strong>interétatique</strong> oppose des États ; la guerre <strong>infra-étatique</strong> se déroule à l'intérieur d'un État (guerre civile, insurrection).</td></tr>
+                  <tr><td>Guerre régulière ≠ irrégulière</td><td>La guerre <strong>régulière</strong> oppose des armées identifiables selon des règles ; la guerre <strong>irrégulière</strong> fait intervenir des combattants non conventionnels (guérilla, terrorisme).</td></tr>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="accord-block">
+            <button type="button" class="accord-h3" onclick="toggleAccord(this)" aria-expanded="false">
               <span>🧭 Pourquoi mettre le modèle à l'épreuve ?</span>
               <span class="accord-chevron">▼</span>
             </button>
@@ -2657,6 +2734,21 @@ const matieres = [
             <div class="accord-body-inner">
               <div class="accord-fc-row accord-fc-row-top">
                 <button type="button" class="fc-btn" onclick="fcOpen('guerre-paix','A1.II.1','Axe 1 · II.1')">🃏 Flashcards Axe 1 · II.1</button>
+              </div>
+              <div class="accord-block">
+                <button type="button" class="accord-h3" onclick="toggleAccord(this)" aria-expanded="false">
+                  <span>🔀 Ne pas confondre</span>
+                  <span class="accord-chevron">▼</span>
+                </button>
+                <div class="accord-content">
+                  <div class="accord-block-inner">
+                    <table class="ses-table">
+                      <tr><td>Terrorisme ≠ guérilla</td><td>La <strong>guérilla</strong> vise surtout les forces armées et cherche à contrôler un territoire ; le <strong>terrorisme</strong> frappe des civils pour produire un effet psychologique et politique.</td></tr>
+                      <tr><td>Insurrection ≠ révolution</td><td>Une <strong>insurrection</strong> est un soulèvement armé contre un pouvoir ; une <strong>révolution</strong> est un changement profond du régime et de la société.</td></tr>
+                      <tr><td>Contre-insurrection ≠ antiterrorisme</td><td>La <strong>contre-insurrection</strong> combine action militaire et conquête de la population ; l'<strong>antiterrorisme</strong> vise à prévenir et réprimer des attentats (renseignement, police, justice).</td></tr>
+                    </table>
+                  </div>
+                </div>
               </div>
               <div class="accord-block">
                 <button type="button" class="accord-h3" onclick="toggleAccord(this)" aria-expanded="false">
@@ -2782,6 +2874,21 @@ const matieres = [
             <div class="accord-body-inner">
               <div class="accord-fc-row accord-fc-row-top">
                 <button type="button" class="fc-btn" onclick="fcOpen('guerre-paix','A1.II.2','Axe 1 · II.2')">🃏 Flashcards Axe 1 · II.2</button>
+              </div>
+              <div class="accord-block">
+                <button type="button" class="accord-h3" onclick="toggleAccord(this)" aria-expanded="false">
+                  <span>🔀 Ne pas confondre</span>
+                  <span class="accord-chevron">▼</span>
+                </button>
+                <div class="accord-content">
+                  <div class="accord-block-inner">
+                    <table class="ses-table">
+                      <tr><td>Al-Qaïda ≠ Daech</td><td><strong>Al-Qaïda</strong> est un réseau déterritorialisé qui frappe l'« ennemi lointain » (attentats du 11 septembre 2001) ; <strong>Daech</strong> s'est constitué en proto-État territorial (califat proclamé en 2014 en Irak et en Syrie) avant d'être vaincu militairement (2017-2019).</td></tr>
+                      <tr><td>Guerre hybride ≠ guerre conventionnelle</td><td>La guerre <strong>conventionnelle</strong> oppose des forces armées régulières ; la guerre <strong>hybride</strong> combine moyens militaires, cyberattaques, désinformation et pressions économiques, souvent sans déclaration de guerre.</td></tr>
+                      <tr><td>Cyberguerre ≠ cybercriminalité</td><td>La <strong>cyberguerre</strong> est menée par des États ou pour eux à des fins stratégiques ; la <strong>cybercriminalité</strong> poursuit des fins lucratives.</td></tr>
+                    </table>
+                  </div>
+                </div>
               </div>
               <div class="accord-block">
                 <button type="button" class="accord-h3" onclick="toggleAccord(this)" aria-expanded="false">
@@ -10492,6 +10599,21 @@ const matieres = [
           </div>
           <div class="accord-block">
             <button type="button" class="accord-h3" onclick="toggleAccord(this)" aria-expanded="false">
+              <span>🔀 Ne pas confondre</span>
+              <span class="accord-chevron">▼</span>
+            </button>
+            <div class="accord-content">
+              <div class="accord-block-inner">
+                <table class="ses-table">
+                  <tr><td>Spécialisation des entreprises ≠ spécialisation des pays</td><td>Une <strong>entreprise</strong> se spécialise dans une étape de la chaîne de valeur (conception, assemblage) ; un <strong>pays</strong> se spécialise dans des produits ou des secteurs selon ses avantages comparatifs.</td></tr>
+                  <tr><td>Échanges intra-firme ≠ inter-firmes</td><td>Les échanges <strong>intra-firme</strong> ont lieu entre filiales d'une même firme multinationale ; les échanges <strong>inter-firmes</strong> entre entreprises indépendantes.</td></tr>
+                  <tr><td>Globalisation financière ≠ mondialisation commerciale</td><td>La <strong>globalisation financière</strong> concerne les capitaux ; la <strong>mondialisation commerciale</strong> les échanges de biens et de services.</td></tr>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="accord-block">
+            <button type="button" class="accord-h3" onclick="toggleAccord(this)" aria-expanded="false">
               <span>📖 Notions clés</span>
               <span class="accord-chevron">▼</span>
             </button>
@@ -12882,6 +13004,21 @@ const matieres = [
           </div>
           <div class="accord-block">
             <button type="button" class="accord-h3" onclick="toggleAccord(this)" aria-expanded="false">
+              <span>🔀 Ne pas confondre</span>
+              <span class="accord-chevron">▼</span>
+            </button>
+            <div class="accord-content">
+              <div class="accord-block-inner">
+                <table class="ses-table">
+                  <tr><td>Retournement des anticipations ≠ krach</td><td>Le <strong>retournement des anticipations</strong> est le changement de croyance des agents (cause) ; le <strong>krach</strong> est la chute brutale des prix qui en résulte (conséquence).</td></tr>
+                  <tr><td>Vente de détresse ≠ vente ordinaire</td><td>Une <strong>vente de détresse</strong> est forcée, à prix bradé, pour obtenir des liquidités ou limiter les pertes ; elle accentue la baisse des prix.</td></tr>
+                  <tr><td>Illiquidité ≠ insolvabilité</td><td>Un agent <strong>illiquide</strong> ne peut pas payer à court terme alors que ses actifs dépassent ses dettes ; un agent <strong>insolvable</strong> a des dettes supérieures à ses actifs.</td></tr>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="accord-block">
+            <button type="button" class="accord-h3" onclick="toggleAccord(this)" aria-expanded="false">
               <span>📖 Notions clés</span>
               <span class="accord-chevron">▼</span>
             </button>
@@ -13916,6 +14053,21 @@ const matieres = [
         <div class="accord-body-inner">
           <div class="accord-fc-row accord-fc-row-top">
             <button type="button" class="fc-btn" onclick="fcOpen('politiques-europeennes','I.C')">🃏 Flashcards I.C</button>
+          </div>
+          <div class="accord-block">
+            <button type="button" class="accord-h3" onclick="toggleAccord(this)" aria-expanded="false">
+              <span>🔀 Ne pas confondre</span>
+              <span class="accord-chevron">▼</span>
+            </button>
+            <div class="accord-content">
+              <div class="accord-block-inner">
+                <table class="ses-table">
+                  <tr><td>Économies d'échelle ≠ effet de concurrence</td><td>Les <strong>économies d'échelle</strong> font baisser le coût unitaire grâce à une production plus grande ; l'<strong>effet de concurrence</strong> pousse les entreprises à baisser leurs prix et à innover.</td></tr>
+                  <tr><td>Marché unique ≠ zone de libre-échange</td><td>Une <strong>zone de libre-échange</strong> supprime les droits de douane entre membres ; le <strong>marché unique</strong> (1993) assure en plus la libre circulation des services, des capitaux et des personnes et harmonise les normes.</td></tr>
+                  <tr><td>Union douanière ≠ marché unique</td><td>L'<strong>union douanière</strong> (1968 pour la CEE) ajoute à la zone de libre-échange un tarif extérieur commun ; le <strong>marché unique</strong> va plus loin en supprimant les obstacles non tarifaires.</td></tr>
+                </table>
+              </div>
+            </div>
           </div>
           <div class="accord-block">
             <button type="button" class="accord-h3" onclick="toggleAccord(this)" aria-expanded="false">
@@ -57841,6 +57993,14 @@ const flashcardsData = {
         {
           "q": "Quel gain annuel par habitant le marché unique procure-t-il selon la fondation Bertelsmann ?",
           "r": "Environ 840 € par habitant et par an en moyenne."
+        },
+        {
+          "q": "Quelle est la différence entre marché unique et zone de libre-échange ?",
+          "r": "La ZLE supprime les droits de douane entre membres ; le marché unique assure aussi la libre circulation des services, capitaux et personnes et harmonise les normes."
+        },
+        {
+          "q": "Quelle est la différence entre union douanière et marché unique ?",
+          "r": "L'union douanière ajoute un tarif extérieur commun ; le marché unique supprime aussi les obstacles non tarifaires."
         }
       ]
     },
@@ -58343,6 +58503,14 @@ const flashcardsData = {
         {
           "q": "Que montre Shiller à propos du krach de 1987 ?",
           "r": "La plus forte baisse ne s'explique ni par une variation des fondamentaux ni par une information nouvelle : elle relève de la psychologie des investisseurs."
+        },
+        {
+          "q": "Quelle est la différence entre retournement des anticipations et krach ?",
+          "r": "Le retournement est le changement de croyance des agents (cause) ; le krach la chute brutale des prix (conséquence)."
+        },
+        {
+          "q": "Quelle est la différence entre illiquidité et insolvabilité ?",
+          "r": "L'illiquide ne peut pas payer à court terme mais ses actifs dépassent ses dettes ; l'insolvable a des dettes supérieures à ses actifs."
         }
       ]
     },
@@ -59539,6 +59707,14 @@ const flashcardsData = {
         {
           "q": "Quel rôle le conteneur a-t-il joué dans la mondialisation ?",
           "r": "Il a fortement réduit les coûts de transport maritime et facilité l'intensification des flux de marchandises."
+        },
+        {
+          "q": "Quelle est la différence entre spécialisation des entreprises et spécialisation des pays ?",
+          "r": "L'entreprise se spécialise dans une étape de la chaîne de valeur ; le pays dans des produits ou secteurs selon ses avantages comparatifs."
+        },
+        {
+          "q": "Quelle est la différence entre échanges intra-firme et inter-firmes ?",
+          "r": "Intra-firme : entre filiales d'une même multinationale ; inter-firmes : entre entreprises indépendantes."
         }
       ],
       "D": [
@@ -59735,313 +59911,597 @@ const flashcardsData = {
   },
   "croissance": {
     "_all": [
-      { q: "Quelles sont les deux grandes sources de la croissance économique ?",
-        r: "L'<b>accumulation des facteurs de production</b> (hausse des quantités de travail et de capital) et la hausse de la <b>productivité globale des facteurs</b> (PGF), qui reflète le progrès technique." },
-      { q: "Quel lien existe-t-il entre le progrès technique et la productivité globale des facteurs (PGF) ?",
-        r: "Le progrès technique améliore l'efficacité de la combinaison des facteurs : il se traduit par une hausse de la PGF, c'est-à-dire de la part de la croissance non expliquée par la hausse des quantités de facteurs." },
-      { q: "Résume en une phrase pourquoi le progrès technique est endogène.",
-        r: "Il résulte de décisions économiques (investissements en R&D, en capital humain et en capital public, innovations motivées par la recherche du profit), elles-mêmes permises par la croissance." },
-      { q: "Comment les institutions influent-elles sur la croissance ?",
-        r: "En modifiant les incitations à investir et à innover : des droits de propriété protégés, des règles stables et une faible corruption réduisent l'incertitude et garantissent aux innovateurs de pouvoir tirer profit de leurs investissements." },
-      { q: "Par quels mécanismes le progrès technique peut-il engendrer des inégalités de revenus ?",
-        r: "(1) Les rentes d'innovation accroissent les revenus des innovateurs ; (2) l'automatisation des tâches routinières entraîne une polarisation des emplois qui creuse les inégalités salariales." },
-      { q: "Quelles sont les trois limites écologiques de la croissance ?",
-        r: "L'épuisement des ressources naturelles, la pollution et le réchauffement climatique." },
-      { q: "Comment l'innovation peut-elle aider à reculer les limites écologiques ?",
-        r: "En permettant de produire avec moins de ressources et moins d'émissions (recyclage, énergies renouvelables, stockage, efficacité énergétique) : elle favorise un découplage entre croissance et pressions environnementales." },
-      { q: "Pourquoi dit-on que la croissance est un processus cumulatif et auto-entretenu ?",
-        r: "Cumulatif : chaque taux s'applique à un PIB déjà plus élevé. Auto-entretenu : la croissance finance les investissements (R&D, éducation, infrastructures) qui produisent le progrès technique à l'origine de la croissance future." }
+      {
+        "q": "Quelles sont les deux grandes sources de la croissance économique ?",
+        "r": "L'<b>accumulation des facteurs de production</b> (hausse des quantités de travail et de capital) et la hausse de la <b>productivité globale des facteurs</b> (PGF), qui reflète le progrès technique."
+      },
+      {
+        "q": "Quel lien existe-t-il entre le progrès technique et la productivité globale des facteurs (PGF) ?",
+        "r": "Le progrès technique améliore l'efficacité de la combinaison des facteurs : il se traduit par une hausse de la PGF, c'est-à-dire de la part de la croissance non expliquée par la hausse des quantités de facteurs."
+      },
+      {
+        "q": "Résume en une phrase pourquoi le progrès technique est endogène.",
+        "r": "Il résulte de décisions économiques (investissements en R&D, en capital humain et en capital public, innovations motivées par la recherche du profit), elles-mêmes permises par la croissance."
+      },
+      {
+        "q": "Comment les institutions influent-elles sur la croissance ?",
+        "r": "En modifiant les incitations à investir et à innover : des droits de propriété protégés, des règles stables et une faible corruption réduisent l'incertitude et garantissent aux innovateurs de pouvoir tirer profit de leurs investissements."
+      },
+      {
+        "q": "Par quels mécanismes le progrès technique peut-il engendrer des inégalités de revenus ?",
+        "r": "(1) Les rentes d'innovation accroissent les revenus des innovateurs ; (2) l'automatisation des tâches routinières entraîne une polarisation des emplois qui creuse les inégalités salariales."
+      },
+      {
+        "q": "Quelles sont les trois limites écologiques de la croissance ?",
+        "r": "L'épuisement des ressources naturelles, la pollution et le réchauffement climatique."
+      },
+      {
+        "q": "Comment l'innovation peut-elle aider à reculer les limites écologiques ?",
+        "r": "En permettant de produire avec moins de ressources et moins d'émissions (recyclage, énergies renouvelables, stockage, efficacité énergétique) : elle favorise un découplage entre croissance et pressions environnementales."
+      },
+      {
+        "q": "Pourquoi dit-on que la croissance est un processus cumulatif et auto-entretenu ?",
+        "r": "Cumulatif : chaque taux s'applique à un PIB déjà plus élevé. Auto-entretenu : la croissance finance les investissements (R&D, éducation, infrastructures) qui produisent le progrès technique à l'origine de la croissance future."
+      }
     ],
     "I": {
       "A": [
-        { q: "Définis la croissance économique.",
-          r: "Augmentation durable de la production de biens et de services d'une économie, sur une longue période, mesurée par le taux de variation annuel du PIB en volume." },
-        { q: "Quelle différence entre croissance et expansion ?",
-          r: "La croissance est une hausse durable de la production (long terme) ; l'expansion est une hausse de courte durée, correspondant à la phase ascendante d'un cycle." },
-        { q: "Qu'est-ce qu'une récession ?",
-          r: "Une baisse du PIB en volume pendant au moins deux trimestres consécutifs." },
-        { q: "Définis le PIB.",
-          r: "Agrégat qui mesure la richesse produite en un an par les unités résidentes sur le territoire : somme des valeurs ajoutées + impôts sur les produits − subventions sur les produits." },
-        { q: "Définis la valeur ajoutée et donne sa formule.",
-          r: "La richesse réellement créée par une unité de production : VA = valeur de la production − consommations intermédiaires." },
-        { q: "Pourquoi calcule-t-on le PIB à partir des valeurs ajoutées et non de la production ?",
-          r: "Pour éviter les doubles comptes : la valeur des consommations intermédiaires est déjà comptée dans la production de l'entreprise qui les a fabriquées." },
-        { q: "Différence entre PIB en valeur et PIB en volume ?",
-          r: "En valeur : aux prix courants (mêle hausse des quantités et des prix). En volume : aux prix constants, corrigé de l'inflation (seulement les quantités). La croissance se mesure avec le PIB en volume." },
-        { q: "Le PIB en valeur augmente de 5 % et les prix de 3 %. Quel est, approximativement, le taux de croissance économique ?",
-          r: "Environ 2 % (taux en volume ≈ taux en valeur − taux d'inflation)." },
-        { q: "Quelle est la formule du taux de croissance du PIB ?",
-          r: "(PIB de l'année n − PIB de l'année n−1) / PIB de l'année n−1 × 100." },
-        { q: "Le PIB passe de 2 400 à 2 460 Md€. Calcule le taux de croissance.",
-          r: "(2 460 − 2 400) / 2 400 × 100 = +2,5 %." },
-        { q: "Pourquoi une croissance positive signifie-t-elle une hausse des revenus distribués ?",
-          r: "Le PIB est la somme des valeurs ajoutées, qui servent à rémunérer les facteurs de production (salaires et cotisations pour le travail, EBE pour le capital) : plus de VA = plus de revenus primaires." },
-        { q: "À quelle condition la croissance améliore-t-elle le niveau de vie moyen ?",
-          r: "Si le PIB augmente plus vite que la population, c'est-à-dire si le PIB par habitant augmente." },
-        { q: "Pourquoi dit-on que la croissance est un phénomène récent ?",
-          r: "Pendant près de deux millénaires, le PIB par habitant a quasiment stagné ; la croissance moderne ne démarre qu'avec la révolution industrielle (fin XVIIIe – XIXe siècle), d'abord en Angleterre." },
-        { q: "Dans quel ordre les grands pays sont-ils entrés dans la croissance économique moderne ?",
-          r: "Angleterre, puis France, Pays-Bas, Allemagne, États-Unis… La Chine et l'Inde n'ont décollé que bien plus tard, d'où un niveau de vie encore inférieur malgré une forte croissance récente." },
-        { q: "Pourquoi la croissance est-elle cumulative ?",
-          r: "Chaque année, le taux de croissance s'applique à un PIB déjà augmenté (comme des intérêts composés) : de faibles écarts de taux produisent de très grands écarts de niveau de vie à long terme." },
-        { q: "En combien de temps le PIB double-t-il à 2 %, 1 % et 0,5 % par an ?",
-          r: "Environ 35 ans, 70 ans et 139 ans (règle approximative : 70 / taux de croissance)." },
-        { q: "Le taux de croissance passe de 3 % à 1 %. Le PIB baisse-t-il ?",
-          r: "Non : le PIB augmente encore, mais moins vite. Il ne baisse que si le taux de croissance est négatif." },
-        { q: "Différence entre croissance et développement ?",
-          r: "La croissance est quantitative (hausse du PIB). Le développement est qualitatif : amélioration durable du bien-être (santé, éducation, réduction de la pauvreté), mesurée par exemple par l'IDH." }
+        {
+          "q": "Définis la croissance économique.",
+          "r": "Augmentation durable de la production de biens et de services d'une économie, sur une longue période, mesurée par le taux de variation annuel du PIB en volume."
+        },
+        {
+          "q": "Quelle différence entre croissance et expansion ?",
+          "r": "La croissance est une hausse durable de la production (long terme) ; l'expansion est une hausse de courte durée, correspondant à la phase ascendante d'un cycle."
+        },
+        {
+          "q": "Qu'est-ce qu'une récession ?",
+          "r": "Une baisse du PIB en volume pendant au moins deux trimestres consécutifs."
+        },
+        {
+          "q": "Définis le PIB.",
+          "r": "Agrégat qui mesure la richesse produite en un an par les unités résidentes sur le territoire : somme des valeurs ajoutées + impôts sur les produits − subventions sur les produits."
+        },
+        {
+          "q": "Définis la valeur ajoutée et donne sa formule.",
+          "r": "La richesse réellement créée par une unité de production : VA = valeur de la production − consommations intermédiaires."
+        },
+        {
+          "q": "Pourquoi calcule-t-on le PIB à partir des valeurs ajoutées et non de la production ?",
+          "r": "Pour éviter les doubles comptes : la valeur des consommations intermédiaires est déjà comptée dans la production de l'entreprise qui les a fabriquées."
+        },
+        {
+          "q": "Différence entre PIB en valeur et PIB en volume ?",
+          "r": "En valeur : aux prix courants (mêle hausse des quantités et des prix). En volume : aux prix constants, corrigé de l'inflation (seulement les quantités). La croissance se mesure avec le PIB en volume."
+        },
+        {
+          "q": "Le PIB en valeur augmente de 5 % et les prix de 3 %. Quel est, approximativement, le taux de croissance économique ?",
+          "r": "Environ 2 % (taux en volume ≈ taux en valeur − taux d'inflation)."
+        },
+        {
+          "q": "Quelle est la formule du taux de croissance du PIB ?",
+          "r": "(PIB de l'année n − PIB de l'année n−1) / PIB de l'année n−1 × 100."
+        },
+        {
+          "q": "Le PIB passe de 2 400 à 2 460 Md€. Calcule le taux de croissance.",
+          "r": "(2 460 − 2 400) / 2 400 × 100 = +2,5 %."
+        },
+        {
+          "q": "Pourquoi une croissance positive signifie-t-elle une hausse des revenus distribués ?",
+          "r": "Le PIB est la somme des valeurs ajoutées, qui servent à rémunérer les facteurs de production (salaires et cotisations pour le travail, EBE pour le capital) : plus de VA = plus de revenus primaires."
+        },
+        {
+          "q": "À quelle condition la croissance améliore-t-elle le niveau de vie moyen ?",
+          "r": "Si le PIB augmente plus vite que la population, c'est-à-dire si le PIB par habitant augmente."
+        },
+        {
+          "q": "Pourquoi dit-on que la croissance est un phénomène récent ?",
+          "r": "Pendant près de deux millénaires, le PIB par habitant a quasiment stagné ; la croissance moderne ne démarre qu'avec la révolution industrielle (fin XVIIIe – XIXe siècle), d'abord en Angleterre."
+        },
+        {
+          "q": "Dans quel ordre les grands pays sont-ils entrés dans la croissance économique moderne ?",
+          "r": "Angleterre, puis France, Pays-Bas, Allemagne, États-Unis… La Chine et l'Inde n'ont décollé que bien plus tard, d'où un niveau de vie encore inférieur malgré une forte croissance récente."
+        },
+        {
+          "q": "Pourquoi la croissance est-elle cumulative ?",
+          "r": "Chaque année, le taux de croissance s'applique à un PIB déjà augmenté (comme des intérêts composés) : de faibles écarts de taux produisent de très grands écarts de niveau de vie à long terme."
+        },
+        {
+          "q": "En combien de temps le PIB double-t-il à 2 %, 1 % et 0,5 % par an ?",
+          "r": "Environ 35 ans, 70 ans et 139 ans (règle approximative : 70 / taux de croissance)."
+        },
+        {
+          "q": "Le taux de croissance passe de 3 % à 1 %. Le PIB baisse-t-il ?",
+          "r": "Non : le PIB augmente encore, mais moins vite. Il ne baisse que si le taux de croissance est négatif."
+        },
+        {
+          "q": "Différence entre croissance et développement ?",
+          "r": "La croissance est quantitative (hausse du PIB). Le développement est qualitatif : amélioration durable du bien-être (santé, éducation, réduction de la pauvreté), mesurée par exemple par l'IDH."
+        }
       ],
       "B": [
-        { q: "Quels sont les facteurs de production ?",
-          r: "Le facteur travail (activité humaine consacrée à la production) et le facteur capital (ensemble des biens de production)." },
-        { q: "De quoi dépend la quantité de travail disponible ?",
-          r: "De la population active (démographie, taux d'activité, notamment des femmes), du chômage et de la durée du travail (nombre d'heures travaillées par actif et durée de la vie active)." },
-        { q: "Distingue capital fixe et capital circulant.",
-          r: "Capital fixe : biens de production durables utilisés plus d'un an (machines, bâtiments, logiciels). Capital circulant : biens détruits ou transformés en un seul cycle de production (matières premières, énergie)." },
-        { q: "Définis l'investissement et cite ses trois formes.",
-          r: "Dépense qui accroît ou renouvelle le stock de capital. Investissement de remplacement, de capacité (produire plus) et de productivité (produire plus efficacement)." },
-        { q: "Qu'est-ce que la FBCF ?",
-          r: "La formation brute de capital fixe : mesure de l'investissement en comptabilité nationale (valeur des biens durables acquis pour produire pendant au moins un an)." },
-        { q: "Définis le capital humain.",
-          r: "Ensemble des connaissances, qualifications, expériences et de la santé qu'un individu accumule (éducation, formation) et qui accroissent sa productivité et ses revenus futurs (Becker)." },
-        { q: "Qu'est-ce que l'intensité capitalistique ?",
-          r: "Le stock de capital par travailleur (capital / emploi). Sa hausse traduit une substitution du capital au travail." },
-        { q: "Explique pourquoi l'accumulation des facteurs est une source de croissance.",
-          r: "Utiliser plus de travail (hausse de la population active, du taux d'activité) et plus de capital (investissement) permet de produire davantage de biens et services, donc d'augmenter le PIB." },
-        { q: "Qu'est-ce que la croissance extensive ?",
-          r: "Une croissance obtenue par l'augmentation des quantités de facteurs de production utilisées, à efficacité inchangée." },
-        { q: "Énonce la loi des rendements factoriels décroissants.",
-          r: "Si l'on augmente la quantité d'un facteur, l'autre restant fixe, la production supplémentaire obtenue par chaque unité ajoutée (productivité marginale) finit par diminuer." },
-        { q: "Qu'est-ce que la productivité marginale ?",
-          r: "Le supplément de production obtenu grâce à une unité supplémentaire d'un facteur, la quantité de l'autre facteur restant constante." },
-        { q: "Illustre la loi des rendements décroissants par un exemple concret : une pizzeria qui embauche des salariés sans acheter de nouveau four.",
-          r: "Avec un seul four, le 2e puis le 3e travailleur augmentent fortement la production (division du travail), mais les suivants se gênent et sont sous-employés : chaque travailleur ajouté produit de moins en moins." },
-        { q: "Avec des rendements décroissants, la production baisse-t-elle ?",
-          r: "Non : la production totale continue d'augmenter, mais de moins en moins vite." },
-        { q: "Pourquoi l'accumulation des facteurs ne suffit-elle pas à assurer une croissance durable ?",
-          r: "Parce qu'elle bute sur les rendements décroissants : sans amélioration de l'efficacité des facteurs (progrès technique), la croissance s'essouffle." },
-        { q: "Pourquoi, selon l'économiste Paul Krugman, la forte croissance de l'URSS des années 1950-1960 était-elle condamnée à ralentir ?",
-          r: "Elle reposait sur la mobilisation massive des facteurs (« transpiration ») et non sur des gains d'efficacité (« inspiration ») : une croissance fondée sur l'accumulation est soumise aux rendements décroissants." }
+        {
+          "q": "Quels sont les facteurs de production ?",
+          "r": "Le facteur travail (activité humaine consacrée à la production) et le facteur capital (ensemble des biens de production)."
+        },
+        {
+          "q": "De quoi dépend la quantité de travail disponible ?",
+          "r": "De la population active (démographie, taux d'activité, notamment des femmes), du chômage et de la durée du travail (nombre d'heures travaillées par actif et durée de la vie active)."
+        },
+        {
+          "q": "Distingue capital fixe et capital circulant.",
+          "r": "Capital fixe : biens de production durables utilisés plus d'un an (machines, bâtiments, logiciels). Capital circulant : biens détruits ou transformés en un seul cycle de production (matières premières, énergie)."
+        },
+        {
+          "q": "Définis l'investissement et cite ses trois formes.",
+          "r": "Dépense qui accroît ou renouvelle le stock de capital. Investissement de remplacement, de capacité (produire plus) et de productivité (produire plus efficacement)."
+        },
+        {
+          "q": "Qu'est-ce que la FBCF ?",
+          "r": "La formation brute de capital fixe : mesure de l'investissement en comptabilité nationale (valeur des biens durables acquis pour produire pendant au moins un an)."
+        },
+        {
+          "q": "Définis le capital humain.",
+          "r": "Ensemble des connaissances, qualifications, expériences et de la santé qu'un individu accumule (éducation, formation) et qui accroissent sa productivité et ses revenus futurs (Becker)."
+        },
+        {
+          "q": "Qu'est-ce que l'intensité capitalistique ?",
+          "r": "Le stock de capital par travailleur (capital / emploi). Sa hausse traduit une substitution du capital au travail."
+        },
+        {
+          "q": "Explique pourquoi l'accumulation des facteurs est une source de croissance.",
+          "r": "Utiliser plus de travail (hausse de la population active, du taux d'activité) et plus de capital (investissement) permet de produire davantage de biens et services, donc d'augmenter le PIB."
+        },
+        {
+          "q": "Qu'est-ce que la croissance extensive ?",
+          "r": "Une croissance obtenue par l'augmentation des quantités de facteurs de production utilisées, à efficacité inchangée."
+        },
+        {
+          "q": "Énonce la loi des rendements factoriels décroissants.",
+          "r": "Si l'on augmente la quantité d'un facteur, l'autre restant fixe, la production supplémentaire obtenue par chaque unité ajoutée (productivité marginale) finit par diminuer."
+        },
+        {
+          "q": "Qu'est-ce que la productivité marginale ?",
+          "r": "Le supplément de production obtenu grâce à une unité supplémentaire d'un facteur, la quantité de l'autre facteur restant constante."
+        },
+        {
+          "q": "Illustre la loi des rendements décroissants par un exemple concret : une pizzeria qui embauche des salariés sans acheter de nouveau four.",
+          "r": "Avec un seul four, le 2e puis le 3e travailleur augmentent fortement la production (division du travail), mais les suivants se gênent et sont sous-employés : chaque travailleur ajouté produit de moins en moins."
+        },
+        {
+          "q": "Avec des rendements décroissants, la production baisse-t-elle ?",
+          "r": "Non : la production totale continue d'augmenter, mais de moins en moins vite."
+        },
+        {
+          "q": "Pourquoi l'accumulation des facteurs ne suffit-elle pas à assurer une croissance durable ?",
+          "r": "Parce qu'elle bute sur les rendements décroissants : sans amélioration de l'efficacité des facteurs (progrès technique), la croissance s'essouffle."
+        },
+        {
+          "q": "Pourquoi, selon l'économiste Paul Krugman, la forte croissance de l'URSS des années 1950-1960 était-elle condamnée à ralentir ?",
+          "r": "Elle reposait sur la mobilisation massive des facteurs (« transpiration ») et non sur des gains d'efficacité (« inspiration ») : une croissance fondée sur l'accumulation est soumise aux rendements décroissants."
+        }
       ],
       "C": [
-        { q: "Définis la productivité.",
-          r: "Rapport entre la production (ou la valeur ajoutée) et la quantité de facteurs utilisée pour l'obtenir ; elle mesure l'efficacité des facteurs de production." },
-        { q: "Quelle est la formule de la productivité horaire du travail ?",
-          r: "Production (ou valeur ajoutée) / nombre d'heures travaillées." },
-        { q: "Pourquoi préférer la productivité horaire à la productivité par tête pour comparer des pays ?",
-          r: "Parce que la durée du travail diffère selon les pays : la productivité horaire neutralise ces écarts." },
-        { q: "Pourquoi la productivité du travail est-elle dite « apparente » ?",
-          r: "Elle attribue au seul travail une production qui résulte aussi du capital : elle augmente par exemple si chaque travailleur dispose de plus de machines, sans qu'il soit plus efficace." },
-        { q: "Définis la productivité globale des facteurs (PGF).",
-          r: "L'efficacité de la combinaison des facteurs travail et capital prise dans son ensemble, mesurée comme la part de la croissance non expliquée par la hausse des quantités de travail et de capital." },
-        { q: "Pourquoi dit-on que la PGF est un « résidu » ?",
-          r: "Parce qu'elle ne se mesure pas directement : on l'obtient par différence entre la croissance du PIB et la contribution de la hausse des quantités de facteurs." },
-        { q: "Que recouvre la PGF ?",
-          r: "Principalement le progrès technique au sens large : technologie incorporée dans les machines, qualité de la main-d'œuvre (éducation), organisation du travail, cadre institutionnel, diffusion des technologies (électricité, TIC)." },
-        { q: "Quelle expression l'économiste Moses Abramovitz (1956) emploie-t-il pour désigner le résidu de la croissance, c'est-à-dire la PGF ?",
-          r: "« La mesure de notre ignorance » : on sait qu'il explique une grande part de la croissance sans savoir exactement ce qu'il contient." },
-        { q: "Quelle part de la hausse de la productivité du travail aux États-Unis entre 1909 et 1949 Robert Solow attribue-t-il au progrès technique ?",
-          r: "Environ 87,5 % de la hausse de la productivité du travail s'explique par le résidu (progrès technique) et seulement 12,5 % par l'accumulation du capital par travailleur." },
-        { q: "Qu'est-ce que la croissance intensive ?",
-          r: "Une croissance obtenue grâce aux gains de productivité (meilleure efficacité des facteurs), et non à l'augmentation de leurs quantités." },
-        { q: "Explique comment le progrès technique augmente la productivité. Donne un exemple.",
-          r: "Il améliore l'efficacité des facteurs : on produit plus avec la même quantité de travail et de capital. Ex. : une heure de moisson avec une moissonneuse-batteuse produit bien plus qu'avec une faux." },
-        { q: "Qu'est-ce que la décomposition comptable de la croissance ?",
-          r: "La répartition du taux de croissance du PIB entre les contributions (en points de %) de la hausse du travail, de celle du capital et de la PGF ; la somme des contributions égale le taux de croissance." },
-        { q: "Le PIB augmente de 2 % ; la hausse de la quantité de travail y contribue pour 0,4 point et celle du capital pour 0,6 point. Quelle est la contribution de la PGF et comment l'interpréter ?",
-          r: "2 − 0,4 − 0,6 = 1 point : la PGF explique la moitié de la croissance." },
-        { q: "Dans les pays développés au XXe siècle, quelle source a le plus contribué à la croissance, et qu'est-ce qui explique le ralentissement de la croissance depuis les années 1970 ?",
-          r: "La PGF ; son ralentissement explique aussi le ralentissement de la croissance depuis les années 1970." },
-        { q: "Dans la zone euro entre 1913 et 2010, quelle part de la PGF peut être expliquée par l'éducation et la diffusion de l'électricité ?",
-          r: "Environ 42 % ; 58 % de la PGF reste inexpliqué." },
-        { q: "Distingue productivité du travail et PGF.",
-          r: "La productivité du travail peut augmenter par simple accumulation de capital par travailleur ; la PGF ne mesure que les gains d'efficacité de l'ensemble des facteurs, c'est-à-dire le progrès technique au sens large." },
-        { q: "Pourquoi le progrès technique est-il la principale source de croissance à long terme ?",
-          r: "Parce qu'il améliore sans cesse l'efficacité des facteurs et permet ainsi d'échapper aux rendements décroissants qui limitent la croissance par accumulation." }
+        {
+          "q": "Définis la productivité.",
+          "r": "Rapport entre la production (ou la valeur ajoutée) et la quantité de facteurs utilisée pour l'obtenir ; elle mesure l'efficacité des facteurs de production."
+        },
+        {
+          "q": "Quelle est la formule de la productivité horaire du travail ?",
+          "r": "Production (ou valeur ajoutée) / nombre d'heures travaillées."
+        },
+        {
+          "q": "Pourquoi préférer la productivité horaire à la productivité par tête pour comparer des pays ?",
+          "r": "Parce que la durée du travail diffère selon les pays : la productivité horaire neutralise ces écarts."
+        },
+        {
+          "q": "Pourquoi la productivité du travail est-elle dite « apparente » ?",
+          "r": "Elle attribue au seul travail une production qui résulte aussi du capital : elle augmente par exemple si chaque travailleur dispose de plus de machines, sans qu'il soit plus efficace."
+        },
+        {
+          "q": "Définis la productivité globale des facteurs (PGF).",
+          "r": "L'efficacité de la combinaison des facteurs travail et capital prise dans son ensemble, mesurée comme la part de la croissance non expliquée par la hausse des quantités de travail et de capital."
+        },
+        {
+          "q": "Pourquoi dit-on que la PGF est un « résidu » ?",
+          "r": "Parce qu'elle ne se mesure pas directement : on l'obtient par différence entre la croissance du PIB et la contribution de la hausse des quantités de facteurs."
+        },
+        {
+          "q": "Que recouvre la PGF ?",
+          "r": "Principalement le progrès technique au sens large : technologie incorporée dans les machines, qualité de la main-d'œuvre (éducation), organisation du travail, cadre institutionnel, diffusion des technologies (électricité, TIC)."
+        },
+        {
+          "q": "Quelle expression l'économiste Moses Abramovitz (1956) emploie-t-il pour désigner le résidu de la croissance, c'est-à-dire la PGF ?",
+          "r": "« La mesure de notre ignorance » : on sait qu'il explique une grande part de la croissance sans savoir exactement ce qu'il contient."
+        },
+        {
+          "q": "Quelle part de la hausse de la productivité du travail aux États-Unis entre 1909 et 1949 Robert Solow attribue-t-il au progrès technique ?",
+          "r": "Environ 87,5 % de la hausse de la productivité du travail s'explique par le résidu (progrès technique) et seulement 12,5 % par l'accumulation du capital par travailleur."
+        },
+        {
+          "q": "Qu'est-ce que la croissance intensive ?",
+          "r": "Une croissance obtenue grâce aux gains de productivité (meilleure efficacité des facteurs), et non à l'augmentation de leurs quantités."
+        },
+        {
+          "q": "Explique comment le progrès technique augmente la productivité. Donne un exemple.",
+          "r": "Il améliore l'efficacité des facteurs : on produit plus avec la même quantité de travail et de capital. Ex. : une heure de moisson avec une moissonneuse-batteuse produit bien plus qu'avec une faux."
+        },
+        {
+          "q": "Qu'est-ce que la décomposition comptable de la croissance ?",
+          "r": "La répartition du taux de croissance du PIB entre les contributions (en points de %) de la hausse du travail, de celle du capital et de la PGF ; la somme des contributions égale le taux de croissance."
+        },
+        {
+          "q": "Le PIB augmente de 2 % ; la hausse de la quantité de travail y contribue pour 0,4 point et celle du capital pour 0,6 point. Quelle est la contribution de la PGF et comment l'interpréter ?",
+          "r": "2 − 0,4 − 0,6 = 1 point : la PGF explique la moitié de la croissance."
+        },
+        {
+          "q": "Dans les pays développés au XXe siècle, quelle source a le plus contribué à la croissance, et qu'est-ce qui explique le ralentissement de la croissance depuis les années 1970 ?",
+          "r": "La PGF ; son ralentissement explique aussi le ralentissement de la croissance depuis les années 1970."
+        },
+        {
+          "q": "Dans la zone euro entre 1913 et 2010, quelle part de la PGF peut être expliquée par l'éducation et la diffusion de l'électricité ?",
+          "r": "Environ 42 % ; 58 % de la PGF reste inexpliqué."
+        },
+        {
+          "q": "Distingue productivité du travail et PGF.",
+          "r": "La productivité du travail peut augmenter par simple accumulation de capital par travailleur ; la PGF ne mesure que les gains d'efficacité de l'ensemble des facteurs, c'est-à-dire le progrès technique au sens large."
+        },
+        {
+          "q": "Pourquoi le progrès technique est-il la principale source de croissance à long terme ?",
+          "r": "Parce qu'il améliore sans cesse l'efficacité des facteurs et permet ainsi d'échapper aux rendements décroissants qui limitent la croissance par accumulation."
+        }
       ]
     },
     "II": {
       "A": [
-        { q: "Distingue variable exogène et variable endogène.",
-          r: "Exogène : déterminée en dehors du modèle, non expliquée par lui. Endogène : expliquée par les mécanismes économiques décrits par le modèle." },
-        { q: "Pourquoi dit-on que le progrès technique est exogène dans le modèle de croissance de Robert Solow (1956) ?",
-          r: "Il est la source principale de croissance à long terme mais n'est pas expliqué par le modèle : il dépend des avancées de la science, c'est une « manne tombée du ciel » (Hulten)." },
-        { q: "Quelle est la principale limite du modèle de croissance de Robert Solow ?",
-          r: "La principale source de la croissance (le progrès technique) n'est pas expliquée : on connaît les sources de la croissance mais on ne peut pas agir sur elle." },
-        { q: "Que signifie « progrès technique endogène » ?",
-          r: "Le progrès technique résulte de décisions économiques : investissements en R&D, en éducation et en infrastructures, et innovations motivées par la recherche du profit." },
-        { q: "Quel constat empirique a inspiré les théories de la croissance endogène ?",
-          r: "La croissance passée d'un pays est corrélée à sa croissance future, comme si « la croissance favorisait la croissance »." },
-        { q: "Définis une externalité positive et donne un exemple.",
-          r: "Effet favorable de l'activité d'un agent sur d'autres agents sans compensation monétaire. Ex. : un salarié formé dans une entreprise innovante qui transmet ses savoir-faire en changeant d'employeur." },
-        { q: "Pourquoi les externalités sont-elles au cœur de la croissance endogène ?",
-          r: "Elles diffusent les connaissances dans toute l'économie : les rendements ne sont plus décroissants au niveau macroéconomique et la croissance peut s'auto-entretenir." },
-        { q: "Selon Paul Romer (1986), d'où vient le progrès technique et pourquoi entretient-il la croissance ?",
-          r: "Le progrès technique résulte de l'accumulation du capital et des connaissances (R&D financée par l'épargne). Une entreprise qui innove diffuse involontairement ses savoir-faire (imitation, mobilité des salariés) : externalités positives." },
-        { q: "Selon Robert Lucas (1988), quelle forme de capital est à l'origine d'une croissance auto-entretenue, et pourquoi ?",
-          r: "Le capital humain, accumulé par l'éducation, rend les individus plus productifs et plus aptes à innover ; il génère des externalités positives (une personne formée en forme d'autres)." },
-        { q: "Selon Robert Barro (1990), comment l'État peut-il entretenir la croissance ?",
-          r: "Le capital public (infrastructures, recherche et éducation publiques) financé par l'État accroît la productivité des entreprises privées ; la croissance augmente les recettes publiques, qui financent plus de capital public." },
-        { q: "Pourquoi la connaissance permet-elle d'échapper aux rendements décroissants ?",
-          r: "C'est un bien non rival : une idée peut être utilisée par tous en même temps sans s'épuiser, ce qui permet des rendements croissants à l'échelle de l'économie." },
-        { q: "Décris le cercle vertueux de la croissance endogène.",
-          r: "Croissance → revenus et épargne → investissements (R&D, éducation, infrastructures) → accumulation de capital et externalités → progrès technique → gains de productivité → croissance." },
-        { q: "Quel rôle les théories de la croissance endogène donnent-elles à l'État ?",
-          r: "Il peut agir durablement sur la croissance en investissant dans la R&D, l'éducation et les infrastructures et en protégeant la propriété intellectuelle." },
-        { q: "Selon l'économiste Mariana Mazzucato, l'État est à l'origine de grandes innovations : cites-en deux exemples.",
-          r: "Internet (ARPANET, financé par la DARPA dans les années 1960) et le GPS (programme militaire NAVSTAR des années 1970)." },
-        { q: "Comment la croissance de la productivité globale des facteurs a-t-elle évolué dans le monde depuis 1990 ?",
-          r: "Un ralentissement du progrès technique mesuré, surtout après la crise de 2008 ; dans les pays émergents, il est antérieur à la crise, ce qui pèse sur leur croissance future." }
+        {
+          "q": "Distingue variable exogène et variable endogène.",
+          "r": "Exogène : déterminée en dehors du modèle, non expliquée par lui. Endogène : expliquée par les mécanismes économiques décrits par le modèle."
+        },
+        {
+          "q": "Pourquoi dit-on que le progrès technique est exogène dans le modèle de croissance de Robert Solow (1956) ?",
+          "r": "Il est la source principale de croissance à long terme mais n'est pas expliqué par le modèle : il dépend des avancées de la science, c'est une « manne tombée du ciel » (Hulten)."
+        },
+        {
+          "q": "Quelle est la principale limite du modèle de croissance de Robert Solow ?",
+          "r": "La principale source de la croissance (le progrès technique) n'est pas expliquée : on connaît les sources de la croissance mais on ne peut pas agir sur elle."
+        },
+        {
+          "q": "Que signifie « progrès technique endogène » ?",
+          "r": "Le progrès technique résulte de décisions économiques : investissements en R&D, en éducation et en infrastructures, et innovations motivées par la recherche du profit."
+        },
+        {
+          "q": "Quel constat empirique a inspiré les théories de la croissance endogène ?",
+          "r": "La croissance passée d'un pays est corrélée à sa croissance future, comme si « la croissance favorisait la croissance »."
+        },
+        {
+          "q": "Définis une externalité positive et donne un exemple.",
+          "r": "Effet favorable de l'activité d'un agent sur d'autres agents sans compensation monétaire. Ex. : un salarié formé dans une entreprise innovante qui transmet ses savoir-faire en changeant d'employeur."
+        },
+        {
+          "q": "Pourquoi les externalités sont-elles au cœur de la croissance endogène ?",
+          "r": "Elles diffusent les connaissances dans toute l'économie : les rendements ne sont plus décroissants au niveau macroéconomique et la croissance peut s'auto-entretenir."
+        },
+        {
+          "q": "Selon Paul Romer (1986), d'où vient le progrès technique et pourquoi entretient-il la croissance ?",
+          "r": "Le progrès technique résulte de l'accumulation du capital et des connaissances (R&D financée par l'épargne). Une entreprise qui innove diffuse involontairement ses savoir-faire (imitation, mobilité des salariés) : externalités positives."
+        },
+        {
+          "q": "Selon Robert Lucas (1988), quelle forme de capital est à l'origine d'une croissance auto-entretenue, et pourquoi ?",
+          "r": "Le capital humain, accumulé par l'éducation, rend les individus plus productifs et plus aptes à innover ; il génère des externalités positives (une personne formée en forme d'autres)."
+        },
+        {
+          "q": "Selon Robert Barro (1990), comment l'État peut-il entretenir la croissance ?",
+          "r": "Le capital public (infrastructures, recherche et éducation publiques) financé par l'État accroît la productivité des entreprises privées ; la croissance augmente les recettes publiques, qui financent plus de capital public."
+        },
+        {
+          "q": "Pourquoi la connaissance permet-elle d'échapper aux rendements décroissants ?",
+          "r": "C'est un bien non rival : une idée peut être utilisée par tous en même temps sans s'épuiser, ce qui permet des rendements croissants à l'échelle de l'économie."
+        },
+        {
+          "q": "Décris le cercle vertueux de la croissance endogène.",
+          "r": "Croissance → revenus et épargne → investissements (R&D, éducation, infrastructures) → accumulation de capital et externalités → progrès technique → gains de productivité → croissance."
+        },
+        {
+          "q": "Quel rôle les théories de la croissance endogène donnent-elles à l'État ?",
+          "r": "Il peut agir durablement sur la croissance en investissant dans la R&D, l'éducation et les infrastructures et en protégeant la propriété intellectuelle."
+        },
+        {
+          "q": "Selon l'économiste Mariana Mazzucato, l'État est à l'origine de grandes innovations : cites-en deux exemples.",
+          "r": "Internet (ARPANET, financé par la DARPA dans les années 1960) et le GPS (programme militaire NAVSTAR des années 1970)."
+        },
+        {
+          "q": "Comment la croissance de la productivité globale des facteurs a-t-elle évolué dans le monde depuis 1990 ?",
+          "r": "Un ralentissement du progrès technique mesuré, surtout après la crise de 2008 ; dans les pays émergents, il est antérieur à la crise, ce qui pèse sur leur croissance future."
+        }
       ],
       "B": [
-        { q: "Distingue invention et innovation.",
-          r: "L'invention est la découverte d'une connaissance ou d'une technique nouvelle ; l'innovation est sa mise en œuvre économique (introduction dans la production ou sur le marché)." },
-        { q: "Cite les cinq formes d'innovation selon Schumpeter.",
-          r: "Bien nouveau ; nouvelle méthode de production ; nouveau débouché ; nouvelle source de matières premières ; nouvelle organisation de la production." },
-        { q: "Distingue innovation de produit et innovation de procédé, avec un exemple.",
-          r: "Produit : bien ou service nouveau (vaccin à ARN messager). Procédé : nouvelle méthode de production (robotisation d'une chaîne de montage)." },
-        { q: "Distingue innovation majeure et incrémentale.",
-          r: "Majeure (de rupture) : bouleverse la production et entraîne d'autres innovations (électricité, Internet). Incrémentale : amélioration progressive d'un produit ou procédé existant." },
-        { q: "Quel est le rôle de l'entrepreneur selon Schumpeter ?",
-          r: "Il introduit les inventions dans le processus économique en réalisant de « nouvelles combinaisons productives » ; il prend des risques, motivé par la recherche du profit." },
-        { q: "Pourquoi les entreprises innovent-elles ?",
-          r: "Pour obtenir une rente de monopole temporaire : seules à proposer le nouveau produit ou procédé, elles peuvent vendre plus cher ou produire moins cher et réaliser un surprofit." },
-        { q: "Pourquoi la rente d'innovation est-elle temporaire ?",
-          r: "Parce que les concurrents imitent l'innovation ; pour retrouver une rente, l'entreprise doit innover à nouveau." },
-        { q: "Explique pourquoi l'innovation rend le progrès technique endogène.",
-          r: "L'innovation est expliquée par une variable économique, la recherche du profit ; l'imitation oblige à innover sans cesse, ce qui alimente en continu le progrès technique." },
-        { q: "Qu'est-ce qu'une grappe d'innovations ? Donne un exemple.",
-          r: "Un ensemble d'innovations qui s'entraînent les unes les autres. Ex. : la navette volante (tissage) → rouet mécanique (filage) → machine à vapeur (énergie)." },
-        { q: "Définis la destruction créatrice.",
-          r: "Processus par lequel les innovations rendent obsolètes les produits, entreprises et emplois anciens tout en créant de nouveaux produits, activités et emplois (Schumpeter, 1942)." },
-        { q: "Donne deux exemples de destruction créatrice.",
-          r: "Photo numérique / pellicule argentique (faillite de Kodak, 2012) ; automobile / maréchal-ferrant (mais création d'emplois de garagistes) ; mail / facteur." },
-        { q: "Quel est le bilan de la destruction créatrice ?",
-          r: "À long terme, un solde positif pour la croissance ; à court terme, des coûts sociaux (chômage, reconversions difficiles, faillites) pour les « perdants » de l'innovation." },
-        { q: "Selon Aghion et Howitt, comment la croissance d'un pays évolue-t-elle en se rapprochant de la frontière technologique ?",
-          r: "Loin de la frontière, il croît surtout en imitant et en accumulant du capital ; près de la frontière, l'innovation devient le moteur de sa croissance." },
-        { q: "Dans la vision schumpétérienne, pourquoi les entreprises qui ont innové hier peuvent-elles freiner la croissance aujourd'hui ?",
-          r: "Devenus des entreprises installées, ils cherchent à empêcher ou retarder l'entrée de nouveaux concurrents innovants pour protéger leur rente." }
+        {
+          "q": "Distingue invention et innovation.",
+          "r": "L'invention est la découverte d'une connaissance ou d'une technique nouvelle ; l'innovation est sa mise en œuvre économique (introduction dans la production ou sur le marché)."
+        },
+        {
+          "q": "Cite les cinq formes d'innovation selon Schumpeter.",
+          "r": "Bien nouveau ; nouvelle méthode de production ; nouveau débouché ; nouvelle source de matières premières ; nouvelle organisation de la production."
+        },
+        {
+          "q": "Distingue innovation de produit et innovation de procédé, avec un exemple.",
+          "r": "Produit : bien ou service nouveau (vaccin à ARN messager). Procédé : nouvelle méthode de production (robotisation d'une chaîne de montage)."
+        },
+        {
+          "q": "Distingue innovation majeure et incrémentale.",
+          "r": "Majeure (de rupture) : bouleverse la production et entraîne d'autres innovations (électricité, Internet). Incrémentale : amélioration progressive d'un produit ou procédé existant."
+        },
+        {
+          "q": "Quel est le rôle de l'entrepreneur selon Schumpeter ?",
+          "r": "Il introduit les inventions dans le processus économique en réalisant de « nouvelles combinaisons productives » ; il prend des risques, motivé par la recherche du profit."
+        },
+        {
+          "q": "Pourquoi les entreprises innovent-elles ?",
+          "r": "Pour obtenir une rente de monopole temporaire : seules à proposer le nouveau produit ou procédé, elles peuvent vendre plus cher ou produire moins cher et réaliser un surprofit."
+        },
+        {
+          "q": "Pourquoi la rente d'innovation est-elle temporaire ?",
+          "r": "Parce que les concurrents imitent l'innovation ; pour retrouver une rente, l'entreprise doit innover à nouveau."
+        },
+        {
+          "q": "Explique pourquoi l'innovation rend le progrès technique endogène.",
+          "r": "L'innovation est expliquée par une variable économique, la recherche du profit ; l'imitation oblige à innover sans cesse, ce qui alimente en continu le progrès technique."
+        },
+        {
+          "q": "Qu'est-ce qu'une grappe d'innovations ? Donne un exemple.",
+          "r": "Un ensemble d'innovations qui s'entraînent les unes les autres. Ex. : la navette volante (tissage) → rouet mécanique (filage) → machine à vapeur (énergie)."
+        },
+        {
+          "q": "Définis la destruction créatrice.",
+          "r": "Processus par lequel les innovations rendent obsolètes les produits, entreprises et emplois anciens tout en créant de nouveaux produits, activités et emplois (Schumpeter, 1942)."
+        },
+        {
+          "q": "Donne deux exemples de destruction créatrice.",
+          "r": "Photo numérique / pellicule argentique (faillite de Kodak, 2012) ; automobile / maréchal-ferrant (mais création d'emplois de garagistes) ; mail / facteur."
+        },
+        {
+          "q": "Quel est le bilan de la destruction créatrice ?",
+          "r": "À long terme, un solde positif pour la croissance ; à court terme, des coûts sociaux (chômage, reconversions difficiles, faillites) pour les « perdants » de l'innovation."
+        },
+        {
+          "q": "Selon Aghion et Howitt, comment la croissance d'un pays évolue-t-elle en se rapprochant de la frontière technologique ?",
+          "r": "Loin de la frontière, il croît surtout en imitant et en accumulant du capital ; près de la frontière, l'innovation devient le moteur de sa croissance."
+        },
+        {
+          "q": "Dans la vision schumpétérienne, pourquoi les entreprises qui ont innové hier peuvent-elles freiner la croissance aujourd'hui ?",
+          "r": "Devenus des entreprises installées, ils cherchent à empêcher ou retarder l'entrée de nouveaux concurrents innovants pour protéger leur rente."
+        }
       ],
       "C": [
-        { q: "Définis une institution.",
-          r: "Ensemble de règles formelles (lois, droits de propriété) et informelles (normes, coutumes), relativement stables, qui encadrent les interactions entre individus : les « règles du jeu » (North)." },
-        { q: "Pourquoi les institutions influent-elles sur la croissance ?",
-          r: "Elles réduisent l'incertitude et structurent les incitations : des règles stables et respectées encouragent l'investissement et l'innovation ; l'instabilité et la corruption les découragent." },
-        { q: "Donne deux exemples d'environnement institutionnel défavorable à l'investissement.",
-          r: "Une forte inflation, une corruption élevée, des mafias qui rackettent les producteurs, une justice qui ne garantit pas les contrats." },
-        { q: "Définis le droit de propriété (usus, fructus, abusus).",
-          r: "Droit garanti par la loi d'utiliser un bien (usus), d'en percevoir les revenus (fructus) et de le céder ou le vendre (abusus)." },
-        { q: "Pourquoi les droits de propriété favorisent-ils l'innovation ?",
-          r: "Ils garantissent à l'innovateur de pouvoir tirer profit de ses dépenses de R&D ; sans protection, l'innovation serait immédiatement copiée et personne n'aurait intérêt à innover." },
-        { q: "Définis un brevet.",
-          r: "Titre de propriété industrielle qui donne un droit exclusif d'exploitation d'une invention pendant une durée limitée (souvent 20 ans), en échange de sa divulgation publique." },
-        { q: "Explique pourquoi le brevet incite à innover.",
-          r: "Il crée un monopole temporaire : l'innovateur peut fixer un prix qui couvre ses coûts de recherche (ex. : vaccins contre la COVID-19)." },
-        { q: "Quelles sont les limites du brevet et comment les pouvoirs publics y répondent-ils ?",
-          r: "Le premier arrivé emporte toute la mise (ce qui décourage les autres) et le monopole freine la diffusion. On limite la durée du brevet, on autorise l'imitation améliorée ; la publication du brevet diffuse la connaissance." },
-        { q: "Cite les quatre types d'institutions favorables à la croissance selon Rodrik et Subramanian, avec un exemple.",
-          r: "Créatrices de marché (droits de propriété), de réglementation (autorité de la concurrence), de stabilisation (banque centrale), de légitimation (assurance chômage)." },
-        { q: "Comment l'économiste Douglass North explique-t-il que l'Amérique du Nord ait connu une croissance plus rapide que l'Amérique latine ?",
-          r: "L'Amérique du Nord a hérité d'institutions britanniques décentralisées protégeant les droits de propriété ; l'Amérique du Sud, d'institutions espagnoles centralisées et bureaucratiques, moins incitatives." },
-        { q: "Qu'est-ce que la dépendance au sentier ?",
-          r: "Le fait que les institutions présentes dépendent des choix faits dans le passé, ce qui explique la persistance d'écarts de croissance entre pays." },
-        { q: "Selon l'économiste Philippe Aghion, la concurrence entre entreprises favorise-t-elle toujours l'innovation ?",
-          r: "Non : elle stimule l'innovation des entreprises proches de la frontière technologique (pour rester devant) mais décourage celles qui en sont éloignées." },
-        { q: "Existe-t-il un modèle institutionnel unique favorable à la croissance ?",
-          r: "Non : la meilleure réponse institutionnelle dépend notamment de la distance des entreprises d'un pays à la frontière technologique ; il n'y a pas de « package » transférable." },
-        { q: "Quelles institutions permettent d'accompagner la destruction créatrice ?",
-          r: "Celles qui protègent les perdants de l'innovation (assurance chômage), facilitent les entrées et sorties du marché du travail et assurent la formation initiale et continue." }
+        {
+          "q": "Définis une institution.",
+          "r": "Ensemble de règles formelles (lois, droits de propriété) et informelles (normes, coutumes), relativement stables, qui encadrent les interactions entre individus : les « règles du jeu » (North)."
+        },
+        {
+          "q": "Pourquoi les institutions influent-elles sur la croissance ?",
+          "r": "Elles réduisent l'incertitude et structurent les incitations : des règles stables et respectées encouragent l'investissement et l'innovation ; l'instabilité et la corruption les découragent."
+        },
+        {
+          "q": "Donne deux exemples d'environnement institutionnel défavorable à l'investissement.",
+          "r": "Une forte inflation, une corruption élevée, des mafias qui rackettent les producteurs, une justice qui ne garantit pas les contrats."
+        },
+        {
+          "q": "Définis le droit de propriété (usus, fructus, abusus).",
+          "r": "Droit garanti par la loi d'utiliser un bien (usus), d'en percevoir les revenus (fructus) et de le céder ou le vendre (abusus)."
+        },
+        {
+          "q": "Pourquoi les droits de propriété favorisent-ils l'innovation ?",
+          "r": "Ils garantissent à l'innovateur de pouvoir tirer profit de ses dépenses de R&D ; sans protection, l'innovation serait immédiatement copiée et personne n'aurait intérêt à innover."
+        },
+        {
+          "q": "Définis un brevet.",
+          "r": "Titre de propriété industrielle qui donne un droit exclusif d'exploitation d'une invention pendant une durée limitée (souvent 20 ans), en échange de sa divulgation publique."
+        },
+        {
+          "q": "Explique pourquoi le brevet incite à innover.",
+          "r": "Il crée un monopole temporaire : l'innovateur peut fixer un prix qui couvre ses coûts de recherche (ex. : vaccins contre la COVID-19)."
+        },
+        {
+          "q": "Quelles sont les limites du brevet et comment les pouvoirs publics y répondent-ils ?",
+          "r": "Le premier arrivé emporte toute la mise (ce qui décourage les autres) et le monopole freine la diffusion. On limite la durée du brevet, on autorise l'imitation améliorée ; la publication du brevet diffuse la connaissance."
+        },
+        {
+          "q": "Cite les quatre types d'institutions favorables à la croissance selon Rodrik et Subramanian, avec un exemple.",
+          "r": "Créatrices de marché (droits de propriété), de réglementation (autorité de la concurrence), de stabilisation (banque centrale), de légitimation (assurance chômage)."
+        },
+        {
+          "q": "Comment l'économiste Douglass North explique-t-il que l'Amérique du Nord ait connu une croissance plus rapide que l'Amérique latine ?",
+          "r": "L'Amérique du Nord a hérité d'institutions britanniques décentralisées protégeant les droits de propriété ; l'Amérique du Sud, d'institutions espagnoles centralisées et bureaucratiques, moins incitatives."
+        },
+        {
+          "q": "Qu'est-ce que la dépendance au sentier ?",
+          "r": "Le fait que les institutions présentes dépendent des choix faits dans le passé, ce qui explique la persistance d'écarts de croissance entre pays."
+        },
+        {
+          "q": "Selon l'économiste Philippe Aghion, la concurrence entre entreprises favorise-t-elle toujours l'innovation ?",
+          "r": "Non : elle stimule l'innovation des entreprises proches de la frontière technologique (pour rester devant) mais décourage celles qui en sont éloignées."
+        },
+        {
+          "q": "Existe-t-il un modèle institutionnel unique favorable à la croissance ?",
+          "r": "Non : la meilleure réponse institutionnelle dépend notamment de la distance des entreprises d'un pays à la frontière technologique ; il n'y a pas de « package » transférable."
+        },
+        {
+          "q": "Quelles institutions permettent d'accompagner la destruction créatrice ?",
+          "r": "Celles qui protègent les perdants de l'innovation (assurance chômage), facilitent les entrées et sorties du marché du travail et assurent la formation initiale et continue."
+        }
       ]
     },
     "III": {
       "A": [
-        { q: "Qu'est-ce qu'une croissance inclusive ?",
-          r: "Une croissance dont les bénéfices profitent à l'ensemble de la population. Depuis les années 1980, la croissance l'est moins, surtout aux États-Unis." },
-        { q: "Comment les inégalités de revenus ont-elles évolué dans les pays développés pendant les Trente Glorieuses, puis depuis les années 1980 ?",
-          r: "Elles ont diminué pendant les Trente Glorieuses ; elles augmentent depuis les années 1980, fortement aux États-Unis, plus modérément en Europe." },
-        { q: "Quelle part du revenu national les 10 % les plus aisés recevaient-ils en 1980 et en 2016, aux États-Unis et en Europe ?",
-          r: "États-Unis : 34 % → 47 %. Europe : 33 % → 37 %." },
-        { q: "Quelle part du revenu national les 1 % les plus aisés recevaient-ils aux États-Unis en 1980 et en 2016 ?",
-          r: "12 % → 20 %." },
-        { q: "Explique comment la rente d'innovation accroît les inégalités.",
-          r: "L'innovateur, en monopole temporaire, vend plus cher et réalise des surprofits ; dans une économie mondialisée il vise un marché mondial, ce qui accroît encore ses revenus par rapport aux autres agents." },
-        { q: "Distingue tâches routinières et non routinières.",
-          r: "Routinières : répétitives et codifiables, donc automatisables (saisie, travail à la chaîne). Non routinières : abstraites et qualifiées (cadres, ingénieurs) ou manuelles et relationnelles peu qualifiées (soins, aide à domicile)." },
-        { q: "Pourquoi les technologies de l'information et de la communication (TIC) détruisent-elles surtout des emplois intermédiaires ?",
-          r: "Les emplois intermédiaires (ouvriers de l'industrie, employés administratifs) sont les plus intensifs en tâches routinières, que les TIC permettent d'automatiser." },
-        { q: "Définis la polarisation des emplois.",
-          r: "Hausse simultanée de la part des emplois très qualifiés et des emplois peu qualifiés non routiniers, au détriment des emplois intermédiaires routiniers." },
-        { q: "Explique pourquoi la polarisation accroît les inégalités salariales.",
-          r: "L'emploi progresse aux deux extrémités de l'échelle des salaires (hauts salaires qualifiés, bas salaires peu qualifiés) et recule au milieu : les écarts de salaires se creusent." },
-        { q: "Qu'est-ce qu'un progrès technique biaisé ?",
-          r: "Un progrès technique qui accroît davantage la demande et la rémunération du travail qualifié que du travail peu qualifié." },
-        { q: "Comment l'emploi dans les métiers routiniers a-t-il évolué en France entre 1990 et 2011, avec la diffusion des TIC ?",
-          r: "Il a reculé (ouvriers industriels, transport, bâtiment, agriculture) : les travailleurs concernés ont basculé vers des emplois de service non routiniers ou vers le chômage (Charnoz et Orand)." },
-        { q: "L'innovation profite-t-elle aussi aux salariés peu qualifiés ? Justifie.",
-          r: "Oui en partie : en France, un salarié peu qualifié d'une des 5 % d'entreprises les plus innovantes gagne environ 2,2 % de plus qu'un salarié identique d'une entreprise non innovante." },
-        { q: "En dehors du progrès technique, cite deux causes de la hausse des inégalités de revenus depuis les années 1980.",
-          r: "La mondialisation (délocalisations) et les rentes de monopole sans innovation." },
-        { q: "Pourquoi la hausse des inégalités liée au progrès technique n'est-elle pas une fatalité ?",
-          r: "Elle dépend des politiques publiques (fiscalité, éducation, formation) : la croissance des Trente Glorieuses s'est accompagnée d'une baisse des inégalités." },
-        { q: "Que montre la « courbe de l'éléphant » sur la répartition de la croissance mondiale depuis 1980 ?",
-          r: "Depuis 1980, les 1 % les plus riches du monde ont capté environ 2,25 fois plus de la croissance mondiale que les 50 % les plus pauvres." }
+        {
+          "q": "Qu'est-ce qu'une croissance inclusive ?",
+          "r": "Une croissance dont les bénéfices profitent à l'ensemble de la population. Depuis les années 1980, la croissance l'est moins, surtout aux États-Unis."
+        },
+        {
+          "q": "Comment les inégalités de revenus ont-elles évolué dans les pays développés pendant les Trente Glorieuses, puis depuis les années 1980 ?",
+          "r": "Elles ont diminué pendant les Trente Glorieuses ; elles augmentent depuis les années 1980, fortement aux États-Unis, plus modérément en Europe."
+        },
+        {
+          "q": "Quelle part du revenu national les 10 % les plus aisés recevaient-ils en 1980 et en 2016, aux États-Unis et en Europe ?",
+          "r": "États-Unis : 34 % → 47 %. Europe : 33 % → 37 %."
+        },
+        {
+          "q": "Quelle part du revenu national les 1 % les plus aisés recevaient-ils aux États-Unis en 1980 et en 2016 ?",
+          "r": "12 % → 20 %."
+        },
+        {
+          "q": "Explique comment la rente d'innovation accroît les inégalités.",
+          "r": "L'innovateur, en monopole temporaire, vend plus cher et réalise des surprofits ; dans une économie mondialisée il vise un marché mondial, ce qui accroît encore ses revenus par rapport aux autres agents."
+        },
+        {
+          "q": "Distingue tâches routinières et non routinières.",
+          "r": "Routinières : répétitives et codifiables, donc automatisables (saisie, travail à la chaîne). Non routinières : abstraites et qualifiées (cadres, ingénieurs) ou manuelles et relationnelles peu qualifiées (soins, aide à domicile)."
+        },
+        {
+          "q": "Pourquoi les technologies de l'information et de la communication (TIC) détruisent-elles surtout des emplois intermédiaires ?",
+          "r": "Les emplois intermédiaires (ouvriers de l'industrie, employés administratifs) sont les plus intensifs en tâches routinières, que les TIC permettent d'automatiser."
+        },
+        {
+          "q": "Définis la polarisation des emplois.",
+          "r": "Hausse simultanée de la part des emplois très qualifiés et des emplois peu qualifiés non routiniers, au détriment des emplois intermédiaires routiniers."
+        },
+        {
+          "q": "Explique pourquoi la polarisation accroît les inégalités salariales.",
+          "r": "L'emploi progresse aux deux extrémités de l'échelle des salaires (hauts salaires qualifiés, bas salaires peu qualifiés) et recule au milieu : les écarts de salaires se creusent."
+        },
+        {
+          "q": "Qu'est-ce qu'un progrès technique biaisé ?",
+          "r": "Un progrès technique qui accroît davantage la demande et la rémunération du travail qualifié que du travail peu qualifié."
+        },
+        {
+          "q": "Comment l'emploi dans les métiers routiniers a-t-il évolué en France entre 1990 et 2011, avec la diffusion des TIC ?",
+          "r": "Il a reculé (ouvriers industriels, transport, bâtiment, agriculture) : les travailleurs concernés ont basculé vers des emplois de service non routiniers ou vers le chômage (Charnoz et Orand)."
+        },
+        {
+          "q": "L'innovation profite-t-elle aussi aux salariés peu qualifiés ? Justifie.",
+          "r": "Oui en partie : en France, un salarié peu qualifié d'une des 5 % d'entreprises les plus innovantes gagne environ 2,2 % de plus qu'un salarié identique d'une entreprise non innovante."
+        },
+        {
+          "q": "En dehors du progrès technique, cite deux causes de la hausse des inégalités de revenus depuis les années 1980.",
+          "r": "La mondialisation (délocalisations) et les rentes de monopole sans innovation."
+        },
+        {
+          "q": "Pourquoi la hausse des inégalités liée au progrès technique n'est-elle pas une fatalité ?",
+          "r": "Elle dépend des politiques publiques (fiscalité, éducation, formation) : la croissance des Trente Glorieuses s'est accompagnée d'une baisse des inégalités."
+        },
+        {
+          "q": "Que montre la « courbe de l'éléphant » sur la répartition de la croissance mondiale depuis 1980 ?",
+          "r": "Depuis 1980, les 1 % les plus riches du monde ont capté environ 2,25 fois plus de la croissance mondiale que les 50 % les plus pauvres."
+        }
       ],
       "B": [
-        { q: "Définis la croissance soutenable.",
-          r: "Une croissance qui répond aux besoins du présent sans compromettre la capacité des générations futures à répondre aux leurs (rapport Brundtland, 1987)." },
-        { q: "Quelles sont les trois limites écologiques de la croissance ?",
-          r: "L'épuisement des ressources, la pollution et le réchauffement climatique." },
-        { q: "Distingue ressources renouvelables et non renouvelables.",
-          r: "Non renouvelables : stock fini qui s'épuise (pétrole, minerais). Renouvelables : se reconstituent (forêts, poissons) mais s'épuisent si on les exploite plus vite que leur renouvellement." },
-        { q: "Pourquoi la pollution est-elle une externalité négative ?",
-          r: "Le pollueur nuit à d'autres agents sans les indemniser : il ne supporte pas le coût social de son activité, donc le marché produit trop de pollution." },
-        { q: "Explique le lien entre croissance et réchauffement climatique.",
-          r: "Produire plus exige plus d'énergie, surtout fossile → émissions de CO2 et d'autres GES → hausse de leur concentration → réchauffement → sécheresses, inondations, montée des eaux." },
-        { q: "Quels événements récents montrent que l'activité économique et les émissions de CO2 évoluent dans le même sens ?",
-          r: "La baisse des émissions lors de la crise de 2008 et surtout pendant le confinement de 2020 (jusqu'à environ −17 % d'émissions journalières début avril)." },
-        { q: "Qu'est-ce qu'un dommage irréversible ? Donne un exemple.",
-          r: "Un dommage qui ne peut pas être réparé ni compensé : réchauffement climatique engagé, extinction d'espèces." },
-        { q: "Distingue soutenabilité faible et forte.",
-          r: "Faible : le capital naturel détruit peut être compensé par d'autres capitaux (technique, humain). Forte : le capital naturel n'est pas substituable, il faut en préserver un stock minimal." },
-        { q: "Pourquoi stopper la croissance n'est-il pas une solution simple ?",
-          r: "Cela réduirait les revenus et augmenterait le chômage et la pauvreté (cf. 2020) ; les pays émergents ont besoin de croissance pour sortir de la pauvreté ; la décroissance des seuls pays de l'OCDE changerait peu le problème climatique." },
-        { q: "Pourquoi Malthus et Ricardo se sont-ils trompés sur les limites de la croissance ?",
-          r: "Ils pensaient la croissance limitée par les rendements agricoles décroissants mais n'ont pas anticipé le progrès technique, qui repousse sans cesse les limites." },
-        { q: "Que défend le rapport Meadows, publié en 1972 pour le Club de Rome ?",
-          r: "Le rapport du Club de Rome « Halte à la croissance ? » : une croissance infinie est impossible dans un monde aux ressources finies." },
-        { q: "Quelle est la conclusion du rapport Stern (2006) ?",
-          r: "Le coût de l'inaction face au changement climatique est bien supérieur au coût de l'action." },
-        { q: "Une politique climatique ambitieuse (forte taxe carbone) pèse-t-elle sur la croissance ? Distingue l'horizon 2060 et l'horizon 2100.",
-          r: "Une forte taxe carbone coûte plus en PIB que l'inaction à l'horizon 2060, mais à l'horizon 2100 avoir agi réduit fortement les pertes dues au réchauffement : bénéfices importants mais lointains." },
-        { q: "Quel est l'objectif de l'accord de Paris (2015) ?",
-          r: "Limiter le réchauffement nettement en dessous de 2 °C par rapport à l'ère préindustrielle." }
+        {
+          "q": "Définis la croissance soutenable.",
+          "r": "Une croissance qui répond aux besoins du présent sans compromettre la capacité des générations futures à répondre aux leurs (rapport Brundtland, 1987)."
+        },
+        {
+          "q": "Quelles sont les trois limites écologiques de la croissance ?",
+          "r": "L'épuisement des ressources, la pollution et le réchauffement climatique."
+        },
+        {
+          "q": "Distingue ressources renouvelables et non renouvelables.",
+          "r": "Non renouvelables : stock fini qui s'épuise (pétrole, minerais). Renouvelables : se reconstituent (forêts, poissons) mais s'épuisent si on les exploite plus vite que leur renouvellement."
+        },
+        {
+          "q": "Pourquoi la pollution est-elle une externalité négative ?",
+          "r": "Le pollueur nuit à d'autres agents sans les indemniser : il ne supporte pas le coût social de son activité, donc le marché produit trop de pollution."
+        },
+        {
+          "q": "Explique le lien entre croissance et réchauffement climatique.",
+          "r": "Produire plus exige plus d'énergie, surtout fossile → émissions de CO2 et d'autres GES → hausse de leur concentration → réchauffement → sécheresses, inondations, montée des eaux."
+        },
+        {
+          "q": "Quels événements récents montrent que l'activité économique et les émissions de CO2 évoluent dans le même sens ?",
+          "r": "La baisse des émissions lors de la crise de 2008 et surtout pendant le confinement de 2020 (jusqu'à environ −17 % d'émissions journalières début avril)."
+        },
+        {
+          "q": "Qu'est-ce qu'un dommage irréversible ? Donne un exemple.",
+          "r": "Un dommage qui ne peut pas être réparé ni compensé : réchauffement climatique engagé, extinction d'espèces."
+        },
+        {
+          "q": "Distingue soutenabilité faible et forte.",
+          "r": "Faible : le capital naturel détruit peut être compensé par d'autres capitaux (technique, humain). Forte : le capital naturel n'est pas substituable, il faut en préserver un stock minimal."
+        },
+        {
+          "q": "Pourquoi stopper la croissance n'est-il pas une solution simple ?",
+          "r": "Cela réduirait les revenus et augmenterait le chômage et la pauvreté (cf. 2020) ; les pays émergents ont besoin de croissance pour sortir de la pauvreté ; la décroissance des seuls pays de l'OCDE changerait peu le problème climatique."
+        },
+        {
+          "q": "Pourquoi Malthus et Ricardo se sont-ils trompés sur les limites de la croissance ?",
+          "r": "Ils pensaient la croissance limitée par les rendements agricoles décroissants mais n'ont pas anticipé le progrès technique, qui repousse sans cesse les limites."
+        },
+        {
+          "q": "Que défend le rapport Meadows, publié en 1972 pour le Club de Rome ?",
+          "r": "Le rapport du Club de Rome « Halte à la croissance ? » : une croissance infinie est impossible dans un monde aux ressources finies."
+        },
+        {
+          "q": "Quelle est la conclusion du rapport Stern (2006) ?",
+          "r": "Le coût de l'inaction face au changement climatique est bien supérieur au coût de l'action."
+        },
+        {
+          "q": "Une politique climatique ambitieuse (forte taxe carbone) pèse-t-elle sur la croissance ? Distingue l'horizon 2060 et l'horizon 2100.",
+          "r": "Une forte taxe carbone coûte plus en PIB que l'inaction à l'horizon 2060, mais à l'horizon 2100 avoir agi réduit fortement les pertes dues au réchauffement : bénéfices importants mais lointains."
+        },
+        {
+          "q": "Quel est l'objectif de l'accord de Paris (2015) ?",
+          "r": "Limiter le réchauffement nettement en dessous de 2 °C par rapport à l'ère préindustrielle."
+        }
       ],
       "C": [
-        { q: "Définis la croissance verte.",
-          r: "Une croissance qui concilie hausse de la production et préservation de l'environnement grâce à l'innovation et aux technologies propres." },
-        { q: "Définis le découplage.",
-          r: "La dissociation entre l'évolution du PIB et celle des pressions environnementales (émissions, consommation de ressources)." },
-        { q: "Distingue découplage relatif et absolu.",
-          r: "Relatif : les émissions augmentent moins vite que le PIB. Absolu : les émissions baissent alors que le PIB augmente. Seul le découplage absolu réduit les dommages climatiques." },
-        { q: "Explique comment l'innovation peut reculer les limites écologiques.",
-          r: "Elle permet de produire en consommant moins de ressources (recyclage, économie circulaire) et moins d'énergie fossile (renouvelables, efficacité énergétique), donc d'émettre moins de GES pour un même PIB." },
-        { q: "Donne un exemple concret d'innovation de recyclage qui permet d'économiser des ressources naturelles.",
-          r: "Une usine de l'Aisne recycle le verre plat des chantiers de déconstruction en calcin réincorporé dans la production : économie de sable et d'énergie." },
-        { q: "Qu'est-ce que l'économie circulaire ?",
-          r: "Un modèle qui limite la consommation de ressources et les déchets (écoconception, réparation, réemploi, recyclage), par opposition au modèle linéaire « extraire, fabriquer, consommer, jeter »." },
-        { q: "Quelle est la principale limite des énergies renouvelables ? Quelles innovations y répondent ?",
-          r: "Solaire et éolien sont intermittents et l'électricité se stocke mal ; innovations dans le stockage : batteries lithium-ion, hydrogène." },
-        { q: "À partir de l'exemple des énergies renouvelables, explique comment une innovation peut en entraîner d'autres.",
-          r: "Le développement des renouvelables crée un goulet d'étranglement dans le stockage de l'électricité, ce qui incite à innover dans les batteries : effet d'entraînement et externalités positives." },
-        { q: "Quel est le rôle des pouvoirs publics dans l'innovation verte ?",
-          r: "Financer la recherche, subventionner les entreprises (projet européen « Airbus de la batterie »), taxer la pollution (taxe carbone) pour rendre les technologies propres plus rentables." },
-        { q: "Comment une taxe carbone favorise-t-elle l'innovation ?",
-          r: "En faisant payer au pollueur le coût de son externalité, elle renchérit les énergies fossiles et rend plus rentables les technologies peu émettrices." },
-        { q: "Qu'est-ce que l'effet rebond ? Donne un exemple.",
-          r: "Les gains d'efficacité réduisent le coût d'usage d'un bien, ce qui en augmente la consommation et annule une partie des économies. Ex. : des voitures plus sobres incitent à rouler davantage." },
-        { q: "Pourquoi l'innovation n'est-elle pas une solution miracle aux limites écologiques ?",
-          r: "Effet rebond, découplage souvent seulement relatif, stockage de l'énergie encore imparfait, délais longs alors que certains dommages sont irréversibles." }
+        {
+          "q": "Définis la croissance verte.",
+          "r": "Une croissance qui concilie hausse de la production et préservation de l'environnement grâce à l'innovation et aux technologies propres."
+        },
+        {
+          "q": "Définis le découplage.",
+          "r": "La dissociation entre l'évolution du PIB et celle des pressions environnementales (émissions, consommation de ressources)."
+        },
+        {
+          "q": "Distingue découplage relatif et absolu.",
+          "r": "Relatif : les émissions augmentent moins vite que le PIB. Absolu : les émissions baissent alors que le PIB augmente. Seul le découplage absolu réduit les dommages climatiques."
+        },
+        {
+          "q": "Explique comment l'innovation peut reculer les limites écologiques.",
+          "r": "Elle permet de produire en consommant moins de ressources (recyclage, économie circulaire) et moins d'énergie fossile (renouvelables, efficacité énergétique), donc d'émettre moins de GES pour un même PIB."
+        },
+        {
+          "q": "Donne un exemple concret d'innovation de recyclage qui permet d'économiser des ressources naturelles.",
+          "r": "Une usine de l'Aisne recycle le verre plat des chantiers de déconstruction en calcin réincorporé dans la production : économie de sable et d'énergie."
+        },
+        {
+          "q": "Qu'est-ce que l'économie circulaire ?",
+          "r": "Un modèle qui limite la consommation de ressources et les déchets (écoconception, réparation, réemploi, recyclage), par opposition au modèle linéaire « extraire, fabriquer, consommer, jeter »."
+        },
+        {
+          "q": "Quelle est la principale limite des énergies renouvelables ? Quelles innovations y répondent ?",
+          "r": "Solaire et éolien sont intermittents et l'électricité se stocke mal ; innovations dans le stockage : batteries lithium-ion, hydrogène."
+        },
+        {
+          "q": "À partir de l'exemple des énergies renouvelables, explique comment une innovation peut en entraîner d'autres.",
+          "r": "Le développement des renouvelables crée un goulet d'étranglement dans le stockage de l'électricité, ce qui incite à innover dans les batteries : effet d'entraînement et externalités positives."
+        },
+        {
+          "q": "Quel est le rôle des pouvoirs publics dans l'innovation verte ?",
+          "r": "Financer la recherche, subventionner les entreprises (projet européen « Airbus de la batterie »), taxer la pollution (taxe carbone) pour rendre les technologies propres plus rentables."
+        },
+        {
+          "q": "Comment une taxe carbone favorise-t-elle l'innovation ?",
+          "r": "En faisant payer au pollueur le coût de son externalité, elle renchérit les énergies fossiles et rend plus rentables les technologies peu émettrices."
+        },
+        {
+          "q": "Qu'est-ce que l'effet rebond ? Donne un exemple.",
+          "r": "Les gains d'efficacité réduisent le coût d'usage d'un bien, ce qui en augmente la consommation et annule une partie des économies. Ex. : des voitures plus sobres incitent à rouler davantage."
+        },
+        {
+          "q": "Pourquoi l'innovation n'est-elle pas une solution miracle aux limites écologiques ?",
+          "r": "Effet rebond, découplage souvent seulement relatif, stockage de l'énergie encore imparfait, délais longs alors que certains dommages sont irréversibles."
+        }
       ]
     }
   },
@@ -60280,6 +60740,14 @@ const flashcardsData = {
           {
             "q": "Quels signes de « montée aux extrêmes » apparaissent dès la guerre de Sept Ans ?",
             "r": "L'extension mondiale des combats, une mobilisation financière et humaine considérable, des violences contre les civils (Acadiens), une guerre de survie pour la Prusse, un patriotisme naissant."
+          },
+          {
+            "q": "Quelle est la différence entre le traité de Paris et le traité de Hubertusbourg (1763) ?",
+            "r": "Paris règle le conflit France-Grande-Bretagne-Espagne (perte de la Nouvelle-France) ; Hubertusbourg le conflit Prusse-Autriche-Saxe (la Prusse garde la Silésie)."
+          },
+          {
+            "q": "La guerre de Sept Ans est-elle une guerre totale ?",
+            "r": "Non : elle reste limitée par ses buts et ses moyens, même si elle se déroule sur plusieurs continents."
           }
         ],
         "2": [
@@ -60386,6 +60854,18 @@ const flashcardsData = {
           {
             "q": "Quel lien unit Clausewitz et Napoléon ?",
             "r": "Clausewitz a combattu Napoléon et tire sa théorie de l'observation de ses guerres ; il le surnomme « le dieu de la guerre »."
+          },
+          {
+            "q": "Quelle est la différence entre levée en masse et conscription ?",
+            "r": "La levée en masse (1793) est une réquisition exceptionnelle ; la conscription (loi Jourdan, 1798) un service militaire obligatoire et régulier."
+          },
+          {
+            "q": "Quelle est la différence entre congrès de Vienne et Sainte-Alliance ?",
+            "r": "Le congrès de Vienne redessine l'Europe en 1814-1815 ; la Sainte-Alliance (1815) unit Russie, Autriche et Prusse pour défendre l'ordre monarchique."
+          },
+          {
+            "q": "Quelle est la différence entre guerre régulière et guérilla ?",
+            "r": "La guerre régulière oppose des armées en bataille ; la guérilla harcèle l'occupant par petits groupes, appuyés sur la population."
           }
         ],
         "_all": [
@@ -60456,6 +60936,18 @@ const flashcardsData = {
           {
             "q": "Quel théoricien militaire contemporain de Clausewitz propose au contraire des règles universelles de la guerre ?",
             "r": "Le Suisse Antoine de Jomini, auteur du Précis de l'art de la guerre (1838)."
+          },
+          {
+            "q": "Quelle est la différence entre guerre absolue et guerre réelle ?",
+            "r": "La guerre absolue est le concept théorique d'une guerre sans limite ; la guerre réelle est toujours freinée par le but politique, les moyens et les frictions."
+          },
+          {
+            "q": "Quelle est la différence entre stratégie et tactique chez Clausewitz ?",
+            "r": "La tactique est l'usage des forces dans l'engagement ; la stratégie l'usage des engagements pour atteindre le but de la guerre."
+          },
+          {
+            "q": "Quelle est la différence entre friction et brouillard de la guerre ?",
+            "r": "La friction désigne les difficultés concrètes de l'action ; le brouillard l'incertitude sur l'information."
           }
         ]
       },
@@ -60524,6 +61016,14 @@ const flashcardsData = {
           {
             "q": "En quoi les guerres irrégulières dépassent-elles le modèle de Clausewitz ?",
             "r": "Pour lui, la petite guerre restait un complément défensif d'une guerre entre États ; au XXe siècle, elle devient une stratégie à part entière, parfois offensive et transnationale, sans État ni armée régulière."
+          },
+          {
+            "q": "Quelle est la différence entre terrorisme et guérilla ?",
+            "r": "La guérilla vise surtout les forces armées et un territoire ; le terrorisme frappe des civils pour un effet psychologique et politique."
+          },
+          {
+            "q": "Quelle est la différence entre contre-insurrection et antiterrorisme ?",
+            "r": "La contre-insurrection combine action militaire et conquête de la population ; l'antiterrorisme prévient et réprime les attentats."
           }
         ],
         "2": [
@@ -60662,6 +61162,18 @@ const flashcardsData = {
           {
             "q": "Le modèle de Clausewitz est-il dépassé ? Donne une réponse nuancée.",
             "r": "Il est bousculé (acteurs non étatiques et transnationaux, nouveaux moyens et espaces, guerres sans fin) mais pas abandonné : la guerre garde une finalité politique et la guerre entre États n'a pas disparu."
+          },
+          {
+            "q": "Quelle est la différence entre Al-Qaïda et Daech ?",
+            "r": "Al-Qaïda est un réseau déterritorialisé ; Daech s'est constitué en proto-État territorial (califat de 2014) avant d'être vaincu."
+          },
+          {
+            "q": "Quelle est la différence entre guerre hybride et guerre conventionnelle ?",
+            "r": "La conventionnelle oppose des forces régulières ; l'hybride combine moyens militaires, cyberattaques, désinformation et pressions économiques."
+          },
+          {
+            "q": "Quelle est la différence entre cyberguerre et cybercriminalité ?",
+            "r": "La cyberguerre poursuit des fins stratégiques (États) ; la cybercriminalité des fins lucratives."
           }
         ],
         "_all": [
@@ -60692,6 +61204,14 @@ const flashcardsData = {
           {
             "q": "Cite trois types de guerres irrégulières depuis 1945, avec un exemple chacun.",
             "r": "Guerres de décolonisation (Algérie, 1954-1962) ; guerres révolutionnaires (Chine de Mao) ou de la guerre froide (Vietnam, Afghanistan) ; terrorisme transnational (Al-Qaïda, Daech)."
+          },
+          {
+            "q": "Quelle est la différence entre guerre asymétrique et guerre dissymétrique ?",
+            "r": "Dissymétrique : acteurs de même nature mais très inégaux ; asymétrique : acteurs de nature différente, aux stratégies différentes."
+          },
+          {
+            "q": "Quelle est la différence entre guerre interétatique et infra-étatique ?",
+            "r": "L'interétatique oppose des États ; l'infra-étatique se déroule à l'intérieur d'un État."
           }
         ]
       }
@@ -61058,6 +61578,79 @@ function ouvrirMatiere(id){
       `<p class="empty-msg">Aucun contenu pour le moment…</p>`;
   }
 }
+function objTexte(e){return e ? e.textContent.replace(/\s+/g," ").trim() : "";}
+function objLabel(t){return t.replace(/^[^\p{L}«(]+/u,"").trim();}
+function objItemsBloc(b, titre){
+  const lab = objLabel(objTexte(b.querySelector(".accord-h3 span"))), l = lab.toLowerCase();
+  const cells = [...b.querySelectorAll("tr")].map(tr => tr.cells.length > 1 ? objTexte(tr.cells[0]) : "").filter(x => x && x.length < 140);
+  if (/confondre/.test(l)) return cells.length ? cells.map(x => "Distinguer : " + x) : ["Distinguer les notions proches de cette partie"];
+  if (/à savoir/.test(l)) return cells.map(x => "Connaître : " + x);
+  if (/notion|définition|vocabula/.test(l)) return cells.length ? cells.map(x => "Définir : " + x) : ["Définir les notions de cette partie"];
+  if (/auteur|acteur|personnage|^œuvre/.test(l)) return cells.length ? cells.map(x => "Présenter : " + x) : ["Présenter les acteurs et les auteurs de cette partie"];
+  if (/citation|quote/.test(l)) return ["Citer et commenter les citations de cette partie"];
+  if (/chiffre|données|facts/.test(l)) return ["Connaître les chiffres et les exemples" + (cells.length ? " : " + cells.slice(0, 4).join(", ") : " de cette partie")];
+  if (/chrono|frise/.test(l)) return ["Situer les dates clés" + (titre ? " : " + titre : " de la fiche")];
+  if (/calcul|méthodes et exemples/.test(l)) return ["Refaire seul les calculs et les exemples : " + titre];
+  if (/piège/.test(l)) return ["Éviter les pièges signalés : " + titre];
+  if (/retenir/.test(l)) return [];
+  if (/sujet|entraînement/.test(l)) return ["Traiter les sujets d'entraînement"];
+  if (/textes étudiés/.test(l)) return ["Situer les textes étudiés dans l'œuvre"];
+  if (/bac|^exemple$/.test(l)) return ["Traiter l'exercice ou le sujet type : " + titre];
+  if (/lois|propriétés/.test(l)) return ["Énoncer et appliquer les lois et propriétés : " + titre];
+  if (/méthode pas|comment s'en servir/.test(l)) return ["Appliquer la méthode : " + titre];
+  if (/mécanisme|comprendre|key ideas/.test(l)) return ["Expliquer : " + titre];
+  return ["Expliquer : " + lab];
+}
+function objDepuisDom(root){
+  const groupes = [];
+  root.querySelectorAll(".accord-section, .accord-sub").forEach(g => {
+    if (g.classList.contains("obj-section")) return;
+    const blocs = [...g.querySelectorAll(".accord-block")].filter(b => b.parentElement.closest(".accord-sub, .accord-section") === g);
+    if (!blocs.length) return;
+    const titre = objTexte(g.querySelector(":scope > .accord-h1 span, :scope > .accord-h2 span"));
+    const items = [];
+    blocs.forEach(b => objItemsBloc(b, titre).forEach(x => { if (!items.includes(x)) items.push(x); }));
+    if (g.querySelector(".fc-btn")) items.push("Réussir les flashcards de cette partie");
+    if (items.length) groupes.push({ titre, items });
+  });
+  const libres = [...root.querySelectorAll(".accord-block")].filter(b => !b.parentElement.closest(".accord-sub, .accord-section"));
+  if (libres.length){ const items = []; libres.forEach(b => objItemsBloc(b, "").forEach(x => { if (!items.includes(x)) items.push(x); })); if (root.querySelector(".fc-btn")) items.push("Réussir les flashcards de la fiche"); if (items.length) groupes.unshift({ titre: "", items }); }
+  return groupes;
+}
+function objLire(id){try{return JSON.parse(localStorage.getItem("objectifs:" + id) || "[]");}catch(e){return [];}}
+function objEcrire(id, l){try{localStorage.setItem("objectifs:" + id, JSON.stringify(l));}catch(e){}}
+function objEsc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");}
+function objectifsHTML(id, groupes){
+  const faits = objLire(id);
+  let n = 0, ok = 0, corps = "";
+  groupes.forEach(g => {
+    corps += `<div class="obj-groupe">${g.titre ? `<div class="obj-titre">${objEsc(g.titre)}</div>` : ""}`;
+    g.items.forEach(x => { const k = g.titre + "|" + x, c = faits.includes(k); n++; if (c) ok++; corps += `<label class="obj-item${c ? " ok" : ""}"><input type="checkbox" class="obj-cb" data-fiche="${objEsc(id)}" data-k="${objEsc(k)}"${c ? " checked" : ""}><span>${objEsc(x)}</span></label>`; });
+    corps += `</div>`;
+  });
+  return `<div class="accord-section obj-section"><button type="button" class="accord-h1" onclick="toggleAccord(this)" aria-expanded="false"><span>🎯 Objectifs d'apprentissage <span class="obj-prog">${ok} / ${n}</span></span><span class="accord-chevron">▼</span></button><div class="accord-content"><div class="accord-body-inner"><p class="obj-aide">Coche chaque objectif quand tu sais le faire sans regarder la fiche. Ta progression est enregistrée sur cet appareil.</p><div class="obj-barre"><i style="width:${n ? Math.round(100 * ok / n) : 0}%"></i></div>${corps}<button type="button" class="obj-raz" onclick="objRaz(this)">Tout décocher</button></div></div></div>`;
+}
+function objMaj(sec){
+  const cbs = [...sec.querySelectorAll(".obj-cb")], ok = cbs.filter(c => c.checked).length;
+  sec.querySelector(".obj-prog").textContent = ok + " / " + cbs.length;
+  sec.querySelector(".obj-barre i").style.width = (cbs.length ? Math.round(100 * ok / cbs.length) : 0) + "%";
+  if (cbs.length) objEcrire(cbs[0].dataset.fiche, cbs.filter(c => c.checked).map(c => c.dataset.k));
+}
+function objRaz(btn){const sec = btn.closest(".obj-section"); sec.querySelectorAll(".obj-cb").forEach(c => { c.checked = false; c.parentElement.classList.remove("ok"); }); objMaj(sec);}
+document.addEventListener("change", e => { const c = e.target.closest(".obj-cb"); if (!c) return; c.parentElement.classList.toggle("ok", c.checked); objMaj(c.closest(".obj-section")); });
+function ajouterObjectifs(f){
+  const zone = document.getElementById("content").firstElementChild;
+  if (!zone || !f.content) return;
+  const racine = zone.querySelector(".fiche-ses") || zone;
+  const groupes = f.objectifs || objDepuisDom(racine);
+  if (!groupes.length) return;
+  const tmp = document.createElement("div");
+  tmp.innerHTML = objectifsHTML(f.id, groupes);
+  const intro = racine.querySelector(":scope > .aretenir, :scope > .fr-meta, :scope > .fr-intro");
+  let apres = intro;
+  while (apres && apres.nextElementSibling && apres.nextElementSibling.matches(".problematique, .fr-intro, .aretenir, .accord-fc-row")) apres = apres.nextElementSibling;
+  if (apres) apres.after(tmp.firstElementChild); else racine.prepend(tmp.firstElementChild);
+}
 function ouvrirFiche(matiereId, ficheId){
   const m = matieres.find(x => x.id === matiereId);
   if(!m) return;
@@ -61070,6 +61663,7 @@ function ouvrirFiche(matiereId, ficheId){
          ? f.content
          : `<p class="empty-msg">Aucun contenu pour le moment…</p>`}
      </div>`;
+  ajouterObjectifs(f);
 }
 function back(){
   if(currentMatiere && document.getElementById("page-title").textContent !== currentMatiere.title){
