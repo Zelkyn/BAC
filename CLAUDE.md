@@ -9,6 +9,7 @@
 - `index.html` : page d'entrée. Elle affiche le BAC Terminale au démarrage et contient le bouton en bas à gauche (menu déroulant BAC Terminale / BAC Français / BAC Maths). Chaque site est chargé dans son propre cadre, sans conflit de styles ni de scripts.
 - `terminale.html` : site du BAC Terminale (ancien dépôt BAC-2027) ; ses consignes restent valables (fiches dans `matieres`, flashcards dans `flashcardsData`, intitulés officiels, flashcards autonomes). Plus de système de couleurs ni d'indication d'origine des fiches (pas de champ `classe`).
   - Fiches d'HGGSP : plan du programme (Introduction, Axe 1, Axe 2, Objet de travail conclusif ; un jalon par sous-partie), flashcards rangées sous les clés `INTRO`, `A1`, `A2`, `OTC` puis `J1`, `J2`…
+  - Chaque matière se termine par une fiche « Méthodologie » (épreuves écrites et orales de la spécialité).
   - Chaque sous-partie comporte un bloc « 🔀 Ne pas confondre » qui distingue explicitement les notions proches (ex. : guerre absolue / guerre totale).
 - `francais.html` : site du bac de français (ancien dépôt BAC-FR) ; ses consignes restent valables (`TEXTES`, `texteLines`/`analysesData` alignés ligne par ligne, `NOTIONS`, fiches HTML, `FLASHCARDS_MAIN`, citations exactes).
   - Même principe et même moteur que `terminale.html` : accueil en cartes (les quatre objets d'étude, Auteurs, Notions et procédés, Grammaire, Méthodologie, Repères), puis liste de fiches, puis fiche en accordéons avec boutons de flashcards.
