@@ -717,6 +717,19 @@ body.night .fiche-fr .tbl th { background:var(--accent-2); }
 .fiche-fr a { color:var(--accent); }
 .fiche-fr ul, .fiche-fr ol { padding-left:22px; }
 @media (max-width: 600px) { .fiche-fr .idcard { grid-template-columns:1fr; gap:2px; } .fiche-fr .idcard dd { margin-bottom:8px; } .line { font-size:16px; } .analysis-line { margin-left:10px; } .mvt-lines { margin-left:0; } }
+.fiche-ses .accord-section.obj-section > .accord-h1, .accord-section.obj-section > .accord-h1 { background: linear-gradient(135deg, #2e7d4f, #23633e); }
+.fiche-ses .accord-section.obj-section > .accord-h1:hover, .accord-section.obj-section > .accord-h1:hover { background: linear-gradient(135deg, #23633e, #1b4f31); }
+.obj-prog { font-size: 13px; font-weight: normal; opacity: 0.9; margin-left: 8px; padding: 2px 9px; border-radius: 20px; background: rgba(255,255,255,0.18); }
+.obj-aide { font-size: 13.5px; color: var(--card-sub); margin: 4px 0 10px; line-height: 1.5; }
+.obj-barre { height: 7px; border-radius: 4px; background: rgba(127,127,127,0.18); overflow: hidden; margin: 0 0 14px; }
+.obj-barre i { display: block; height: 100%; background: #2e9e5b; transition: width 0.3s; }
+.obj-groupe { margin: 0 0 12px; }
+.obj-titre { font-weight: bold; font-size: 14.5px; margin: 12px 0 6px; color: var(--title); }
+.obj-item { display: flex; gap: 10px; align-items: flex-start; padding: 7px 9px; border-radius: 8px; font-size: 14.5px; line-height: 1.5; cursor: pointer; color: var(--text); }
+.obj-item:hover { background: rgba(127,127,127,0.08); }
+.obj-item input { margin-top: 3px; width: 18px; height: 18px; flex: none; accent-color: #2e9e5b; cursor: pointer; }
+.obj-item.ok span { opacity: 0.55; }
+.obj-raz { margin-top: 8px; font-size: 13px; padding: 6px 14px; border-radius: 20px; border: 1px solid rgba(127,127,127,0.4); background: transparent; color: var(--text); cursor: pointer; font-family: inherit; }
 </style>
 </head>
 <body>
@@ -3808,16 +3821,143 @@ function ficheAuteur(a){
 function notionCorps(n){
   return `<p class="bloc-p">${n.def}</p>${n.plus ? `<p class="bloc-p"><b>À savoir :</b> ${n.plus}</p>` : ""}${n.effet ? `<p class="bloc-p"><b>Effets :</b> ${n.effet}</p>` : ""}${n.ex ? `<div class="exemple"><b>Exemple</b>${n.ex}</div>` : ""}`;
 }
+const CONF_FR = {
+"notions-figures": [
+["Métaphore ≠ comparaison", "La <b>comparaison</b> rapproche deux réalités avec un <b>outil</b> (<em>comme, tel, pareil à</em>) ; la <b>métaphore</b> les rapproche <b>sans outil</b> : « Mon auberge était à la Grande-Ourse »."],
+["Métaphore ≠ métonymie", "La <b>métaphore</b> repose sur une <b>ressemblance</b> ; la <b>métonymie</b> sur un <b>lien logique</b> entre deux réalités (contenant pour le contenu : « boire un verre » ; auteur pour l'œuvre : « lire un Zola »)."],
+["Métonymie ≠ synecdoque", "La <b>synecdoque</b> est une métonymie particulière fondée sur un rapport d'<b>inclusion</b> (la partie pour le tout : « une voile » pour un navire) ; la <b>métonymie</b> repose sur un autre lien logique (cause, contenant, lieu, auteur)."],
+["Personnification ≠ allégorie", "La <b>personnification</b> prête des traits humains à une chose ou à un animal ; l'<b>allégorie</b> représente une <b>idée abstraite</b> sous une forme concrète, souvent personnifiée et avec une majuscule (la Mort et sa faux)."],
+["Litote ≠ euphémisme", "La <b>litote</b> dit moins pour faire entendre <b>plus</b> (« Va, je ne te hais point » = je t'aime) ; l'<b>euphémisme</b> <b>atténue</b> une réalité pénible (« il nous a quittés » = il est mort)."],
+["Antithèse ≠ oxymore", "L'<b>antithèse</b> oppose deux termes ou deux idées dans une phrase ou un passage ; l'<b>oxymore</b> unit deux termes contradictoires dans un <b>même groupe de mots</b> (« cette obscure clarté »)."],
+["Oxymore ≠ paradoxe", "L'<b>oxymore</b> est une alliance de <b>mots</b> ; le <b>paradoxe</b> est une <b>idée</b> contraire à l'opinion commune, qui se développe dans une phrase ou un raisonnement."],
+["Gradation ≠ accumulation ≠ énumération", "L'<b>énumération</b> est une liste ; l'<b>accumulation</b> une liste abondante qui produit un effet de profusion ou de désordre ; la <b>gradation</b> ordonne les termes selon une intensité <b>croissante ou décroissante</b>."],
+["Hyperbole ≠ gradation", "L'<b>hyperbole</b> exagère une seule expression ; la <b>gradation</b> est une progression entre plusieurs termes."],
+["Chiasme ≠ parallélisme", "Le <b>parallélisme</b> reprend la même construction dans le même ordre (AB / AB) ; le <b>chiasme</b> l'inverse (AB / BA) : « Il faut manger pour vivre et non pas vivre pour manger »."],
+["Anaphore ≠ simple répétition", "L'<b>anaphore</b> reprend un mot ou un groupe <b>en tête</b> de vers, de phrases ou de propositions successives ; une répétition peut se faire n'importe où."],
+["Ironie ≠ antiphrase", "L'<b>antiphrase</b> est un procédé : dire le contraire de ce qu'on pense ; l'<b>ironie</b> est une attitude critique plus large, qui peut utiliser l'antiphrase mais aussi d'autres moyens (fausse naïveté, décalage)."],
+["Allitération ≠ assonance", "L'<b>allitération</b> répète des sons <b>consonnes</b> ; l'<b>assonance</b> répète des sons <b>voyelles</b>."],
+["Périphrase ≠ métaphore", "La <b>périphrase</b> remplace un mot par une expression qui le définit (« la Ville lumière » pour Paris) ; elle n'est pas forcément imagée, contrairement à la métaphore."],
+["Question rhétorique ≠ vraie question", "La <b>question rhétorique</b> n'attend pas de réponse : elle affirme indirectement une idée et implique le destinataire."],
+["Prétérition ≠ ellipse", "La <b>prétérition</b> prétend ne pas dire ce qu'elle dit pourtant (« Je ne vous parlerai pas de… ») ; l'<b>ellipse</b> supprime des éléments (mots ou durée du récit)."]],
+"notions-registres": [
+["Tragique ≠ pathétique", "Le <b>tragique</b> montre un personnage écrasé par une <b>fatalité</b> (destin, dieux, passion) contre laquelle il lutte en vain : terreur et pitié ; le <b>pathétique</b> cherche à émouvoir par la <b>souffrance</b>, sans fatalité nécessaire."],
+["Épique ≠ lyrique", "L'<b>épique</b> célèbre des exploits et des combats, souvent collectifs, par l'amplification ; le <b>lyrique</b> exprime les sentiments personnels d'un « je »."],
+["Comique ≠ ironique", "Le <b>comique</b> vise à faire rire ; l'<b>ironique</b> crée un décalage entre ce qui est dit et ce qui est pensé, dans un but critique."],
+["Satirique ≠ polémique", "La <b>satire</b> ridiculise des mœurs, des institutions ou des types humains ; le registre <b>polémique</b> attaque vigoureusement un adversaire ou une thèse dans un débat."],
+["Burlesque ≠ héroï-comique", "Le <b>burlesque</b> traite un sujet <b>noble</b> de façon <b>triviale</b> ; l'<b>héroï-comique</b> traite un sujet <b>trivial</b> de façon <b>noble</b>."],
+["Didactique ≠ argumentatif", "Le registre <b>didactique</b> cherche à <b>enseigner</b> un savoir ; un texte <b>argumentatif</b> cherche à faire adhérer à une thèse."],
+["Éloge ≠ blâme", "Les deux relèvent du registre épidictique : l'<b>éloge</b> célèbre, le <b>blâme</b> condamne."]],
+"notions-poesie": [
+["Rimes plates ≠ croisées ≠ embrassées", "<b>Plates</b> : AABB ; <b>croisées</b> : ABAB ; <b>embrassées</b> : ABBA."],
+["Rime masculine ≠ rime féminine", "La rime <b>féminine</b> se termine par un <b>e muet</b> (« rose / chose ») ; la rime <b>masculine</b> non (« amour / jour »)."],
+["Enjambement ≠ rejet ≠ contre-rejet", "L'<b>enjambement</b> : la phrase déborde sur le vers suivant ; le <b>rejet</b> : un élément bref est <b>rejeté au début</b> du vers suivant ; le <b>contre-rejet</b> : un élément bref, placé <b>en fin de vers</b>, appartient à la phrase du vers suivant."],
+["Césure ≠ hémistiche", "La <b>césure</b> est la <b>pause</b> à l'intérieur du vers (après la 6<sup>e</sup> syllabe de l'alexandrin) ; l'<b>hémistiche</b> est chacune des deux <b>moitiés</b> du vers."],
+["Diérèse ≠ synérèse", "La <b>diérèse</b> sépare deux voyelles voisines en deux syllabes (« li-on ») ; la <b>synérèse</b> les réunit en une seule."],
+["Vers ≠ strophe", "Le <b>vers</b> est une ligne de poème ; la <b>strophe</b> un groupe de vers (quatrain : 4 vers ; tercet : 3 vers)."],
+["Poème en prose ≠ prose poétique", "Le <b>poème en prose</b> est une forme poétique autonome (Baudelaire, <em>Le Spleen de Paris</em>) ; la <b>prose poétique</b> désigne un passage en prose qui utilise les ressources de la poésie, dans une œuvre non poétique."],
+["Parodie ≠ pastiche", "La <b>parodie</b> imite pour se moquer ; le <b>pastiche</b> imite le style d'un auteur par jeu ou par hommage."],
+["Sonnet ≠ blason", "Le <b>sonnet</b> est une forme fixe (deux quatrains, deux tercets) ; le <b>blason</b> est un poème qui célèbre (ou critique) une partie du corps, quelle que soit sa forme."]],
+"notions-theatre": [
+["Réplique ≠ tirade ≠ monologue", "La <b>réplique</b> est une prise de parole adressée à un autre personnage ; la <b>tirade</b> une longue réplique devant d'autres personnages ; le <b>monologue</b> est prononcé par un personnage seul en scène (ou qui se croit seul)."],
+["Aparté ≠ monologue", "L'<b>aparté</b> est prononcé <b>en présence</b> d'autres personnages, qui sont censés ne pas l'entendre ; le <b>monologue</b> est prononcé <b>seul</b>."],
+["Double énonciation ≠ aparté", "La <b>double énonciation</b> concerne tout le texte théâtral, qui s'adresse à la fois aux personnages et au public ; l'<b>aparté</b> est une réplique particulière."],
+["Stichomythie ≠ tirade", "La <b>stichomythie</b> est un échange rapide de répliques très courtes ; la <b>tirade</b> une longue réplique."],
+["Didascalie ≠ réplique", "La <b>didascalie</b> est une indication de l'auteur (jeu, décor, ton) qui n'est pas prononcée ; la <b>réplique</b> est dite par un personnage."],
+["Scène d'exposition ≠ début in medias res", "La <b>scène d'exposition</b> présente les personnages et la situation ; un début <b>in medias res</b> plonge directement le spectateur dans l'action."],
+["Comique de mots ≠ de geste ≠ de situation ≠ de caractère", "<b>Mots</b> : jeux de langage ; <b>geste</b> : coups, chutes ; <b>situation</b> : quiproquos, rebondissements ; <b>caractère</b> : défauts d'un personnage (l'avare, le misanthrope)."],
+["Farce ≠ comédie", "La <b>farce</b> est une pièce courte au comique simple et souvent grossier ; la <b>comédie</b> peut viser aussi la critique des mœurs et la réflexion."]],
+"notions-recit": [
+["Auteur ≠ narrateur ≠ personnage", "L'<b>auteur</b> est la personne réelle qui écrit ; le <b>narrateur</b> est la voix qui raconte dans le texte ; le <b>personnage</b> agit dans l'histoire. Ils ne se confondent que dans l'autobiographie."],
+["Focalisation interne ≠ externe ≠ zéro", "<b>Interne</b> : on perçoit à travers un personnage ; <b>externe</b> : on voit de l'extérieur, sans accès aux pensées ; <b>zéro</b> (narrateur omniscient) : le narrateur sait tout."],
+["Discours direct ≠ indirect ≠ indirect libre", "<b>Direct</b> : paroles rapportées telles quelles, entre guillemets ; <b>indirect</b> : paroles intégrées dans une subordonnée (« il dit qu'il viendrait ») ; <b>indirect libre</b> : paroles fondues dans le récit, sans verbe introducteur ni guillemets."],
+["Imparfait ≠ passé simple", "Le <b>passé simple</b> présente les actions de premier plan, ponctuelles et successives ; l'<b>imparfait</b> l'arrière-plan, les descriptions, les habitudes, les actions en cours."],
+["Autobiographie ≠ roman autobiographique", "L'<b>autobiographie</b> suppose l'identité de l'auteur, du narrateur et du personnage et un pacte de vérité ; le <b>roman autobiographique</b> s'inspire de la vie de l'auteur sous un autre nom, avec une part de fiction."],
+["Énonciation ancrée ≠ coupée de la situation", "Un énoncé <b>ancré</b> utilise des indices de la situation d'énonciation (je, tu, ici, maintenant, présent) ; un énoncé <b>coupé</b> n'en contient pas (récit à la troisième personne au passé simple)."],
+["Modalisation ≠ connotation", "La <b>modalisation</b> exprime le degré de certitude ou le jugement du locuteur (peut-être, sans doute, hélas) ; la <b>connotation</b> est le sens second associé à un mot."]],
+"notions-argu": [
+["Convaincre ≠ persuader", "<b>Convaincre</b> fait appel à la <b>raison</b> (arguments, preuves) ; <b>persuader</b> fait appel aux <b>sentiments</b> (émotion, séduction)."],
+["Argument ≠ exemple", "L'<b>argument</b> est une raison qui justifie la thèse ; l'<b>exemple</b> est un fait concret qui illustre l'argument."],
+["Thème ≠ thèse", "Le <b>thème</b> est ce dont on parle ; la <b>thèse</b> est la position défendue sur ce thème."],
+["Concession ≠ réfutation", "La <b>concession</b> admet une partie de la thèse adverse pour mieux la dépasser (« certes…, mais… ») ; la <b>réfutation</b> la rejette en montrant qu'elle est fausse."],
+["Fable ≠ apologue", "L'<b>apologue</b> est un genre : récit bref à visée morale (fable, conte philosophique, parabole) ; la <b>fable</b> en est une forme particulière, souvent en vers, avec une morale explicite."],
+["Présupposé ≠ sous-entendu", "Le <b>présupposé</b> est inscrit dans l'énoncé lui-même (« Il a arrêté de fumer » présuppose qu'il fumait) ; le <b>sous-entendu</b> dépend du contexte et de l'interprétation."],
+["Raisonnement déductif ≠ inductif", "Le raisonnement <b>déductif</b> va d'une idée générale à un cas particulier ; le raisonnement <b>inductif</b> part de cas particuliers pour en tirer une loi générale."]],
+"notions-langue": [
+["Dénotation ≠ connotation", "La <b>dénotation</b> est le sens premier d'un mot (le dictionnaire) ; la <b>connotation</b> est le sens second, les valeurs associées (le rouge : le sang, la passion, le danger)."],
+["Champ lexical ≠ champ sémantique", "Le <b>champ lexical</b> est l'ensemble des mots d'un texte qui se rapportent à un même thème ; le <b>champ sémantique</b> est l'ensemble des sens d'un même mot."],
+["Niveau familier ≠ courant ≠ soutenu", "<b>Familier</b> : langue orale et relâchée ; <b>courant</b> : langue correcte et neutre ; <b>soutenu</b> : langue recherchée, littéraire."],
+["Archaïsme ≠ néologisme", "L'<b>archaïsme</b> est un mot ou un tour vieilli ; le <b>néologisme</b> un mot nouvellement créé."],
+["Rythme binaire ≠ ternaire", "Le rythme <b>binaire</b> repose sur deux éléments (équilibre, opposition) ; le rythme <b>ternaire</b> sur trois (ampleur, harmonie, gradation)."],
+["Phrase nominale ≠ phrase verbale", "La phrase <b>nominale</b> n'a pas de verbe conjugué (effet de rapidité, d'émotion) ; la phrase <b>verbale</b> s'organise autour d'un verbe."],
+["Intertextualité ≠ plagiat", "L'<b>intertextualité</b> est la présence assumée d'un texte dans un autre (citation, allusion, réécriture) ; le <b>plagiat</b> copie en cachant sa source."]],
+"notions-oeuvres": [
+["Tropisme ≠ sous-conversation", "Chez Sarraute, les <b>tropismes</b> sont des mouvements intérieurs, très rapides et indéfinissables ; la <b>sous-conversation</b> est la manière d'écrire ce qui se passe sous les paroles échangées."],
+["Libertin (XVII<sup>e</sup> siècle) ≠ libertinage de mœurs (XVIII<sup>e</sup> siècle)", "Au XVII<sup>e</sup> siècle, le <b>libertin</b> est d'abord un libre-penseur qui refuse les dogmes religieux ; au XVIII<sup>e</sup> siècle, le mot désigne surtout une liberté de mœurs."],
+["Humanisme ≠ humanitaire", "L'<b>humanisme</b> est un mouvement intellectuel de la Renaissance, qui place l'homme et la culture antique au centre ; l'<b>humanitaire</b> désigne l'aide aux personnes en détresse."],
+["Nouveau Roman ≠ roman réaliste", "Le <b>roman réaliste</b> construit des personnages et une intrigue qui imitent le réel ; le <b>Nouveau Roman</b> (années 1950) remet en cause le personnage, l'intrigue et l'illusion réaliste."]],
+"gram-interrogation": [
+["Interrogation totale ≠ partielle", "L'interrogation <b>totale</b> porte sur toute la phrase et appelle une réponse par oui ou non (« Viens-tu ? ») ; l'interrogation <b>partielle</b> porte sur un élément et commence par un mot interrogatif (« Quand viens-tu ? »)."],
+["Interrogation directe ≠ indirecte", "L'interrogation <b>directe</b> se termine par un point d'interrogation ; l'interrogation <b>indirecte</b> est une proposition subordonnée, sans point d'interrogation (« Je me demande quand tu viens »)."],
+["Mot interrogatif ≠ pronom relatif", "« Qui » est <b>interrogatif</b> dans « Qui vient ? » et <b>relatif</b> dans « L'homme qui vient » (il reprend un antécédent)."],
+["Question rhétorique ≠ vraie question", "La <b>question rhétorique</b> n'attend pas de réponse : elle affirme indirectement."]],
+"gram-negation": [
+["Négation totale ≠ partielle", "La négation <b>totale</b> porte sur toute la phrase (ne… pas, ne… point) ; la négation <b>partielle</b> porte sur un élément (ne… jamais, ne… rien, ne… personne, ne… plus)."],
+["Négation ≠ restriction", "« Ne… que » n'est pas une négation mais une <b>restriction</b> : « Il ne lit que des romans » = il lit seulement des romans."],
+["Négation grammaticale ≠ lexicale", "La négation <b>grammaticale</b> utilise des adverbes (ne… pas) ; la négation <b>lexicale</b> utilise des mots de sens négatif ou des préfixes (impossible, refuser, sans)."],
+["« Ne » explétif ≠ négation", "Le « ne » <b>explétif</b> n'a pas de valeur négative : « Je crains qu'il ne vienne » = je crains qu'il vienne."]],
+"gram-subordonnees": [
+["Relative ≠ complétive", "La <b>relative</b> est introduite par un <b>pronom relatif</b> et complète un nom (son antécédent) ; la <b>complétive</b> est introduite par la <b>conjonction</b> « que » et complète un verbe (souvent COD)."],
+["« Que » pronom relatif ≠ « que » conjonction", "Le « que » <b>relatif</b> reprend un antécédent et a une fonction dans la subordonnée (« le livre que je lis ») ; le « que » <b>conjonction</b> n'a pas de fonction et ne reprend rien (« je crois que tu as raison »)."],
+["Complétive ≠ circonstancielle", "La <b>complétive</b> est essentielle (on ne peut pas la supprimer) ; la <b>circonstancielle</b> est souvent mobile et supprimable, et exprime le temps, la cause, la conséquence, le but, la condition, la concession."],
+["Interrogative indirecte ≠ relative", "L'<b>interrogative indirecte</b> dépend d'un verbe de questionnement (« je me demande qui viendra ») et n'a pas d'antécédent ; la <b>relative</b> en a un."],
+["Subordination ≠ coordination", "La <b>subordination</b> rend une proposition dépendante d'une autre ; la <b>coordination</b> relie deux propositions de même niveau (mais, ou, et, donc, or, ni, car)."]],
+"methodo-epreuves": [
+["Épreuve écrite ≠ épreuve orale", "L'<b>écrit</b> (4 heures) propose au choix un commentaire ou une dissertation ; l'<b>oral</b> comprend l'explication linéaire d'un texte de la liste, une question de grammaire, puis la présentation de l'œuvre choisie et un entretien."],
+["Commentaire ≠ dissertation", "Le <b>commentaire</b> analyse un texte inconnu selon un projet de lecture ; la <b>dissertation</b> répond à une question sur une œuvre au programme et son parcours."]],
+"methodo-oral": [
+["Explication linéaire ≠ commentaire", "L'<b>explication linéaire</b> suit le texte dans l'ordre, mouvement par mouvement ; le <b>commentaire</b> l'organise en axes thématiques."],
+["Paraphrase ≠ analyse", "La <b>paraphrase</b> répète le texte en d'autres mots ; l'<b>analyse</b> montre comment les procédés produisent du sens."],
+["Procédé ≠ effet", "Le <b>procédé</b> est le moyen d'écriture (anaphore) ; l'<b>effet</b> est ce qu'il produit (insistance, émotion). Il faut toujours relier les deux."]],
+"methodo-grammaire-oral": [
+["Identifier ≠ analyser", "<b>Identifier</b>, c'est nommer la construction (subordonnée relative) ; <b>analyser</b>, c'est en expliquer le fonctionnement et l'intérêt dans le texte."]],
+"methodo-entretien": [
+["Présenter ≠ réciter", "On <b>présente</b> l'œuvre avec ses propres mots et un avis argumenté ; on ne <b>récite</b> pas un texte appris."],
+["Avis personnel ≠ simple goût", "L'<b>avis</b> attendu est justifié par des éléments précis de l'œuvre ; un simple « j'ai aimé » ne suffit pas."]],
+"methodo-commentaire": [
+["Projet de lecture ≠ résumé", "Le <b>projet de lecture</b> (problématique) dit ce qui fait l'intérêt du texte ; le <b>résumé</b> dit seulement ce qu'il raconte."],
+["Axe ≠ mouvement du texte", "Un <b>axe</b> de commentaire regroupe des remarques thématiques ; un <b>mouvement</b> est une étape du texte, propre à l'explication linéaire."],
+["Citation ≠ analyse", "Une <b>citation</b> doit toujours être suivie de l'<b>analyse</b> du procédé et de son effet."]],
+"methodo-dissertation": [
+["Thème ≠ problématique", "Le <b>thème</b> est le sujet général ; la <b>problématique</b> est la question qui fait apparaître l'enjeu du sujet."],
+["Argument ≠ exemple", "L'<b>argument</b> justifie une idée ; l'<b>exemple</b>, tiré de l'œuvre, l'illustre et doit être analysé."],
+["Plan dialectique ≠ plan thématique", "Le plan <b>dialectique</b> examine une thèse puis ses limites ; le plan <b>thématique</b> explore différents aspects de la question."]],
+"methodo-outils": [
+["« Montrer » ≠ « suggérer »", "On dit qu'un procédé <b>montre</b> ce qui est explicite, qu'il <b>suggère</b> ce qui est implicite : choisir le verbe juste rend l'analyse précise."],
+["Connecteur d'opposition ≠ de concession", "<b>Mais, cependant, pourtant</b> opposent ; <b>certes… mais, bien que</b> concèdent avant de s'opposer."]],
+"reperes": [
+["Humanisme ≠ Renaissance", "La <b>Renaissance</b> désigne la période (XV<sup>e</sup>-XVI<sup>e</sup> siècles) et le renouveau artistique ; l'<b>humanisme</b> est le mouvement intellectuel qui place l'homme et la culture antique au centre."],
+["Baroque ≠ classicisme", "Le <b>baroque</b> (fin XVI<sup>e</sup> - début XVII<sup>e</sup> siècle) aime le mouvement, l'illusion, l'instabilité ; le <b>classicisme</b> (vers 1660-1685) recherche l'ordre, la mesure, la clarté et le respect des règles."],
+["Classicisme ≠ Lumières", "Le <b>classicisme</b> est un idéal esthétique ; les <b>Lumières</b> (XVIII<sup>e</sup> siècle) sont un mouvement d'idées qui combat les préjugés et l'arbitraire par la raison."],
+["Romantisme ≠ réalisme", "Le <b>romantisme</b> (première moitié du XIX<sup>e</sup> siècle) exalte le moi, la sensibilité, le rêve ; le <b>réalisme</b> (milieu du XIX<sup>e</sup> siècle) veut représenter fidèlement la réalité sociale."],
+["Réalisme ≠ naturalisme", "Le <b>naturalisme</b> (Zola) prolonge le réalisme en se voulant scientifique : il étudie l'influence de l'hérédité et du milieu, sur le modèle de la méthode expérimentale."],
+["Parnasse ≠ symbolisme", "Le <b>Parnasse</b> cultive la beauté formelle et « l'art pour l'art » ; le <b>symbolisme</b> cherche à suggérer, par la musique et les symboles, une réalité cachée."],
+["Dada ≠ surréalisme", "<b>Dada</b> (1916) veut détruire l'art et ses valeurs ; le <b>surréalisme</b> (1924) veut explorer l'inconscient et le rêve par l'écriture automatique."]]
+};
+function confBloc(id){const c=CONF_FR[id];return c?bloc("🔀 Ne pas confondre",`<table class="ses-table">${c.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join("")}</table>`):"";}
+function objStrip(s){return String(s||"").replace(/<[^>]+>/g,"").replace(/\s+/g," ").trim();}
+function objectifsTexte(t){return [{titre:"Le texte et son analyse",items:["Situer le texte : auteur, date, œuvre, contexte","Énoncer la problématique : "+objStrip(t.problematique),...t.mouvements.map((m,k)=>"Expliquer le mouvement "+(k+1)+" : "+objStrip(m.titre)),"Repérer et interpréter les procédés clés du texte","Lire le texte à voix haute de façon expressive","Retenir des citations précises du texte"]},{titre:"Préparer l'oral",items:["Présenter le texte dans une introduction","Conclure en répondant à la problématique","Répondre à une question de grammaire sur le texte","Réussir les flashcards du texte"]}];}
+function objectifsNotions(c){const conf=CONF_FR["notions-"+c.id]||[];return [{titre:c.t,items:NOTIONS.filter(n=>n.cat===c.id).map(n=>"Définir, reconnaître et interpréter : "+objStrip(n.t))},...(conf.length?[{titre:"Ne pas confondre",items:conf.map(r=>"Distinguer : "+objStrip(r[0]))}]:[]),{titre:"",items:["Réussir les flashcards de la fiche"]}];}
 function ficheNotions(cat){
   const id = "notions-" + cat.id;
   return `<div class="fiche-ses fiche-fr">
     ${fcRow(fcBtn(id, "def", "Définitions") + fcBtn(id, "reconnaitre", "Reconnaître la figure"))}
     ${NOTIONS.filter(n => n.cat === cat.id).map(n => `<div id="notion-${n.id}">${bloc(n.t, notionCorps(n))}</div>`).join("")}
+    ${confBloc(id)}
     ${fcChapitre(id)}</div>`;
 }
 function ficheSimple(id, html){
   const { intro, blocs } = enBlocs(html);
-  return `<div class="fiche-ses fiche-fr">${fcRow(fcBtn(id, "cours", "Flashcards de la fiche"))}<div class="fr-intro">${intro}</div>${blocs}${fcChapitre(id)}</div>`;
+  return `<div class="fiche-ses fiche-fr">${fcRow(fcBtn(id, "cours", "Flashcards de la fiche"))}<div class="fr-intro">${intro}</div>${blocs}${confBloc(id)}${fcChapitre(id)}</div>`;
 }
 let matieres = [];
 function construire(){
@@ -3834,6 +3974,7 @@ function construire(){
   matieres.push({ id: "grammaire", title: "Grammaire", sub: "Interrogation, négation, propositions subordonnées", fiches: GRAMMAIRE.map(g => ({ id: "gram-" + g.id, title: g.titre, content: ficheSimple("gram-" + g.id, g.html) })) });
   matieres.push({ id: "methodo", title: "Méthodologie", sub: "Explication linéaire, grammaire, entretien, commentaire, dissertation", fiches: METHODO.map(m => ({ id: "methodo-" + m.id, title: m.titre, content: ficheSimple("methodo-" + m.id, m.html) })) });
   matieres.push({ id: "reperes", title: "Repères littéraires", sub: "Frise chronologique et grands mouvements", fiches: [{ id: "reperes", title: "Repères littéraires", content: ficheSimple("reperes", REPERES_HTML) }] });
+  matieres.forEach(m => m.fiches.forEach(f => { const tx = TEXTES.find(x => x.id === f.id); if (tx) f.objectifs = objectifsTexte(tx); const nc = NOTION_CATS.find(x => "notions-" + x.id === f.id); if (nc) f.objectifs = objectifsNotions(nc); }));
 }
 function toutDeplier(btn){
   const wrap = btn.parentElement.querySelector(".texte-wrap");
@@ -4050,6 +4191,79 @@ function ouvrirMatiere(id){
       `<p class="empty-msg">Aucun contenu pour le moment…</p>`;
   }
 }
+function objTexte(e){return e ? e.textContent.replace(/\s+/g," ").trim() : "";}
+function objLabel(t){return t.replace(/^[^\p{L}«(]+/u,"").trim();}
+function objItemsBloc(b, titre){
+  const lab = objLabel(objTexte(b.querySelector(".accord-h3 span"))), l = lab.toLowerCase();
+  const cells = [...b.querySelectorAll("tr")].map(tr => tr.cells.length > 1 ? objTexte(tr.cells[0]) : "").filter(x => x && x.length < 140);
+  if (/confondre/.test(l)) return cells.length ? cells.map(x => "Distinguer : " + x) : ["Distinguer les notions proches de cette partie"];
+  if (/à savoir/.test(l)) return cells.map(x => "Connaître : " + x);
+  if (/notion|définition|vocabula/.test(l)) return cells.length ? cells.map(x => "Définir : " + x) : ["Définir les notions de cette partie"];
+  if (/auteur|acteur|personnage|^œuvre/.test(l)) return cells.length ? cells.map(x => "Présenter : " + x) : ["Présenter les acteurs et les auteurs de cette partie"];
+  if (/citation|quote/.test(l)) return ["Citer et commenter les citations de cette partie"];
+  if (/chiffre|données|facts/.test(l)) return ["Connaître les chiffres et les exemples" + (cells.length ? " : " + cells.slice(0, 4).join(", ") : " de cette partie")];
+  if (/chrono|frise/.test(l)) return ["Situer les dates clés" + (titre ? " : " + titre : " de la fiche")];
+  if (/calcul|méthodes et exemples/.test(l)) return ["Refaire seul les calculs et les exemples : " + titre];
+  if (/piège/.test(l)) return ["Éviter les pièges signalés : " + titre];
+  if (/retenir/.test(l)) return [];
+  if (/sujet|entraînement/.test(l)) return ["Traiter les sujets d'entraînement"];
+  if (/textes étudiés/.test(l)) return ["Situer les textes étudiés dans l'œuvre"];
+  if (/bac|^exemple$/.test(l)) return ["Traiter l'exercice ou le sujet type : " + titre];
+  if (/lois|propriétés/.test(l)) return ["Énoncer et appliquer les lois et propriétés : " + titre];
+  if (/méthode pas|comment s'en servir/.test(l)) return ["Appliquer la méthode : " + titre];
+  if (/mécanisme|comprendre|key ideas/.test(l)) return ["Expliquer : " + titre];
+  return ["Expliquer : " + lab];
+}
+function objDepuisDom(root){
+  const groupes = [];
+  root.querySelectorAll(".accord-section, .accord-sub").forEach(g => {
+    if (g.classList.contains("obj-section")) return;
+    const blocs = [...g.querySelectorAll(".accord-block")].filter(b => b.parentElement.closest(".accord-sub, .accord-section") === g);
+    if (!blocs.length) return;
+    const titre = objTexte(g.querySelector(":scope > .accord-h1 span, :scope > .accord-h2 span"));
+    const items = [];
+    blocs.forEach(b => objItemsBloc(b, titre).forEach(x => { if (!items.includes(x)) items.push(x); }));
+    if (g.querySelector(".fc-btn")) items.push("Réussir les flashcards de cette partie");
+    if (items.length) groupes.push({ titre, items });
+  });
+  const libres = [...root.querySelectorAll(".accord-block")].filter(b => !b.parentElement.closest(".accord-sub, .accord-section"));
+  if (libres.length){ const items = []; libres.forEach(b => objItemsBloc(b, "").forEach(x => { if (!items.includes(x)) items.push(x); })); if (root.querySelector(".fc-btn")) items.push("Réussir les flashcards de la fiche"); if (items.length) groupes.unshift({ titre: "", items }); }
+  return groupes;
+}
+function objLire(id){try{return JSON.parse(localStorage.getItem("objectifs:" + id) || "[]");}catch(e){return [];}}
+function objEcrire(id, l){try{localStorage.setItem("objectifs:" + id, JSON.stringify(l));}catch(e){}}
+function objEsc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");}
+function objectifsHTML(id, groupes){
+  const faits = objLire(id);
+  let n = 0, ok = 0, corps = "";
+  groupes.forEach(g => {
+    corps += `<div class="obj-groupe">${g.titre ? `<div class="obj-titre">${objEsc(g.titre)}</div>` : ""}`;
+    g.items.forEach(x => { const k = g.titre + "|" + x, c = faits.includes(k); n++; if (c) ok++; corps += `<label class="obj-item${c ? " ok" : ""}"><input type="checkbox" class="obj-cb" data-fiche="${objEsc(id)}" data-k="${objEsc(k)}"${c ? " checked" : ""}><span>${objEsc(x)}</span></label>`; });
+    corps += `</div>`;
+  });
+  return `<div class="accord-section obj-section"><button type="button" class="accord-h1" onclick="toggleAccord(this)" aria-expanded="false"><span>🎯 Objectifs d'apprentissage <span class="obj-prog">${ok} / ${n}</span></span><span class="accord-chevron">▼</span></button><div class="accord-content"><div class="accord-body-inner"><p class="obj-aide">Coche chaque objectif quand tu sais le faire sans regarder la fiche. Ta progression est enregistrée sur cet appareil.</p><div class="obj-barre"><i style="width:${n ? Math.round(100 * ok / n) : 0}%"></i></div>${corps}<button type="button" class="obj-raz" onclick="objRaz(this)">Tout décocher</button></div></div></div>`;
+}
+function objMaj(sec){
+  const cbs = [...sec.querySelectorAll(".obj-cb")], ok = cbs.filter(c => c.checked).length;
+  sec.querySelector(".obj-prog").textContent = ok + " / " + cbs.length;
+  sec.querySelector(".obj-barre i").style.width = (cbs.length ? Math.round(100 * ok / cbs.length) : 0) + "%";
+  if (cbs.length) objEcrire(cbs[0].dataset.fiche, cbs.filter(c => c.checked).map(c => c.dataset.k));
+}
+function objRaz(btn){const sec = btn.closest(".obj-section"); sec.querySelectorAll(".obj-cb").forEach(c => { c.checked = false; c.parentElement.classList.remove("ok"); }); objMaj(sec);}
+document.addEventListener("change", e => { const c = e.target.closest(".obj-cb"); if (!c) return; c.parentElement.classList.toggle("ok", c.checked); objMaj(c.closest(".obj-section")); });
+function ajouterObjectifs(f){
+  const zone = document.getElementById("content").firstElementChild;
+  if (!zone || !f.content) return;
+  const racine = zone.querySelector(".fiche-ses") || zone;
+  const groupes = f.objectifs || objDepuisDom(racine);
+  if (!groupes.length) return;
+  const tmp = document.createElement("div");
+  tmp.innerHTML = objectifsHTML(f.id, groupes);
+  const intro = racine.querySelector(":scope > .aretenir, :scope > .fr-meta, :scope > .fr-intro");
+  let apres = intro;
+  while (apres && apres.nextElementSibling && apres.nextElementSibling.matches(".problematique, .fr-intro, .aretenir, .accord-fc-row")) apres = apres.nextElementSibling;
+  if (apres) apres.after(tmp.firstElementChild); else racine.prepend(tmp.firstElementChild);
+}
 function ouvrirFiche(matiereId, ficheId){
   const m = matieres.find(x => x.id === matiereId);
   if(!m) return;
@@ -4062,6 +4276,7 @@ function ouvrirFiche(matiereId, ficheId){
          ? f.content
          : `<p class="empty-msg">Aucun contenu pour le moment…</p>`}
      </div>`;
+  ajouterObjectifs(f);
 }
 function back(){
   if(currentMatiere && document.getElementById("page-title").textContent !== currentMatiere.title){
