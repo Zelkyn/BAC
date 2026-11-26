@@ -5,10 +5,24 @@
 - Après chaque modification : commit, push sur la branche de travail, puis ouvrir directement la pull request vers `main`.
 - La seule étape laissée à l'utilisateur est la validation (fusion) de la pull request : lui donner le lien.
 
+## Récapitulatif : rédiger une fiche du BAC Terminale (modèle : `guerre-paix`)
+1. Plan officiel conservé (pour l'HGGSP : Introduction, Axe 1, Axe 2, Objet de travail conclusif ; un jalon par sous-partie).
+2. En tête : « Le thème en une phrase » puis « 🎯 Objectifs d'apprentissage » (liste fixe : savoir…, comprendre…, connaître… ; la maîtriser = être prêt pour le bac), et la mention des mots cliquables.
+3. Chaque axe ou partie s'ouvre sur sa question (« 🧭 ») ; chaque sous-partie dit pourquoi on l'étudie et comment elle répond à la question.
+4. Rédaction en profondeur : tout acteur, traité, événement, concept est expliqué (qui, quand, quoi, pourquoi, conséquences), chiffres et dates exacts ; récits en étapes reliées, comparaisons, débats.
+5. Liens explicites : enchaînements de causes et de conséquences, encadrés « 🔗 Lien avec le sujet » ou « Bilan pour le sujet ».
+6. Organisation des blocs adaptée à chaque sous-partie ; « 🔀 Ne pas confondre » seulement si des notions proches doivent être distinguées.
+7. Fin de chaque sous-partie : « ✅ À retenir », éléments clés sans développement.
+8. Glossaire : chaque notion importante a une entrée `GLOSSAIRE` détaillée (type, contexte, contenu, conséquences, « Dans le chapitre ») ; ses mentions deviennent cliquables (première occurrence par sous-partie, jamais dans un bouton ni une flashcard) ; identifiants uniques entre les thèmes.
+9. Flashcards réécrites pour correspondre au contenu : cartes de cours par sous-partie, une carte par notion cliquable, rangées sous les clés `INTRO.1`, `A1.J1`, `OTC.J2`…
+10. Faits récents : n'écrire que ce qui est certain et le dater.
+11. Vérifier : aucune erreur JS, chaque bouton de flashcards non vide, aucun lien orphelin, affichage correct à 390 px.
+
 ## Site
 - `index.html` : page d'entrée. Elle affiche le BAC Terminale au démarrage et contient le bouton en bas à gauche (menu déroulant BAC Terminale / BAC Français / BAC Maths). Chaque site est chargé dans son propre cadre, sans conflit de styles ni de scripts.
 - `terminale.html` : site du BAC Terminale (ancien dépôt BAC-2027) ; ses consignes restent valables (fiches dans `matieres`, flashcards dans `flashcardsData`, intitulés officiels, flashcards autonomes). Plus de système de couleurs ni d'indication d'origine des fiches (pas de champ `classe`).
   - Fiche d'HGGSP « Faire la guerre, faire la paix » (`guerre-paix`) réécrite en profondeur (Introduction ; Axe 1 avec I/ Clausewitz, guerre de Sept Ans, guerres napoléoniennes et II/ guerres irrégulières, Al-Qaïda, Daech ; Axe 2 Westphalie, ONU sous Kofi Annan ; Objet conclusif Moyen-Orient), flashcards sous `INTRO.1`, `A1.I.1`, `A2.J1`, `OTC.J2`… ; c'est le modèle de rédaction à suivre pour les autres fiches.
+  - Fiche d'HGGSP « De nouveaux espaces de conquête » (`espaces-conquete`) réécrite selon le même modèle.
   - Fiches d'HGGSP : plan du programme (Introduction, Axe 1, Axe 2, Objet de travail conclusif ; un jalon par sous-partie), flashcards rangées sous les clés `INTRO`, `A1`, `A2`, `OTC` puis `J1`, `J2`…
   - Fiche SES « Quels sont les fondements du commerce international… » (`commerce-international`) : plan du professeur (I. Pourquoi les biens et services s'échangent-ils… 1.1 / 1.2 ; II. Rôle des entreprises… 2.1 / 2.2 ; III. Effets du commerce international… 3.1 / 3.2 ; IV. Libre-échange ou protectionnisme… 4.1 / 4.2), puis une partie « Notions, savoir-faire et sujets d'entraînement » ; flashcards sous les clés `I.1`, `I.2`… `IV.2` et `S.1`.
   - Fiche SES « Comment est structurée la société française actuelle ? » (`societe-francaise`) : plan du document du Collège de France (I. Facteurs de structuration, 6 sous-parties ; II. Évolutions de la structure socioprofessionnelle, 4 ; III. Théories des classes, 3 ; IV. Société de classes ?, 5), puis « Sujets d'entraînement » ; flashcards sous les clés `I.1`… `IV.5`.
