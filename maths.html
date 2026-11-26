@@ -658,19 +658,6 @@ body.night .cmp-table th { background: var(--accent-2); }
 .search-extrait { font-size: 13px; color: var(--card-sub); margin-top: 6px; line-height: 1.5; }
 .search-extrait b { color: var(--text); }
 .search-vide { color: var(--card-sub); font-style: italic; text-align: center; margin-top: 20px; }
-.fiche-ses .accord-section.obj-section > .accord-h1, .accord-section.obj-section > .accord-h1 { background: linear-gradient(135deg, #2e7d4f, #23633e); }
-.fiche-ses .accord-section.obj-section > .accord-h1:hover, .accord-section.obj-section > .accord-h1:hover { background: linear-gradient(135deg, #23633e, #1b4f31); }
-.obj-prog { font-size: 13px; font-weight: normal; opacity: 0.9; margin-left: 8px; padding: 2px 9px; border-radius: 20px; background: rgba(255,255,255,0.18); }
-.obj-aide { font-size: 13.5px; color: var(--card-sub); margin: 4px 0 10px; line-height: 1.5; }
-.obj-barre { height: 7px; border-radius: 4px; background: rgba(127,127,127,0.18); overflow: hidden; margin: 0 0 14px; }
-.obj-barre i { display: block; height: 100%; background: #2e9e5b; transition: width 0.3s; }
-.obj-groupe { margin: 0 0 12px; }
-.obj-titre { font-weight: bold; font-size: 14.5px; margin: 12px 0 6px; color: var(--title); }
-.obj-item { display: flex; gap: 10px; align-items: flex-start; padding: 7px 9px; border-radius: 8px; font-size: 14.5px; line-height: 1.5; cursor: pointer; color: var(--text); }
-.obj-item:hover { background: rgba(127,127,127,0.08); }
-.obj-item input { margin-top: 3px; width: 18px; height: 18px; flex: none; accent-color: #2e9e5b; cursor: pointer; }
-.obj-item.ok span { opacity: 0.55; }
-.obj-raz { margin-top: 8px; font-size: 13px; padding: 6px 14px; border-radius: 20px; border: 1px solid rgba(127,127,127,0.4); background: transparent; color: var(--text); cursor: pointer; font-family: inherit; }
 :root { --violet:      #7c3aed; --blue:        #1a6fca; --green:       #1f8a4c; --gold:        #b7791f; --red:         #d64535; --grid:        rgba(30,25,20,0.10); --axis:        rgba(30,25,20,0.55); --font-sans:   -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
 body.night { --violet:      #a78bfa; --blue:        #6aa8ef; --green:       #4cc38a; --gold:        #e2b350; --red:         #ef7b6c; --grid:        rgba(255,255,255,0.09); --axis:        rgba(255,255,255,0.55); }
 .katex { font-size: 1.08em; }
@@ -3344,7 +3331,7 @@ function ficheChapitre(c){
   if (ex.conf && ex.conf.length) h += partie(`${ROMAIN[s.parties.length]} — Ne pas confondre`, bloc("🔀 Ne pas confondre", confTable(ex.conf)));
   const obj = [{ titre: "Ce que je dois savoir faire", items: (ex.obj || s.parties.map(p => "Expliquer : " + stripTags(p.titre))).concat(ex.conf && ex.conf.length ? ex.conf.map(r => "Distinguer : " + stripTags(r[0])) : []) }];
   if ((c.fc || []).length) obj.push({ titre: "", items: ["Réussir les flashcards du chapitre"] });
-  return { id: c.id, title: c.titre, content: fiche(h + fcChapitre(c.id)), objectifs: obj };
+  return { id: c.id, title: c.titre, content: fiche(h + fcChapitre(c.id)) };
 }
 function genere(t, n){
   const out = [];
@@ -3361,7 +3348,7 @@ function ficheAutomatismes(p){
   let h = `<div class="aretenir" style="margin-bottom:14px"><strong>Partie 1 de l'épreuve :</strong> des questions courtes, souvent en QCM, sur les calculs et les réflexes de base, à traiter sans calculatrice. Les flashcards de chaque thème proposent de nouvelles questions à chaque ouverture.</div><div class="accord-fc-row">${fcBtn(id, "reflexes", "Réflexes de calcul")}</div>`;
   h += themes.map((t, i) => partie(`${ROMAIN[i]} — ${t.t}`, (t.sub ? `<p class="bloc-p"><i>${t.sub}</i></p>` : "") + bloc("📖 À savoir", t.fiche || "") + bloc("🧮 Exemples corrigés", genere(t, 3).map(exempleQ).join("")), fcBtn(id, t.id, "Questions : " + t.t))).join("");
   const obj = [{ titre: "Thèmes d'automatismes", items: themes.map(t => "Répondre vite et sans calculatrice : " + t.t) }, { titre: "", items: ["Réussir les flashcards de la fiche"] }];
-  return { id, title: "Automatismes", content: fiche(h + fcChapitre(id)), objectifs: obj };
+  return { id, title: "Automatismes", content: fiche(h + fcChapitre(id)) };
 }
 function questionsHTML(qs, champ){
   let h = "", partieCour = null;
@@ -3379,7 +3366,7 @@ function exerciceHTML(e){
 function ficheExercices(p){
   const exos = EXERCICES.filter(e => inP(e, p));
   const h = `<div class="aretenir" style="margin-bottom:14px"><strong>Exercices type bac :</strong> fais chaque exercice au brouillon, sans calculatrice, avant d'ouvrir les indices puis le corrigé.</div>` + exos.map((e, i) => partie(`${ROMAIN[i] || i + 1} — ${e.titre}`, exerciceHTML(e))).join("");
-  return { id: "exos-" + p, title: "Exercices type bac", content: fiche(h), objectifs: [{ titre: "Exercices", items: exos.map(e => "Traiter seul l'exercice : " + e.titre) }] };
+  return { id: "exos-" + p, title: "Exercices type bac", content: fiche(h) };
 }
 function qcmHTML(auto, corr){
   return `<ol class="qcm-liste">${auto.map(q => `<li>${q.q}${corr ? `<div class="sol"><b>Réponse ${"abcd"[q.a]}) :</b> ${q.c[q.a]}<br>${q.e}</div>` : `<ol class="qcm-choix" type="a">${q.c.map(c => `<li>${c}</li>`).join("")}</ol>`}</li>`).join("")}</ol>`;
@@ -3387,13 +3374,13 @@ function qcmHTML(auto, corr){
 function ficheSujets(p){
   const sj = SUJETS.filter(s => inP(s, p));
   const h = `<div class="aretenir" style="margin-bottom:14px"><strong>Sujets blancs :</strong> 2 heures, sans calculatrice. Partie 1 : automatismes sur 6 points ; partie 2 : exercices sur 14 points. Fais tout le sujet avant d'ouvrir les corrigés.</div>` + sj.map((s, i) => partie(`${ROMAIN[i]} — ${s.titre}`, (s.sub ? `<p class="bloc-p"><i>${s.sub}</i></p>` : "") + sousPartie("Partie 1 — Automatismes (6 points)", bloc("📝 Questions", qcmHTML(s.auto, false)) + bloc("✅ Corrigé", qcmHTML(s.auto, true))) + (s.exos || []).map((e, k) => sousPartie(`Exercice ${k + 1} — ${e.titre}`, exerciceHTML(e))).join(""))).join("");
-  return { id: "sujets-" + p, title: "Sujets blancs", content: fiche(h), objectifs: [{ titre: "Sujets blancs", items: sj.map(s => "Faire en 2 heures, sans calculatrice : " + stripTags(s.titre)).concat(["Corriger sa copie et noter ses erreurs"]) }] };
+  return { id: "sujets-" + p, title: "Sujets blancs", content: fiche(h) };
 }
 function ficheTexte(id, title, html, verbe, cartes){
   if (cartes) flashcardsData[id] = { cours: cartes };
   const items = titresDe(html).map(t => verbe + t);
   const obj = [{ titre: "", items: items.concat(cartes && cartes.length ? ["Réussir les flashcards de la fiche"] : []) }];
-  return { id, title, content: fiche((cartes ? `<div class="accord-fc-row">${fcBtn(id, "cours", "Flashcards de la fiche")}</div>` : "") + enParties(html) + fcChapitre(id)), objectifs: obj };
+  return { id, title, content: fiche((cartes ? `<div class="accord-fc-row">${fcBtn(id, "cours", "Flashcards de la fiche")}</div>` : "") + enParties(html) + fcChapitre(id)) };
 }
 function inP(x, p){ return !x.parcours || x.parcours.includes(p); }
 let matieres = [];
@@ -3586,79 +3573,6 @@ function ouvrirMatiere(id){
       `<p class="empty-msg">Aucun contenu pour le moment…</p>`;
   }
 }
-function objTexte(e){return e ? e.textContent.replace(/\s+/g," ").trim() : "";}
-function objLabel(t){return t.replace(/^[^\p{L}«(]+/u,"").trim();}
-function objItemsBloc(b, titre){
-  const lab = objLabel(objTexte(b.querySelector(".accord-h3 span"))), l = lab.toLowerCase();
-  const cells = [...b.querySelectorAll("tr")].map(tr => tr.cells.length > 1 ? objTexte(tr.cells[0]) : "").filter(x => x && x.length < 140);
-  if (/confondre/.test(l)) return cells.length ? cells.map(x => "Distinguer : " + x) : ["Distinguer les notions proches de cette partie"];
-  if (/à savoir/.test(l)) return cells.map(x => "Connaître : " + x);
-  if (/notion|définition|vocabula/.test(l)) return cells.length ? cells.map(x => "Définir : " + x) : ["Définir les notions de cette partie"];
-  if (/auteur|acteur|personnage|^œuvre/.test(l)) return cells.length ? cells.map(x => "Présenter : " + x) : ["Présenter les acteurs et les auteurs de cette partie"];
-  if (/citation|quote/.test(l)) return ["Citer et commenter les citations de cette partie"];
-  if (/chiffre|données|facts/.test(l)) return ["Connaître les chiffres et les exemples" + (cells.length ? " : " + cells.slice(0, 4).join(", ") : " de cette partie")];
-  if (/chrono|frise/.test(l)) return ["Situer les dates clés" + (titre ? " : " + titre : " de la fiche")];
-  if (/calcul|méthodes et exemples/.test(l)) return ["Refaire seul les calculs et les exemples : " + titre];
-  if (/piège/.test(l)) return ["Éviter les pièges signalés : " + titre];
-  if (/retenir/.test(l)) return [];
-  if (/sujet|entraînement/.test(l)) return ["Traiter les sujets d'entraînement"];
-  if (/textes étudiés/.test(l)) return ["Situer les textes étudiés dans l'œuvre"];
-  if (/bac|^exemple$/.test(l)) return ["Traiter l'exercice ou le sujet type : " + titre];
-  if (/lois|propriétés/.test(l)) return ["Énoncer et appliquer les lois et propriétés : " + titre];
-  if (/méthode pas|comment s'en servir/.test(l)) return ["Appliquer la méthode : " + titre];
-  if (/mécanisme|comprendre|key ideas/.test(l)) return ["Expliquer : " + titre];
-  return ["Expliquer : " + lab];
-}
-function objDepuisDom(root){
-  const groupes = [];
-  root.querySelectorAll(".accord-section, .accord-sub").forEach(g => {
-    if (g.classList.contains("obj-section")) return;
-    const blocs = [...g.querySelectorAll(".accord-block")].filter(b => b.parentElement.closest(".accord-sub, .accord-section") === g);
-    if (!blocs.length) return;
-    const titre = objTexte(g.querySelector(":scope > .accord-h1 span, :scope > .accord-h2 span"));
-    const items = [];
-    blocs.forEach(b => objItemsBloc(b, titre).forEach(x => { if (!items.includes(x)) items.push(x); }));
-    if (g.querySelector(".fc-btn")) items.push("Réussir les flashcards de cette partie");
-    if (items.length) groupes.push({ titre, items });
-  });
-  const libres = [...root.querySelectorAll(".accord-block")].filter(b => !b.parentElement.closest(".accord-sub, .accord-section"));
-  if (libres.length){ const items = []; libres.forEach(b => objItemsBloc(b, "").forEach(x => { if (!items.includes(x)) items.push(x); })); if (root.querySelector(".fc-btn")) items.push("Réussir les flashcards de la fiche"); if (items.length) groupes.unshift({ titre: "", items }); }
-  return groupes;
-}
-function objLire(id){try{return JSON.parse(localStorage.getItem("objectifs:" + id) || "[]");}catch(e){return [];}}
-function objEcrire(id, l){try{localStorage.setItem("objectifs:" + id, JSON.stringify(l));}catch(e){}}
-function objEsc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");}
-function objectifsHTML(id, groupes){
-  const faits = objLire(id);
-  let n = 0, ok = 0, corps = "";
-  groupes.forEach(g => {
-    corps += `<div class="obj-groupe">${g.titre ? `<div class="obj-titre">${objEsc(g.titre)}</div>` : ""}`;
-    g.items.forEach(x => { const k = g.titre + "|" + x, c = faits.includes(k); n++; if (c) ok++; corps += `<label class="obj-item${c ? " ok" : ""}"><input type="checkbox" class="obj-cb" data-fiche="${objEsc(id)}" data-k="${objEsc(k)}"${c ? " checked" : ""}><span>${objEsc(x)}</span></label>`; });
-    corps += `</div>`;
-  });
-  return `<div class="accord-section obj-section"><button type="button" class="accord-h1" onclick="toggleAccord(this)" aria-expanded="false"><span>🎯 Objectifs d'apprentissage <span class="obj-prog">${ok} / ${n}</span></span><span class="accord-chevron">▼</span></button><div class="accord-content"><div class="accord-body-inner"><p class="obj-aide">Coche chaque objectif quand tu sais le faire sans regarder la fiche. Ta progression est enregistrée sur cet appareil.</p><div class="obj-barre"><i style="width:${n ? Math.round(100 * ok / n) : 0}%"></i></div>${corps}<button type="button" class="obj-raz" onclick="objRaz(this)">Tout décocher</button></div></div></div>`;
-}
-function objMaj(sec){
-  const cbs = [...sec.querySelectorAll(".obj-cb")], ok = cbs.filter(c => c.checked).length;
-  sec.querySelector(".obj-prog").textContent = ok + " / " + cbs.length;
-  sec.querySelector(".obj-barre i").style.width = (cbs.length ? Math.round(100 * ok / cbs.length) : 0) + "%";
-  if (cbs.length) objEcrire(cbs[0].dataset.fiche, cbs.filter(c => c.checked).map(c => c.dataset.k));
-}
-function objRaz(btn){const sec = btn.closest(".obj-section"); sec.querySelectorAll(".obj-cb").forEach(c => { c.checked = false; c.parentElement.classList.remove("ok"); }); objMaj(sec);}
-document.addEventListener("change", e => { const c = e.target.closest(".obj-cb"); if (!c) return; c.parentElement.classList.toggle("ok", c.checked); objMaj(c.closest(".obj-section")); });
-function ajouterObjectifs(f){
-  const zone = document.getElementById("content").firstElementChild;
-  if (!zone || !f.content) return;
-  const racine = zone.querySelector(".fiche-ses") || zone;
-  const groupes = f.objectifs || objDepuisDom(racine);
-  if (!groupes.length) return;
-  const tmp = document.createElement("div");
-  tmp.innerHTML = objectifsHTML(f.id, groupes);
-  const intro = racine.querySelector(":scope > .aretenir, :scope > .fr-meta, :scope > .fr-intro");
-  let apres = intro;
-  while (apres && apres.nextElementSibling && apres.nextElementSibling.matches(".problematique, .fr-intro, .aretenir, .accord-fc-row")) apres = apres.nextElementSibling;
-  if (apres) apres.after(tmp.firstElementChild); else racine.prepend(tmp.firstElementChild);
-}
 function ouvrirFiche(matiereId, ficheId){
   const m = matieres.find(x => x.id === matiereId);
   if(!m) return;
@@ -3671,7 +3585,6 @@ function ouvrirFiche(matiereId, ficheId){
          ? f.content
          : `<p class="empty-msg">Aucun contenu pour le moment…</p>`}
      </div>`;
-  ajouterObjectifs(f);
   typeset(document.getElementById("content"));
 }
 function back(){

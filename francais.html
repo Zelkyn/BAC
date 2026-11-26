@@ -717,19 +717,6 @@ body.night .fiche-fr .tbl th { background:var(--accent-2); }
 .fiche-fr a { color:var(--accent); }
 .fiche-fr ul, .fiche-fr ol { padding-left:22px; }
 @media (max-width: 600px) { .fiche-fr .idcard { grid-template-columns:1fr; gap:2px; } .fiche-fr .idcard dd { margin-bottom:8px; } .line { font-size:16px; } .analysis-line { margin-left:10px; } .mvt-lines { margin-left:0; } }
-.fiche-ses .accord-section.obj-section > .accord-h1, .accord-section.obj-section > .accord-h1 { background: linear-gradient(135deg, #2e7d4f, #23633e); }
-.fiche-ses .accord-section.obj-section > .accord-h1:hover, .accord-section.obj-section > .accord-h1:hover { background: linear-gradient(135deg, #23633e, #1b4f31); }
-.obj-prog { font-size: 13px; font-weight: normal; opacity: 0.9; margin-left: 8px; padding: 2px 9px; border-radius: 20px; background: rgba(255,255,255,0.18); }
-.obj-aide { font-size: 13.5px; color: var(--card-sub); margin: 4px 0 10px; line-height: 1.5; }
-.obj-barre { height: 7px; border-radius: 4px; background: rgba(127,127,127,0.18); overflow: hidden; margin: 0 0 14px; }
-.obj-barre i { display: block; height: 100%; background: #2e9e5b; transition: width 0.3s; }
-.obj-groupe { margin: 0 0 12px; }
-.obj-titre { font-weight: bold; font-size: 14.5px; margin: 12px 0 6px; color: var(--title); }
-.obj-item { display: flex; gap: 10px; align-items: flex-start; padding: 7px 9px; border-radius: 8px; font-size: 14.5px; line-height: 1.5; cursor: pointer; color: var(--text); }
-.obj-item:hover { background: rgba(127,127,127,0.08); }
-.obj-item input { margin-top: 3px; width: 18px; height: 18px; flex: none; accent-color: #2e9e5b; cursor: pointer; }
-.obj-item.ok span { opacity: 0.55; }
-.obj-raz { margin-top: 8px; font-size: 13px; padding: 6px 14px; border-radius: 20px; border: 1px solid rgba(127,127,127,0.4); background: transparent; color: var(--text); cursor: pointer; font-family: inherit; }
 .compte-btn { margin: -18px 0 22px; font-family: var(--font-serif); font-size: 14.5px; color: var(--text); background: var(--card-bg); border: 1px solid var(--border); border-radius: 22px; padding: 8px 18px; cursor: pointer; box-shadow: var(--shadow); max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .compte-btn:hover { border-color: var(--accent-mid); }
 .theme-titre { align-self: stretch; margin: 18px 0 0; font-family: var(--font-sans, sans-serif); font-size: 12.5px; font-weight: bold; letter-spacing: 1.6px; text-transform: uppercase; color: var(--accent); border-bottom: 1px solid var(--accent-mid); padding-bottom: 6px; }
@@ -2005,25 +1992,6 @@ function fichePerso(type, f){
   const fc = fcRow(fcBtn(id, "desc", "Description") + fcBtn(id, "oral", "Rubriques") + fcBtn(id, "perso", "Mes flashcards"));
   return `<div class="fiche-ses fiche-fr">${actionsPerso(type, f, false)}<div class="fr-meta">${quoi}</div>${descHTML(f)}${fc}${f.rubriques.filter(r => r.c.trim()).map(r => bloc(esc(r.t || "Rubrique"), fmt(r.c))).join("")}${fcChapitre(id)}</div>`;
 }
-function objectifsPerso(type, f, num){
-  if (ficheVide(type, f)) return [];
-  const g = [], rubs = f.rubriques.filter(r => r.c.trim()).map(r => "Savoir restituer : " + court(r.t || "Rubrique", 120));
-  if (type === "textes"){
-    const it = ["Situer le texte : auteur, œuvre, date, contexte"];
-    if (f.problematique.trim()) it.push("Énoncer la problématique : " + court(f.problematique, 140));
-    f.mouvements.forEach((m, k) => it.push("Expliquer le mouvement " + (k + 1) + (m.t.trim() ? " : " + court(m.t, 120) : "")));
-    if (f.lignes.some(l => l.a.trim())) it.push("Expliquer chaque ligne analysée et nommer ses procédés");
-    if (f.lignes.length) it.push("Lire le texte à voix haute de façon expressive");
-    g.push({ titre: "Le texte et son analyse", items: it });
-    if (rubs.length) g.push({ titre: "Préparer l'oral", items: rubs });
-  } else {
-    const d = f.desc.filter(x => x.l.trim() && x.v.trim()).map(x => x.l.trim().toLowerCase());
-    if (d.length) g.push({ titre: "Description", items: ["Connaître : " + court(d.join(", "), 160)] });
-    if (rubs.length) g.push({ titre: "Rubriques", items: rubs });
-  }
-  if (flashcardsData[pid(type, f)]) g.push({ titre: "", items: ["Réussir les flashcards de la fiche"] });
-  return g;
-}
 function listePerso(type){
   const num = numeros();
   const carte = f => `<div class="card card-perso" onclick="ouvrirFiche('${type}','${pid(type, f)}')"><div class="card-title">${type === "textes" ? "Texte " + num[f.id] : esc(nomPerso(type, f))}</div><div class="card-sub">${sousTitrePerso(type, f)}</div><div class="card-ordre"><button type="button" onclick="event.stopPropagation();deplacerFiche('${type}','${f.id}',-1)" aria-label="Monter">↑</button><button type="button" onclick="event.stopPropagation();deplacerFiche('${type}','${f.id}',1)" aria-label="Descendre">↓</button></div></div>`;
@@ -2060,7 +2028,6 @@ function supprimerFiche(){
   const { type, id } = brouillon, quoi = { textes: "ce texte", auteurs: "cet auteur", oeuvres: "cette œuvre" }[type];
   if (!confirm(`Supprimer définitivement ${quoi} et tout son contenu ?`)) return;
   perso[type] = perso[type].filter(f => f.id !== id);
-  try { localStorage.removeItem("objectifs:" + PERSO_PREFIXE[type] + id); } catch (e) {}
   brouillon = null; enregistrer(); currentMatiere = matieres.find(x => x.id === type); afficherViewer(currentMatiere.title); listePerso(type);
 }
 function editerFiche(type, id){
@@ -2465,8 +2432,6 @@ const CONF_FR = {
 ["Connecteur d'opposition ≠ de concession", "<b>Mais, cependant, pourtant</b> opposent ; <b>certes… mais, bien que</b> concèdent avant de s'opposer."]],
 };
 function confBloc(id){const c=CONF_FR[id];return c?bloc("🔀 Ne pas confondre",`<table class="ses-table">${c.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join("")}</table>`):"";}
-function objStrip(s){return String(s||"").replace(/<[^>]+>/g,"").replace(/\s+/g," ").trim();}
-function objectifsNotions(c){const conf=CONF_FR["notions-"+c.id]||[];return [{titre:c.t,items:NOTIONS.filter(n=>n.cat===c.id).map(n=>"Définir, reconnaître et interpréter : "+objStrip(n.t))},...(conf.length?[{titre:"Ne pas confondre",items:conf.map(r=>"Distinguer : "+objStrip(r[0]))}]:[]),{titre:"",items:["Réussir les flashcards de la fiche"]}];}
 function ficheNotions(cat){
   const id = "notions-" + cat.id;
   return `<div class="fiche-ses fiche-fr">
@@ -2485,14 +2450,13 @@ function construire(){
   repartirCartes();
   const num = numeros();
   matieres = [
-    { id: "textes", title: "Textes", sub: "Tes textes pour l'oral, classés par objet d'étude : le texte, son analyse linéaire, ta problématique, ton plan, ton introduction et ta conclusion", fiches: perso.textes.map(t => ({ id: pid("textes", t), title: titrePerso("textes", t, num[t.id]), content: ficheTextePerso(t, num[t.id]), objectifs: [], perso: t })) },
-    { id: "auteurs", title: "Auteurs", sub: "Les auteurs de ton programme : biographie, éléments à retenir, citations…", fiches: perso.auteurs.map(a => ({ id: pid("auteurs", a), title: titrePerso("auteurs", a), content: fichePerso("auteurs", a), objectifs: [], perso: a })) },
-    { id: "oeuvres", title: "Œuvres", sub: "Les œuvres au programme de ta classe : résumé, personnages, enjeux, parcours associé…", fiches: perso.oeuvres.map(o => ({ id: pid("oeuvres", o), title: titrePerso("oeuvres", o), content: fichePerso("oeuvres", o), objectifs: [], perso: o })) },
-    { id: "notions", title: "Notions et procédés", sub: "Figures de style, registres, versification, théâtre, argumentation…", fiches: NOTION_CATS.map(c => ({ id: "notions-" + c.id, title: c.t, content: ficheNotions(c), objectifs: objectifsNotions(c) })) },
+    { id: "textes", title: "Textes", sub: "Tes textes pour l'oral, classés par objet d'étude : le texte, son analyse linéaire, ta problématique, ton plan, ton introduction et ta conclusion", fiches: perso.textes.map(t => ({ id: pid("textes", t), title: titrePerso("textes", t, num[t.id]), content: ficheTextePerso(t, num[t.id]), perso: t })) },
+    { id: "auteurs", title: "Auteurs", sub: "Les auteurs de ton programme : biographie, éléments à retenir, citations…", fiches: perso.auteurs.map(a => ({ id: pid("auteurs", a), title: titrePerso("auteurs", a), content: fichePerso("auteurs", a), perso: a })) },
+    { id: "oeuvres", title: "Œuvres", sub: "Les œuvres au programme de ta classe : résumé, personnages, enjeux, parcours associé…", fiches: perso.oeuvres.map(o => ({ id: pid("oeuvres", o), title: titrePerso("oeuvres", o), content: fichePerso("oeuvres", o), perso: o })) },
+    { id: "notions", title: "Notions et procédés", sub: "Figures de style, registres, versification, théâtre, argumentation…", fiches: NOTION_CATS.map(c => ({ id: "notions-" + c.id, title: c.t, content: ficheNotions(c) })) },
     { id: "grammaire", title: "Grammaire", sub: "Interrogation, négation, propositions subordonnées", fiches: GRAMMAIRE.map(g => ({ id: "gram-" + g.id, title: g.titre, content: ficheSimple("gram-" + g.id, g.html) })) },
     { id: "methodo", title: "Méthodologie", sub: "Explication linéaire, grammaire, entretien, commentaire, dissertation", fiches: METHODO.map(m => ({ id: "methodo-" + m.id, title: m.titre, content: ficheSimple("methodo-" + m.id, m.html) })) }
   ];
-  matieres.slice(0, 3).forEach(m => m.fiches.forEach(f => { f.objectifs = objectifsPerso(m.id, f.perso, num[f.perso.id]); }));
   searchIndex = null;
 }
 function toutDeplier(btn){
@@ -2707,79 +2671,6 @@ function ouvrirMatiere(id){
       `<p class="empty-msg">Aucun contenu pour le moment…</p>`;
   }
 }
-function objTexte(e){return e ? e.textContent.replace(/\s+/g," ").trim() : "";}
-function objLabel(t){return t.replace(/^[^\p{L}«(]+/u,"").trim();}
-function objItemsBloc(b, titre){
-  const lab = objLabel(objTexte(b.querySelector(".accord-h3 span"))), l = lab.toLowerCase();
-  const cells = [...b.querySelectorAll("tr")].map(tr => tr.cells.length > 1 ? objTexte(tr.cells[0]) : "").filter(x => x && x.length < 140);
-  if (/confondre/.test(l)) return cells.length ? cells.map(x => "Distinguer : " + x) : ["Distinguer les notions proches de cette partie"];
-  if (/à savoir/.test(l)) return cells.map(x => "Connaître : " + x);
-  if (/notion|définition|vocabula/.test(l)) return cells.length ? cells.map(x => "Définir : " + x) : ["Définir les notions de cette partie"];
-  if (/auteur|acteur|personnage|^œuvre/.test(l)) return cells.length ? cells.map(x => "Présenter : " + x) : ["Présenter les acteurs et les auteurs de cette partie"];
-  if (/citation|quote/.test(l)) return ["Citer et commenter les citations de cette partie"];
-  if (/chiffre|données|facts/.test(l)) return ["Connaître les chiffres et les exemples" + (cells.length ? " : " + cells.slice(0, 4).join(", ") : " de cette partie")];
-  if (/chrono|frise/.test(l)) return ["Situer les dates clés" + (titre ? " : " + titre : " de la fiche")];
-  if (/calcul|méthodes et exemples/.test(l)) return ["Refaire seul les calculs et les exemples : " + titre];
-  if (/piège/.test(l)) return ["Éviter les pièges signalés : " + titre];
-  if (/retenir/.test(l)) return [];
-  if (/sujet|entraînement/.test(l)) return ["Traiter les sujets d'entraînement"];
-  if (/textes étudiés/.test(l)) return ["Situer les textes étudiés dans l'œuvre"];
-  if (/bac|^exemple$/.test(l)) return ["Traiter l'exercice ou le sujet type : " + titre];
-  if (/lois|propriétés/.test(l)) return ["Énoncer et appliquer les lois et propriétés : " + titre];
-  if (/méthode pas|comment s'en servir/.test(l)) return ["Appliquer la méthode : " + titre];
-  if (/mécanisme|comprendre|key ideas/.test(l)) return ["Expliquer : " + titre];
-  return ["Expliquer : " + lab];
-}
-function objDepuisDom(root){
-  const groupes = [];
-  root.querySelectorAll(".accord-section, .accord-sub").forEach(g => {
-    if (g.classList.contains("obj-section")) return;
-    const blocs = [...g.querySelectorAll(".accord-block")].filter(b => b.parentElement.closest(".accord-sub, .accord-section") === g);
-    if (!blocs.length) return;
-    const titre = objTexte(g.querySelector(":scope > .accord-h1 span, :scope > .accord-h2 span"));
-    const items = [];
-    blocs.forEach(b => objItemsBloc(b, titre).forEach(x => { if (!items.includes(x)) items.push(x); }));
-    if (g.querySelector(".fc-btn")) items.push("Réussir les flashcards de cette partie");
-    if (items.length) groupes.push({ titre, items });
-  });
-  const libres = [...root.querySelectorAll(".accord-block")].filter(b => !b.parentElement.closest(".accord-sub, .accord-section"));
-  if (libres.length){ const items = []; libres.forEach(b => objItemsBloc(b, "").forEach(x => { if (!items.includes(x)) items.push(x); })); if (root.querySelector(".fc-btn")) items.push("Réussir les flashcards de la fiche"); if (items.length) groupes.unshift({ titre: "", items }); }
-  return groupes;
-}
-function objLire(id){try{return JSON.parse(localStorage.getItem("objectifs:" + id) || "[]");}catch(e){return [];}}
-function objEcrire(id, l){try{localStorage.setItem("objectifs:" + id, JSON.stringify(l));}catch(e){}}
-function objEsc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");}
-function objectifsHTML(id, groupes){
-  const faits = objLire(id);
-  let n = 0, ok = 0, corps = "";
-  groupes.forEach(g => {
-    corps += `<div class="obj-groupe">${g.titre ? `<div class="obj-titre">${objEsc(g.titre)}</div>` : ""}`;
-    g.items.forEach(x => { const k = g.titre + "|" + x, c = faits.includes(k); n++; if (c) ok++; corps += `<label class="obj-item${c ? " ok" : ""}"><input type="checkbox" class="obj-cb" data-fiche="${objEsc(id)}" data-k="${objEsc(k)}"${c ? " checked" : ""}><span>${objEsc(x)}</span></label>`; });
-    corps += `</div>`;
-  });
-  return `<div class="accord-section obj-section"><button type="button" class="accord-h1" onclick="toggleAccord(this)" aria-expanded="false"><span>🎯 Objectifs d'apprentissage <span class="obj-prog">${ok} / ${n}</span></span><span class="accord-chevron">▼</span></button><div class="accord-content"><div class="accord-body-inner"><p class="obj-aide">Coche chaque objectif quand tu sais le faire sans regarder la fiche. Ta progression est enregistrée sur cet appareil.</p><div class="obj-barre"><i style="width:${n ? Math.round(100 * ok / n) : 0}%"></i></div>${corps}<button type="button" class="obj-raz" onclick="objRaz(this)">Tout décocher</button></div></div></div>`;
-}
-function objMaj(sec){
-  const cbs = [...sec.querySelectorAll(".obj-cb")], ok = cbs.filter(c => c.checked).length;
-  sec.querySelector(".obj-prog").textContent = ok + " / " + cbs.length;
-  sec.querySelector(".obj-barre i").style.width = (cbs.length ? Math.round(100 * ok / cbs.length) : 0) + "%";
-  if (cbs.length) objEcrire(cbs[0].dataset.fiche, cbs.filter(c => c.checked).map(c => c.dataset.k));
-}
-function objRaz(btn){const sec = btn.closest(".obj-section"); sec.querySelectorAll(".obj-cb").forEach(c => { c.checked = false; c.parentElement.classList.remove("ok"); }); objMaj(sec);}
-document.addEventListener("change", e => { const c = e.target.closest(".obj-cb"); if (!c) return; c.parentElement.classList.toggle("ok", c.checked); objMaj(c.closest(".obj-section")); });
-function ajouterObjectifs(f){
-  const zone = document.getElementById("content").firstElementChild;
-  if (!zone || !f.content) return;
-  const racine = zone.querySelector(".fiche-ses") || zone;
-  const groupes = f.objectifs || objDepuisDom(racine);
-  if (!groupes.length) return;
-  const tmp = document.createElement("div");
-  tmp.innerHTML = objectifsHTML(f.id, groupes);
-  const intro = racine.querySelector(":scope > .aretenir, :scope > .fr-meta, :scope > .fr-intro");
-  let apres = intro;
-  while (apres && apres.nextElementSibling && apres.nextElementSibling.matches(".perso-desc, .problematique, .fr-intro, .aretenir, .accord-fc-row")) apres = apres.nextElementSibling;
-  if (apres) apres.after(tmp.firstElementChild); else racine.prepend(tmp.firstElementChild);
-}
 function ouvrirFiche(matiereId, ficheId){
   const m = matieres.find(x => x.id === matiereId);
   if(!m) return;
@@ -2793,7 +2684,6 @@ function ouvrirFiche(matiereId, ficheId){
          ? f.content
          : `<p class="empty-msg">Aucun contenu pour le moment…</p>`}
      </div>`;
-  ajouterObjectifs(f);
 }
 function back(){
   if (brouillon && brouillon.modifie && !confirm("Quitter sans enregistrer tes modifications ?")) return;
